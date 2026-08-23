@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — sampled from the club's own deck (greentumorrow.pptx). */
+  --color-cream: #fff3dd;
+  --color-cream-deep: #f8e8c8;
+  --color-green: #3a643c;
+  --color-green-dark: #1f4438;
+  --color-amber: #ffc246;
+  --color-amber-deep: #d98f0d;
+  --color-blue: #32459a;
+  --color-navy: #0e2841;
+  --color-sage: #a5b294;
+  --color-mist: #e8ede9;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Must live in @layer base: unlayered rules outrank Tailwind's utility layer,
+   which would make text colour utilities on headings silently do nothing. */
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headlines carry the brand's green; the amber is reserved for accents. */
+  h1,
+  h2,
+  h3 {
+    color: var(--color-green-dark);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+::selection {
+  background-color: var(--color-amber);
+  color: var(--color-navy);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
