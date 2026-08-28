@@ -147,8 +147,7 @@ export const en: Copy = {
   },
 
   closing: {
-    title:
-      "Renewable energy needs people who have already built something. Start here.",
+    title: "Want to move the energy transition forward? Start here.",
     lead: "There is no application. Everything runs in one WhatsApp group. That is where you find what is happening this week, who needs a hand and when we next meet.",
     cta: "Join the WhatsApp group",
     askInstead: "Rather ask something first?",

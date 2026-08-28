@@ -153,8 +153,7 @@ export const de: Copy = {
   },
 
   closing: {
-    title:
-      "Die Energiewende braucht Leute, die schon mal etwas gebaut haben. Fang hier an.",
+    title: "Du willst die Energiewende voranbringen? Fang hier an.",
     lead: "Es gibt keine Bewerbung. Alles läuft über eine WhatsApp-Gruppe. Dort steht, was diese Woche ansteht, wo jemand Hilfe braucht und wann wir uns treffen.",
     cta: "Zur WhatsApp-Gruppe",
     askInstead: "Lieber erst etwas fragen?",
