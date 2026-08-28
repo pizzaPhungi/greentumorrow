@@ -1,0 +1,311 @@
+import { Arc, LogoMark, Wordmark } from "@/components/Logo";
+import { Photo } from "@/components/Photo";
+import { Fill } from "@/components/Todo";
+import {
+  Button,
+  Card,
+  Container,
+  Eyebrow,
+  Pill,
+  Section,
+  SectionHeading,
+  Stat,
+} from "@/components/ui";
+import { getCopy } from "@/content/copy";
+import {
+  contact,
+  isTodo,
+  joinHref,
+  partnerLinks,
+  projectFacts,
+  teamFacts,
+  type Locale,
+} from "@/content/shared";
+import { personPhotos, projectPhotos } from "@/content/images";
+
+/**
+ * One structure, two dictionaries. Facts come from shared.ts and are identical
+ * in both languages; every string comes from the locale's copy module.
+ */
+export function Home({ locale }: { locale: Locale }) {
+  const copy = getCopy(locale);
+  const t = copy.projects;
+
+  return (
+    <>
+      {/* Hero */}
+      <div className="relative overflow-hidden">
+        <Arc
+          className="pointer-events-none absolute -top-28 left-1/2 hidden h-auto w-[1900px] -translate-x-1/2 text-green/12 md:block"
+          aria-hidden="true"
+        />
+        <Container className="relative">
+          <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+            <div>
+              <Eyebrow>{copy.hero.eyebrow}</Eyebrow>
+              <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
+                {copy.hero.headline}
+              </h1>
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl">
+                <Wordmark className="text-[1.05em]" /> {copy.hero.lead}
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Button href={joinHref}>{copy.hero.joinCta}</Button>
+                <Button href="#projects" variant="secondary">
+                  {copy.hero.projectsCta}
+                </Button>
+              </div>
+            </div>
+
+            <Card className="bg-cream-deep/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
+                {copy.hero.cardTitle}
+              </p>
+              <ul className="mt-6 space-y-6">
+                {projectFacts.map((p) => (
+                  <li
+                    key={p.slug}
+                    className="border-t border-green/15 pt-6 first:border-0 first:pt-0"
+                  >
+                    <Pill tone={p.status === "live" ? "live" : "building"}>
+                      {t.entries[p.slug].status}
+                    </Pill>
+                    <p className="mt-3 font-semibold text-green-dark">
+                      {t.entries[p.slug].name}
+                    </p>
+                    <p className="mt-1 text-sm text-navy/70">
+                      {t.entries[p.slug].heroLine}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex justify-end border-t border-green/15 pt-5">
+                <LogoMark className="h-9 opacity-80" />
+              </div>
+            </Card>
+          </div>
+        </Container>
+      </div>
+
+      {/* Numbers */}
+      <Section tone="deep" className="py-14 sm:py-16">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {copy.stats.map((s) => (
+            <Stat key={s.label} {...s} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Pillars. Equal weight, separated columns rather than a card row. */}
+      <Section tone="mist">
+        <SectionHeading
+          eyebrow={copy.pillars.eyebrow}
+          title={copy.pillars.title}
+          lead={copy.pillars.lead}
+        />
+        <ol className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
+          {copy.pillars.items.map((p) => (
+            <li
+              key={p.name}
+              className="border-t-2 border-green/25 pt-6 md:border-l-2 md:border-t-0 md:pl-8 md:pt-0"
+            >
+              <h3 className="text-2xl font-semibold">
+                <span className="text-amber-deep">{p.prefix}</span>{" "}
+                <span className="text-green-dark">{p.name}</span>
+              </h3>
+              <p className="mt-4 leading-relaxed text-navy/75">{p.text}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* Projects */}
+      <Section id="projects">
+        <SectionHeading
+          eyebrow={t.eyebrow}
+          title={t.title}
+          lead={t.lead}
+        />
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {projectFacts.map((p) => {
+            const c = t.entries[p.slug];
+            return (
+              <Card key={p.slug} as="article" className="flex flex-col">
+                <Photo
+                  src={projectPhotos[p.slug]}
+                  alt={c.photoAlt}
+                  missingLabel={copy.photo.missing}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="aspect-[16/10] w-full rounded"
+                />
+                <div className="mt-6 flex grow flex-col">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Pill tone={p.status === "live" ? "live" : "building"}>
+                      {c.status}
+                    </Pill>
+                    <span className="text-sm font-medium text-green-dark">
+                      {c.field}
+                    </span>
+                    <span className="text-sm text-navy/55">{c.year}</span>
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold">{c.name}</h3>
+                  <p className="mt-4 grow leading-relaxed text-navy/75">
+                    {c.summary}
+                  </p>
+                  <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-5">
+                    {p.specs.map((value, i) => (
+                      <div key={c.specLabels[i]}>
+                        <dt className="text-xs uppercase tracking-wider text-navy/50">
+                          {c.specLabels[i]}
+                        </dt>
+                        <dd className="mt-0.5 font-semibold tabular-nums text-navy">
+                          {value}
+                        </dd>
+                      </div>
+                    ))}
+                    {p.partner ? (
+                      <div>
+                        <dt className="text-xs uppercase tracking-wider text-navy/50">
+                          {t.partnerLabel}
+                        </dt>
+                        <dd className="mt-0.5 font-semibold text-navy">
+                          {p.partner}
+                        </dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* An invitation, never dressed up as an existing project. */}
+        <Card className="mt-6 border-dashed border-amber-deep/50 bg-amber/8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
+            <div>
+              <span className="inline-flex">
+                <Pill tone="building">{t.own.badge}</Pill>
+              </span>
+              <h3 className="mt-4 text-xl font-semibold">{t.own.headline}</h3>
+              <p className="mt-4 leading-relaxed text-navy/75">{t.own.intro}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
+                {t.own.examplesLabel}
+              </p>
+              <ul className="mt-4 space-y-2 text-navy/75">
+                {t.own.examples.map((e) => (
+                  <li key={e} className="flex gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber-deep"
+                    />
+                    {e}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-navy/70">
+                <Fill value={t.own.requirements} label={copy.todo.label} />
+              </p>
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      {/* The team */}
+      <Section tone="deep">
+        <SectionHeading eyebrow={copy.team.eyebrow} title={copy.team.title} />
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {teamFacts.map((person) => {
+            const c = copy.team.people[person.name];
+            return (
+              <Card key={person.name} as="li">
+                <div className="flex items-start gap-4">
+                  <Photo
+                    src={personPhotos[person.name]}
+                    alt={c.photoAlt}
+                    missingLabel={copy.photo.missing}
+                    compact
+                    sizes="64px"
+                    className="h-16 w-16 rounded-full object-cover"
+                  />
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-lg font-semibold text-green-dark">
+                        {person.name}
+                      </p>
+                      {person.kind === "advisor" ? (
+                        <Pill>{copy.team.advisorBadge}</Pill>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-amber-deep">
+                      {c.role}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-navy/70">
+                  {c.work}
+                </p>
+              </Card>
+            );
+          })}
+        </ul>
+      </Section>
+
+      {/* Partners */}
+      <Section>
+        <SectionHeading
+          eyebrow={copy.partners.eyebrow}
+          title={copy.partners.title}
+        />
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
+          {copy.partners.entries.map((p, i) => (
+            <Card key={p.name} as="li">
+              <h3 className="text-lg font-semibold">{p.name}</h3>
+              <p className="mt-1 text-sm text-navy/55">{p.full}</p>
+              <p className="mt-4 text-sm leading-relaxed text-navy/75">
+                {p.text}
+              </p>
+              <a
+                href={partnerLinks[i].href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mt-5 inline-block text-sm font-semibold text-green-dark underline decoration-amber decoration-2 underline-offset-4"
+              >
+                {new URL(partnerLinks[i].href).hostname.replace(/^www\./, "")}
+              </a>
+            </Card>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Closing. Joining is the WhatsApp group and nothing else, so a missing
+          invite link has to be impossible to overlook. */}
+      <Section tone="mist" className="py-20">
+        <div className="flex flex-col items-center gap-8 text-center">
+          <LogoMark className="h-16" />
+          <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
+            {copy.closing.title}
+          </h2>
+          <p className="max-w-md text-navy/70">{copy.closing.lead}</p>
+          {isTodo(contact.whatsapp) ? (
+            <Fill value={contact.whatsapp} label={copy.todo.label} />
+          ) : (
+            <Button href={contact.whatsapp}>{copy.closing.cta}</Button>
+          )}
+          <p className="text-sm text-navy/60">
+            {copy.closing.askInstead}{" "}
+            <a
+              href={`mailto:${contact.email}`}
+              className="underline decoration-amber decoration-2 underline-offset-4"
+            >
+              {contact.email}
+            </a>
+          </p>
+        </div>
+      </Section>
+    </>
+  );
+}

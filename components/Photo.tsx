@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/components/cn";
-import { isTodo, type Fillable } from "@/content/site";
+import { isTodo, type Fillable } from "@/content/shared";
 
 /**
  * Renders a photo, or a loud placeholder in its exact shape while the club has
@@ -16,12 +16,15 @@ export function Photo({
   sizes,
   /** Compact placeholder for small avatars, where a caption would not fit. */
   compact = false,
+  missingLabel,
 }: {
   src: StaticImageData | undefined;
   alt: Fillable;
   className?: string;
   sizes?: string;
   compact?: boolean;
+  /** "Photo missing" in the current language. */
+  missingLabel: string;
 }) {
   if (!src) {
     if (compact) {
@@ -47,7 +50,7 @@ export function Photo({
       >
         <span className="max-w-xs text-sm text-amber-deep">
           <span className="block text-[0.7em] font-semibold uppercase tracking-widest">
-            Photo missing
+            {missingLabel}
           </span>
           <span className="mt-1 block text-navy/70">
             {isTodo(alt) ? alt.__todo : alt}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TodoNote } from "@/components/Todo";
 import { Container, PageHeader } from "@/components/ui";
-import { TODO, contact, site } from "@/content/site";
+import { TODO, contact, site } from "@/content/shared";
 
 export const metadata: Metadata = {
   title: "Imprint",
@@ -42,11 +42,11 @@ export default function ImprintPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Service provider</h2>
             <div className="space-y-3">
-              <TodoNote value={TODO("Full name of the responsible person")} />
+              <TodoNote label="To do" value={TODO("Full name of the responsible person")} />
               <br />
-              <TodoNote value={TODO("Postal address (no P.O. box)")} />
+              <TodoNote label="To do" value={TODO("Postal address (no P.O. box)")} />
               <br />
-              <TodoNote value={TODO("Legal form once the e.V. is registered, incl. register court and number")} />
+              <TodoNote label="To do" value={TODO("Legal form once the e.V. is registered, incl. register court and number")} />
             </div>
           </section>
 
@@ -67,7 +67,7 @@ export default function ImprintPage() {
             <h2 className="text-2xl font-semibold">
               Responsible for content
             </h2>
-            <TodoNote value={TODO("Name and address of the person responsible for editorial content")} />
+            <TodoNote label="To do" value={TODO("Name and address of the person responsible for editorial content")} />
           </section>
 
           <section className="space-y-4">

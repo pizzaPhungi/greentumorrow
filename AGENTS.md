@@ -16,8 +16,15 @@ Static marketing site for a TUM student initiative. Next.js 16 App Router,
 Tailwind v4, `output: "export"`. No server, no database, no client state
 beyond the mobile nav toggle.
 
-- **All copy and data live in `content/site.ts`.** Never hardcode text in a
-  component; add it to the content module and read it from there.
+- **The site is bilingual: German at `/`, English at `/en`, German is the
+  default.** Never hardcode a user-visible string in a component. Facts go in
+  `content/shared.ts`, prose goes in `content/copy/de.ts` and
+  `content/copy/en.ts`, both typed `Copy` so a missing translation fails `tsc`.
+- **Content modules must stay importable by plain Node**: relative imports with
+  explicit `.ts` extensions, no image imports. The build gate loads them
+  directly, and breaking that silently disables it.
+- **Two root layouts, one per language, via route groups.** That is the only way
+  `<html lang>` can differ. Legal pages are German only.
 - **Unknown facts are `TODO("...")`, never invented.** They render as a visible
   amber placeholder. Do not replace one with a plausible-sounding guess.
 - **Base CSS must stay inside `@layer base`** in `app/globals.css`. Unlayered

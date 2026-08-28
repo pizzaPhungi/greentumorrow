@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TodoNote } from "@/components/Todo";
 import { Container, PageHeader } from "@/components/ui";
-import { TODO, contact } from "@/content/site";
+import { TODO, contact } from "@/content/shared";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Controller</h2>
-            <TodoNote value={TODO("Name and address of the controller, same person as in the imprint")} />
+            <TodoNote label="To do" value={TODO("Name and address of the controller, same person as in the imprint")} />
             <p className="text-navy/80">
               Email:{" "}
               <a
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
               server log files. This is necessary to deliver the site and to keep
               it secure. The legal basis is Art. 6(1)(f) GDPR.
             </p>
-            <TodoNote value={TODO("Name of the hosting provider and its retention period for log files")} />
+            <TodoNote label="To do" value={TODO("Name of the hosting provider and its retention period for log files")} />
           </section>
 
           <section className="space-y-4">

@@ -5,7 +5,16 @@
  * to build anyway — needed for previews and staging while the club is still
  * filling content in.
  */
-const MODULE = new URL("../content/site.ts", import.meta.url);
+/**
+ * Facts and both language dictionaries. All three must stay importable by plain
+ * Node: no image imports, explicit .ts specifiers. If this stops running, the
+ * gate silently stops protecting the site.
+ */
+const MODULES = [
+  ["shared", "../content/shared.ts"],
+  ["de", "../content/copy/de.ts"],
+  ["en", "../content/copy/en.ts"],
+];
 
 if (process.env.ALLOW_TODOS === "1") {
   console.log("check:content — skipped (ALLOW_TODOS=1)");
@@ -29,10 +38,14 @@ const walk = (value, path) => {
   }
 };
 
-const site = await import(MODULE);
-for (const [key, value] of Object.entries(site)) {
-  if (typeof value === "function") continue;
-  walk(value, key);
+for (const [prefix, path] of MODULES) {
+  const mod = await import(new URL(path, import.meta.url));
+  for (const [key, value] of Object.entries(mod)) {
+    if (typeof value === "function") continue;
+    // The copy modules export a single object already named for the locale,
+    // so prefixing again would read "de.de.…".
+    walk(value, key === prefix ? key : `${prefix}.${key}`);
+  }
 }
 
 if (found.length === 0) {
@@ -42,7 +55,7 @@ if (found.length === 0) {
 
 const width = Math.max(...found.map((f) => f.path.length));
 console.error(
-  `\n❌ ${found.length} unresolved TODO(...) placeholder${found.length === 1 ? "" : "s"} in content/site.ts:\n`,
+  `\n❌ ${found.length} unresolved TODO(...) placeholder${found.length === 1 ? "" : "s"}:\n`,
 );
 for (const { path, what } of found) {
   console.error(`   ${path.padEnd(width)}  ${what}`);

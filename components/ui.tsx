@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/components/cn";
 import { TodoNote } from "@/components/Todo";
-import { isTodo, type Fillable as FillableValue } from "@/content/site";
+import { isTodo, type Fillable as FillableValue } from "@/content/shared";
 
 export function Container({
   children,
@@ -183,7 +183,7 @@ export function Stat({
     <div className="border-t border-green/20 pt-5">
       <p className="font-semibold tracking-tight text-green-dark tabular-nums">
         {isTodo(value) ? (
-          <TodoNote value={value} />
+          <TodoNote value={value} label="To do" />
         ) : (
           <>
             <span className="text-4xl sm:text-5xl">{value}</span>

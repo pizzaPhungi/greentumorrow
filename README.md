@@ -30,22 +30,31 @@ ALLOW_TODOS=1 npm run build
 
 ## Editing content
 
-**Almost every word on the site lives in [`content/site.ts`](content/site.ts).**
-Change it there and it updates everywhere. You do not need to touch the
-components for text, projects, team members or contact details.
+The site is bilingual: **German at `/`, English at `/en`**, German is the
+default. Text and facts are split across three files:
 
-| What | Where in `content/site.ts` |
+- [`content/shared.ts`](content/shared.ts) holds everything that is the same in
+  both languages: email, address, links, project figures, people's names.
+- [`content/copy/de.ts`](content/copy/de.ts) and
+  [`content/copy/en.ts`](content/copy/en.ts) hold the prose. Both are typed
+  `Copy`, so **TypeScript fails the build if either language is missing a key.**
+
+Change text there and it updates everywhere. You do not need to touch the
+components.
+
+| What | Where |
 | --- | --- |
-| Contact details and address | `contact` |
-| Headline numbers on the home page | `stats`, `founded` |
-| Projects (`type: "partner"` or `"own"`, plus a `field`) | `projects` |
-| The "bring your own project" invitation | `ownProjects` |
-| The three pillars (RE Community / Projects / Knowledge) | `pillars` |
-| People and the work each carries | `team` |
-| The WhatsApp invite link, which is the whole joining process | `contact.whatsapp` |
-| Partners | `partners` |
-| Alt text for photos | `projects[].photoAlt`, `team[].photoAlt` |
-| Top-level pages besides home (currently empty) | `nav` |
+| Contact details and address | `shared.contact` |
+| Headline numbers on the home page | `copy.stats` |
+| Project figures and status | `shared.projectFacts` |
+| Project names, summaries, spec labels | `copy.projects.entries` |
+| The "bring your own project" invitation | `copy.projects.own` |
+| The three pillars (RE Community / Projects / Knowledge) | `copy.pillars` |
+| People | `shared.teamFacts` and `copy.team.people` |
+| The WhatsApp invite link, which is the whole joining process | `shared.contact.whatsapp` |
+| Partners | `shared.partnerLinks` and `copy.partners` |
+| Alt text for photos | `copy.projects.entries[].photoAlt`, `copy.team.people[].photoAlt` |
+
 
 ### The `TODO(...)` markers
 
@@ -125,24 +134,32 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/                       routes: home, imprint, privacy
+app/(de)/                  German routes: /, /imprint, /privacy
+app/(en)/en/               English route: /en
 components/                Logo, Header, Footer, UI primitives, TODO markers
-content/site.ts            all copy and data
+components/pages/          page bodies, shared by both languages
+content/shared.ts          language-independent facts
+content/copy/              de.ts, en.ts and the Copy type they both satisfy
 content/images.ts          static photo imports, keyed by slug / name
 content/photos/            the photo files themselves
 scripts/check-content.mjs  the build gate for unfinished content
 ```
 
+Two route groups means two root layouts, which is the only way `<html lang>` can
+differ per language. Legal pages exist in German only and are linked from both.
+
 ### Adding a photo
 
 Photos are split across two files on purpose. `scripts/check-content.mjs` imports
-`content/site.ts` with plain Node to run the build gate, and plain Node cannot
-import a `.jpg`; it fails with `ERR_UNKNOWN_FILE_EXTENSION`. So the alt text
-lives in `content/site.ts` and the image import lives in `content/images.ts`.
+`content/shared.ts` and both copy modules with plain Node to run the build gate,
+and plain Node cannot import a `.jpg`; it fails with
+`ERR_UNKNOWN_FILE_EXTENSION`. So the alt text lives in the copy modules and the
+image import lives in `content/images.ts`.
 
 1. Drop the file in `content/photos/`
 2. Import it in `content/images.ts` and key it by project slug or person name
-3. Replace the matching `photoAlt` TODO in `content/site.ts`
+3. Replace the matching `photoAlt` TODO in **both** `content/copy/de.ts`
+   and `content/copy/en.ts`
 
 Both halves are needed. Until then the page shows a visible "photo missing" box
 and the build stays blocked. The import is static rather than a string path so
@@ -155,7 +172,6 @@ layout shift and means nobody maintains pixel dimensions by hand.
 § 22 KunstUrhG). That applies to the Perlacher Herz group shot and to every
 portrait.
 
-The site is currently one page plus the two legal pages. Joining happens in a
-WhatsApp group, not on the site.
-Adding entries to `nav` in `content/site.ts` brings the header navigation and
-the mobile menu back automatically; both handle an empty list.
+Joining happens in a WhatsApp group, not on the site.
+The header has no navigation: with one page per language there is nothing to
+navigate to, so `Header` is a plain server component with no menu state.

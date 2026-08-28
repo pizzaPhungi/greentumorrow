@@ -1,14 +1,18 @@
 import Link from "next/link";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
-import { contact, nav, site } from "@/content/site";
+import { getCopy } from "@/content/copy";
+import { contact, site, type Locale } from "@/content/shared";
 
+/** The legal pages exist in German only and are linked from both languages. */
 const legal = [
-  { href: "/imprint", label: "Imprint" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/imprint", key: "imprint" as const },
+  { href: "/privacy", key: "privacy" as const },
 ];
 
-export function Footer() {
+export function Footer({ locale }: { locale: Locale }) {
+  const copy = getCopy(locale);
+
   return (
     <footer className="border-t border-green/15 bg-cream-deep">
       <Container>
@@ -19,27 +23,23 @@ export function Footer() {
               <Wordmark className="text-xl" />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-navy/70">
-              {site.affiliation} in {site.city}. Students working on renewable
-              energy, on real projects, with partners and their own.
+              {copy.footer.blurb}
             </p>
           </div>
 
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              {nav.length > 0 ? "Site" : "Legal"}
+              {copy.footer.legalHeading}
             </h2>
             <ul className="mt-5 space-y-3 text-sm">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="text-navy/75 hover:text-green-dark">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
               {legal.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-navy/70 hover:text-green-dark">
-                    {item.label}
+                  <Link
+                    href={item.href}
+                    hrefLang="de"
+                    className="text-navy/70 hover:text-green-dark"
+                  >
+                    {copy.footer[item.key]}
                   </Link>
                 </li>
               ))}
@@ -48,7 +48,7 @@ export function Footer() {
 
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Find us
+              {copy.footer.findUsHeading}
             </h2>
             <address className="mt-5 space-y-3 text-sm not-italic text-navy/75">
               <p>
@@ -57,15 +57,28 @@ export function Footer() {
                 {contact.address.postalCode} {contact.address.city}
               </p>
               <p>
-                <a href={`mailto:${contact.email}`} className="hover:text-green-dark">
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="hover:text-green-dark"
+                >
                   {contact.email}
                 </a>
               </p>
               <p className="flex gap-4 pt-1">
-                <a href={contact.instagram} target="_blank" rel="noreferrer noopener" className="hover:text-green-dark">
+                <a
+                  href={contact.instagram}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:text-green-dark"
+                >
                   Instagram
                 </a>
-                <a href={contact.linkedin} target="_blank" rel="noreferrer noopener" className="hover:text-green-dark">
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:text-green-dark"
+                >
                   LinkedIn
                 </a>
               </p>
