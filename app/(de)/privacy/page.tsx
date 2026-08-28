@@ -27,10 +27,10 @@ export default function PrivacyPage() {
         <div className="max-w-2xl space-y-12 py-16 sm:py-24">
           <div className="rounded-lg border border-dashed border-amber-deep bg-amber/10 p-7">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Placeholder: needs review before launch
+              Placeholder, needs review before launch
             </p>
             <p className="mt-4 leading-relaxed text-navy/80">
-              The text below reflects how the site is built today: static pages,
+              The text below reflects how the site is built today. Static pages,
               no cookies, no analytics, no forms, fonts served from our own
               domain. It still needs the controller details filled in and a check
               against the hosting provider actually used.
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold">Controller</h2>
             <TodoNote label="To do" value={TODO("Name and address of the controller, same person as in the imprint")} />
             <p className="text-navy/80">
-              Email:{" "}
+              Email an{" "}
               <a
                 href={`mailto:${contact.email}`}
                 className="underline decoration-amber decoration-2 underline-offset-4"

@@ -70,8 +70,12 @@ export function Home({ locale }: { locale: Locale }) {
 
       {/* Numbers */}
       <Section tone="deep" className="py-14 sm:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {copy.stats.map((s) => (
+        <SectionHeading
+          eyebrow={copy.stats.eyebrow}
+          title={copy.stats.title}
+        />
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {copy.stats.items.map((s) => (
             <Stat key={s.label} {...s} />
           ))}
         </div>
@@ -208,40 +212,27 @@ export function Home({ locale }: { locale: Locale }) {
       {/* The team */}
       <Section tone="deep">
         <SectionHeading eyebrow={copy.team.eyebrow} title={copy.team.title} />
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {teamFacts.map((person) => {
-            const c = copy.team.people[person.name];
-            return (
-              <Card key={person.name} as="li">
-                <div className="flex items-start gap-4">
-                  <Photo
-                    src={personPhotos[person.name]}
-                    alt={c.photoAlt}
-                    missingLabel={copy.photo.missing}
-                    compact
-                    sizes="64px"
-                    className="h-16 w-16 rounded-full object-cover"
-                  />
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-lg font-semibold text-green-dark">
-                        {person.name}
-                      </p>
-                      {person.kind === "advisor" ? (
-                        <Pill>{copy.team.advisorBadge}</Pill>
-                      ) : null}
-                    </div>
-                    <p className="mt-1 text-sm font-medium text-amber-deep">
-                      {c.role}
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-navy/70">
-                  {c.work}
-                </p>
-              </Card>
-            );
-          })}
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {teamFacts.map((person) => (
+            <Card key={person.name} as="li" className="flex items-center gap-4">
+              <Photo
+                src={personPhotos[person.name]}
+                alt={copy.team.people[person.name]?.photoAlt}
+                missingLabel={copy.photo.missing}
+                compact
+                sizes="56px"
+                className="h-14 w-14 rounded-full object-cover"
+              />
+              <div className="min-w-0">
+                <p className="font-semibold text-green-dark">{person.name}</p>
+                {person.kind === "advisor" ? (
+                  <p className="mt-1.5">
+                    <Pill>{copy.team.advisorBadge}</Pill>
+                  </p>
+                ) : null}
+              </div>
+            </Card>
+          ))}
         </ul>
       </Section>
 

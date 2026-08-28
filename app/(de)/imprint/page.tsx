@@ -27,7 +27,7 @@ export default function ImprintPage() {
         <div className="max-w-2xl space-y-12 py-16 sm:py-24">
           <div className="rounded-lg border border-dashed border-amber-deep bg-amber/10 p-7">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Placeholder: not ready for launch
+              Placeholder, not ready for launch
             </p>
             <p className="mt-4 leading-relaxed text-navy/80">
               {site.name} is not yet a registered association. Until the e.V.
@@ -53,7 +53,7 @@ export default function ImprintPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Contact</h2>
             <p className="text-navy/80">
-              Email:{" "}
+              Email an{" "}
               <a
                 href={`mailto:${contact.email}`}
                 className="underline decoration-amber decoration-2 underline-offset-4"

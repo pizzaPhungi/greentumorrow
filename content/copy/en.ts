@@ -6,7 +6,7 @@ export const en: Copy = {
   switchToOther: "Auf Deutsch lesen",
 
   meta: {
-    title: "gREen tumorrow: student initiative for renewable energy at TUM",
+    title: "gREen tumorrow, student initiative for renewable energy at TUM",
     description:
       "gREen tumorrow is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. From sharing knowledge to realising real-world energy projects, for a sustainable and decentralised energy future.",
     ogLocale: "en_GB",
@@ -30,21 +30,20 @@ export const en: Copy = {
       "Solar modules in the foreground, workers in high-visibility gear behind them, wind turbines on the horizon at sunset",
   },
 
-  stats: [
-    { value: "6", label: "students", note: "plus two academic advisors" },
-    { value: "2", label: "energy projects", note: "running with partners" },
-    {
-      value: TODO("How many events have you run so far?"),
-      label: "events",
-      note: "talks and evenings about renewables",
-    },
-    {
-      value: "35",
-      unit: "kWp",
-      label: "in ongoing projects",
-      note: "what those two projects add up to",
-    },
-  ],
+  stats: {
+    eyebrow: "In numbers",
+    title: "Where we stand",
+    items: [
+      {
+        value: "2026",
+        label: "founded",
+        note: "and accredited as a TUM student initiative",
+      },
+      { value: "3", label: "partners", note: "TUM, EGM eG and BENG eG" },
+      { value: "2", label: "solar projects", note: "35 kWp between them" },
+      { value: "6", label: "students", note: "plus two academic advisors" },
+    ],
+  },
 
   pillars: {
     eyebrow: "What we do",
@@ -72,13 +71,13 @@ export const en: Copy = {
     title: "Events about renewables",
     lead: "Building something teaches you things a lecture cannot. We put those evenings on for anyone who wants them, students and neighbours alike.",
     sofar: TODO(
-      "Which events have run so far: titles, roughly when, and who came",
+      "Which events have run so far, with titles, rough dates and who came",
     ),
   },
 
   projects: {
     eyebrow: "What we work on",
-    title: "Our projects",
+    title: "Projects",
     lead: "Everything we do runs on a real building, a real budget or a real research question. One is on the grid, one is being planned, and the next one could be yours.",
     partnerLabel: "Partner",
     entries: {
@@ -104,7 +103,7 @@ export const en: Copy = {
         specLabels: ["Capacity", "Storage"],
         heroLine: "PV array with battery storage, 25 kWp, in planning",
         photoAlt:
-          "The congregation building in Neuperlach from above: a long tiled roof and a white bell tower, before the array goes on",
+          "The congregation building in Neuperlach from above, a long tiled roof and a white bell tower, before the array goes on",
       },
     },
     own: {
@@ -119,7 +118,7 @@ export const en: Copy = {
         "A study or measurement campaign nobody has run",
       ],
       requirements: TODO(
-        "What a project proposal needs and who approves it: how a project actually starts",
+        "What a project proposal needs and who approves it, meaning how a project actually starts",
       ),
     },
   },
@@ -128,40 +127,8 @@ export const en: Copy = {
     eyebrow: "Who you would work with",
     title: "Our members",
     advisorBadge: "Advisor",
-    people: {
-      "Alex Treml": {
-        role: "Acquisition",
-        work: "Finds the next roof and the partner behind it",
-      },
-      "Nana Kwabena Osei": {
-        role: "Engineering",
-        work: "Site surveys, system design and yield simulation",
-      },
-      "Duc Viet Phung": {
-        role: "Finance",
-        work: "Business cases, funding routes and project budgets",
-      },
-      "Marvin Elling": {
-        role: "Legal",
-        work: "Agreements with owners, energy law and compliance",
-      },
-      "Salma Gares": {
-        role: "Public Relations",
-        work: "Campus presence, neighbourhood events and this website",
-      },
-      "Karim Alzahabi": {
-        role: "Research & Development",
-        work: "Energy sharing, storage and new project models",
-      },
-      "Dr. Markus Eblenkamp": {
-        role: "Education",
-        work: "Connects our projects to TUM chairs and teaching formats",
-      },
-      "Dr. Christoph Göbel": {
-        role: "Education",
-        work: "Supervises academic work coming out of our projects",
-      },
-    },
+    /** One entry per person, added when their portrait lands. */
+    people: {},
   },
 
   partners: {
@@ -189,7 +156,7 @@ export const en: Copy = {
   closing: {
     title:
       "Renewable energy needs people who have already built something. Start here.",
-    lead: "There is no application. Everything runs in one WhatsApp group: what is happening this week, who needs a hand, when we next meet.",
+    lead: "There is no application. Everything runs in one WhatsApp group. That is where you find what is happening this week, who needs a hand and when we next meet.",
     cta: "Join the WhatsApp group",
     askInstead: "Rather ask something first?",
   },

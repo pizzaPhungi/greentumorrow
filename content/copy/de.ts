@@ -12,7 +12,7 @@ export const de: Copy = {
   switchToOther: "Read in English",
 
   meta: {
-    title: "gREen tumorrow: Studenteninitiative für Erneuerbare an der TUM",
+    title: "gREen tumorrow, Studenteninitiative für Erneuerbare an der TUM",
     description:
       "gREen tumorrow ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Von Wissen weitergeben bis zu echten Energieprojekten, für eine nachhaltige und dezentrale Energieversorgung.",
     ogLocale: "de_DE",
@@ -36,21 +36,20 @@ export const de: Copy = {
       "Solarmodule im Vordergrund, dahinter Monteure in Warnkleidung, am Horizont Windräder bei Sonnenuntergang",
   },
 
-  stats: [
-    { value: "6", label: "Studierende", note: "dazu zwei Betreuer" },
-    { value: "2", label: "Energieprojekte", note: "mit Partnern" },
-    {
-      value: TODO("Wie viele Veranstaltungen habt ihr bisher gemacht?"),
-      label: "Veranstaltungen",
-      note: "Vorträge und Abende zu Erneuerbaren",
-    },
-    {
-      value: "35",
-      unit: "kWp",
-      label: "in laufenden Projekten",
-      note: "was die beiden zusammen ergeben",
-    },
-  ],
+  stats: {
+    eyebrow: "In Zahlen",
+    title: "Wo wir stehen",
+    items: [
+      {
+        value: "2026",
+        label: "gegründet",
+        note: "und als Studenteninitiative der TUM akkreditiert",
+      },
+      { value: "3", label: "Partner", note: "TUM, EGM eG und BENG eG" },
+      { value: "2", label: "Solarprojekte", note: "35 kWp zusammen" },
+      { value: "6", label: "Studierende", note: "dazu zwei Betreuer" },
+    ],
+  },
 
   pillars: {
     eyebrow: "Was wir machen",
@@ -68,7 +67,7 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Wissen",
-        text: "Die Lücke zwischen Theorie und Praxis schließen: durch Lehre, Wissensaustausch und den Aufbau von Fachwissen.",
+        text: "Wir schließen die Lücke zwischen Theorie und Praxis durch Lehre, Wissensaustausch und den Aufbau von Fachwissen.",
       },
     ],
   },
@@ -76,15 +75,15 @@ export const de: Copy = {
   events: {
     eyebrow: "Weitergeben",
     title: "Veranstaltungen zu Erneuerbaren",
-    lead: "Etwas zu bauen bringt einem Dinge bei, die keine Vorlesung vermittelt. Diese Abende machen wir für alle, die sie wollen: Studierende und Nachbarn gleichermaßen.",
+    lead: "Etwas zu bauen bringt einem Dinge bei, die keine Vorlesung vermittelt. Diese Abende machen wir für alle, die sie wollen, für Studierende und Nachbarn gleichermaßen.",
     sofar: TODO(
-      "Welche Veranstaltungen liefen bisher: Titel, ungefähr wann, und wer da war",
+      "Welche Veranstaltungen liefen bisher, mit Titel, ungefährem Datum und wer da war",
     ),
   },
 
   projects: {
     eyebrow: "Woran wir arbeiten",
-    title: "Unsere Projekte",
+    title: "Projekte",
     lead: "Alles, was wir tun, hängt an einem echten Gebäude, einem echten Budget oder einer echten Forschungsfrage. Eines läuft, eines ist in Planung, das nächste könnte deines sein.",
     partnerLabel: "Partner",
     entries: {
@@ -110,7 +109,7 @@ export const de: Copy = {
         specLabels: ["Leistung", "Speicher"],
         heroLine: "PV-Anlage mit Speicher, 25 kWp, in Planung",
         photoAlt:
-          "Das Gemeindegebäude in Neuperlach von oben: ein langes Ziegeldach und ein weißer Glockenturm, bevor die Anlage daraufkommt",
+          "Das Gemeindegebäude in Neuperlach von oben, ein langes Ziegeldach und ein weißer Glockenturm, bevor die Anlage daraufkommt",
       },
     },
     own: {
@@ -125,7 +124,7 @@ export const de: Copy = {
         "Eine Untersuchung oder Messreihe, die noch niemand gemacht hat",
       ],
       requirements: TODO(
-        "Was ein Projektvorschlag braucht und wer ihn freigibt: wie ein Projekt tatsächlich startet",
+        "Was ein Projektvorschlag braucht und wer ihn freigibt, also wie ein Projekt tatsächlich startet",
       ),
     },
   },
@@ -134,40 +133,8 @@ export const de: Copy = {
     eyebrow: "Mit wem du arbeiten würdest",
     title: "Unsere Mitglieder",
     advisorBadge: "Betreuer",
-    people: {
-      "Alex Treml": {
-        role: "Akquise",
-        work: "Findet das nächste Dach und den Partner dahinter",
-      },
-      "Nana Kwabena Osei": {
-        role: "Technik",
-        work: "Begehungen, Auslegung und Ertragssimulation",
-      },
-      "Duc Viet Phung": {
-        role: "Finanzen",
-        work: "Wirtschaftlichkeit, Förderwege und Projektbudgets",
-      },
-      "Marvin Elling": {
-        role: "Recht",
-        work: "Verträge mit Eigentümern, Energierecht und Nachweise",
-      },
-      "Salma Gares": {
-        role: "Öffentlichkeitsarbeit",
-        work: "Präsenz auf dem Campus, Termine im Viertel und diese Website",
-      },
-      "Karim Alzahabi": {
-        role: "Forschung und Entwicklung",
-        work: "Energy Sharing, Speicher und neue Projektmodelle",
-      },
-      "Dr. Markus Eblenkamp": {
-        role: "Lehre",
-        work: "Verbindet unsere Projekte mit Lehrstühlen und Lehrformaten der TUM",
-      },
-      "Dr. Christoph Göbel": {
-        role: "Lehre",
-        work: "Betreut wissenschaftliche Arbeiten aus unseren Projekten",
-      },
-    },
+    /** One entry per person, added when their portrait lands. */
+    people: {},
   },
 
   partners: {
@@ -195,7 +162,7 @@ export const de: Copy = {
   closing: {
     title:
       "Die Energiewende braucht Leute, die schon mal etwas gebaut haben. Fang hier an.",
-    lead: "Es gibt keine Bewerbung. Alles läuft über eine WhatsApp-Gruppe: was diese Woche ansteht, wo jemand Hilfe braucht, wann wir uns treffen.",
+    lead: "Es gibt keine Bewerbung. Alles läuft über eine WhatsApp-Gruppe. Dort steht, was diese Woche ansteht, wo jemand Hilfe braucht und wann wir uns treffen.",
     cta: "Zur WhatsApp-Gruppe",
     askInstead: "Lieber erst etwas fragen?",
   },

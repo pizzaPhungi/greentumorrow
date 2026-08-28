@@ -25,14 +25,15 @@ export type ProjectCopy = {
   photoAlt: Fillable;
 };
 
+/**
+ * Roles are deliberately absent. The club has not settled them yet, and a label
+ * nobody stands behind is worse than no label. Names carry the section.
+ */
 export type PersonCopy = {
-  role: string;
-  /** What that role actually does. A department label alone says nothing. */
-  work: string;
   /**
-   * Only needed once a portrait exists in content/images.ts. Add both together:
-   * a photo without alt text is an accessibility hole, alt text without a photo
-   * is nothing at all.
+   * Only needed once a portrait exists in content/images.ts. Add both together,
+   * because a photo without alt text is an accessibility hole and alt text
+   * without a photo is nothing at all.
    */
   photoAlt?: Fillable;
 };
@@ -66,7 +67,11 @@ export type Copy = {
     photoAlt: Fillable;
   };
 
-  stats: { value: Fillable; unit?: string; label: string; note?: string }[];
+  stats: {
+    eyebrow: string;
+    title: string;
+    items: { value: Fillable; unit?: string; label: string; note?: string }[];
+  };
 
   pillars: {
     eyebrow: string;
