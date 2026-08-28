@@ -20,6 +20,7 @@ export const de: Copy = {
 
   nav: {
     join: "Mitmachen",
+    sections: { projects: "Projekte", partners: "Partner", members: "Mitglieder" },
     home: "gREen tumorrow, Startseite",
     skipToContent: "Zum Inhalt springen",
     openMenu: "Menü öffnen",

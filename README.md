@@ -135,8 +135,9 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/(de)/                  German routes: /, /imprint, /privacy
-app/(en)/en/               English route: /en
+app/(de)/                  German routes: /, /projects, /partners, /members,
+                           /imprint, /privacy
+app/(en)/en/               English routes: /en and the same three tabs
 components/                Logo, Header, Footer, UI primitives, TODO markers
 components/pages/          page bodies, shared by both languages
 content/shared.ts          language-independent facts
@@ -176,5 +177,9 @@ layout shift and means nobody maintains pixel dimensions by hand.
 portrait.
 
 Joining happens in a WhatsApp group, not on the site.
-The header has no navigation: with one page per language there is nothing to
-navigate to, so `Header` is a plain server component with no menu state.
+The site has four pages per language: home plus the Projects, Partners and
+Members tabs. Add or rename a tab in `sections` in
+[`content/shared.ts`](content/shared.ts), add its label to `nav.sections` in both
+copy modules, and create the two route files. `Header` stays a server component;
+`SiteNav` is the client part that needs the current path for the active tab and
+for pointing the language switch at the same page in the other language.

@@ -1,27 +1,17 @@
-import { Arc, LogoMark, Wordmark } from "@/components/Logo";
+import { Arc, Wordmark } from "@/components/Logo";
 import { Photo } from "@/components/Photo";
-import { Fill } from "@/components/Todo";
 import {
   Button,
-  Card,
   Container,
   Eyebrow,
-  Pill,
   Section,
   SectionHeading,
   Stat,
 } from "@/components/ui";
+import { ClosingCta } from "@/components/pages/ClosingCta";
 import { getCopy } from "@/content/copy";
-import {
-  contact,
-  isTodo,
-  joinHref,
-  partnerLinks,
-  projectFacts,
-  teamFacts,
-  type Locale,
-} from "@/content/shared";
-import { heroPhoto, personPhotos, projectPhotos } from "@/content/images";
+import { joinHref, sectionHref, type Locale } from "@/content/shared";
+import { heroPhoto } from "@/content/images";
 
 /**
  * One structure, two dictionaries. Facts come from shared.ts and are identical
@@ -29,7 +19,6 @@ import { heroPhoto, personPhotos, projectPhotos } from "@/content/images";
  */
 export function Home({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
-  const t = copy.projects;
 
   return (
     <>
@@ -51,7 +40,7 @@ export function Home({ locale }: { locale: Locale }) {
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Button href={joinHref}>{copy.hero.joinCta}</Button>
-                <Button href="#projects" variant="secondary">
+                <Button href={sectionHref(locale, "projects")} variant="secondary">
                   {copy.hero.projectsCta}
                 </Button>
               </div>
@@ -100,188 +89,7 @@ export function Home({ locale }: { locale: Locale }) {
         </ol>
       </Section>
 
-      {/* Projects */}
-      <Section id="projects" tone="mist">
-        <SectionHeading
-          eyebrow={t.eyebrow}
-          title={t.title}
-          lead={t.lead}
-        />
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {projectFacts.map((p) => {
-            const c = t.entries[p.slug];
-            return (
-              <Card key={p.slug} as="article" className="flex flex-col">
-                <Photo
-                  src={projectPhotos[p.slug]}
-                  alt={c.photoAlt}
-                  missingLabel={copy.photo.missing}
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="aspect-[16/10] w-full rounded"
-                />
-                <div className="mt-6 flex grow flex-col">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Pill tone={p.status === "live" ? "live" : "building"}>
-                      {c.status}
-                    </Pill>
-                    <span className="text-sm font-medium text-green-dark">
-                      {c.field}
-                    </span>
-                    <span className="text-sm text-navy/55">{c.year}</span>
-                  </div>
-                  <h3 className="mt-4 text-xl font-semibold">{c.name}</h3>
-                  <p className="mt-4 grow leading-relaxed text-navy/75">
-                    {c.summary}
-                  </p>
-                  <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-5">
-                    {p.specs.map((value, i) => (
-                      <div key={c.specLabels[i]}>
-                        <dt className="text-xs uppercase tracking-wider text-navy/50">
-                          {c.specLabels[i]}
-                        </dt>
-                        <dd className="mt-0.5 font-semibold tabular-nums text-navy">
-                          {value}
-                        </dd>
-                      </div>
-                    ))}
-                    {p.partner ? (
-                      <div>
-                        <dt className="text-xs uppercase tracking-wider text-navy/50">
-                          {t.partnerLabel}
-                        </dt>
-                        <dd className="mt-0.5 font-semibold text-navy">
-                          {p.partner}
-                        </dd>
-                      </div>
-                    ) : null}
-                  </dl>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* An invitation, never dressed up as an existing project. */}
-        <Card className="mt-6 border-dashed border-amber-deep/50 bg-amber/8">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
-            <div>
-              <span className="inline-flex">
-                <Pill tone="building">{t.own.badge}</Pill>
-              </span>
-              <h3 className="mt-4 text-xl font-semibold">{t.own.headline}</h3>
-              <p className="mt-4 leading-relaxed text-navy/75">{t.own.intro}</p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-                {t.own.examplesLabel}
-              </p>
-              <ul className="mt-4 space-y-2 text-navy/75">
-                {t.own.examples.map((e) => (
-                  <li key={e} className="flex gap-2.5">
-                    <span
-                      aria-hidden="true"
-                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber-deep"
-                    />
-                    {e}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-sm text-navy/70">
-                <Fill value={t.own.requirements} label={copy.todo.label} />
-              </p>
-            </div>
-          </div>
-        </Card>
-      </Section>
-
-      {/* The team */}
-      <Section tone="deep">
-        <SectionHeading eyebrow={copy.team.eyebrow} title={copy.team.title} />
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {teamFacts.map((person) => (
-            <Card key={person.name} as="li" className="flex items-center gap-4">
-              <Photo
-                src={personPhotos[person.name]}
-                alt={copy.team.people[person.name]?.photoAlt}
-                missingLabel={copy.photo.missing}
-                compact
-                sizes="56px"
-                className="h-14 w-14 rounded-full object-cover"
-              />
-              <div className="min-w-0">
-                <p className="font-semibold text-green-dark">
-                  {person.name}
-                  {person.surname ? (
-                    <>
-                      {" "}
-                      <Fill value={person.surname} label={copy.todo.label} />
-                    </>
-                  ) : null}
-                </p>
-                {person.kind === "advisor" ? (
-                  <p className="mt-1.5">
-                    <Pill>{copy.team.advisorBadge}</Pill>
-                  </p>
-                ) : null}
-              </div>
-            </Card>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Partners */}
-      <Section>
-        <SectionHeading
-          eyebrow={copy.partners.eyebrow}
-          title={copy.partners.title}
-        />
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
-          {copy.partners.entries.map((p, i) => (
-            <Card key={p.name} as="li">
-              <h3 className="text-lg font-semibold">{p.name}</h3>
-              <p className="mt-1 text-sm text-navy/55">{p.full}</p>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">
-                {p.text}
-              </p>
-              <a
-                href={partnerLinks[i].href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mt-5 inline-block text-sm font-semibold text-green-dark underline decoration-amber decoration-2 underline-offset-4"
-              >
-                {new URL(partnerLinks[i].href).hostname.replace(/^www\./, "")}
-              </a>
-            </Card>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Closing. Joining is the WhatsApp group and nothing else, so a missing
-          invite link has to be impossible to overlook. */}
-      <Section tone="mist" className="py-20">
-        <div className="flex flex-col items-center gap-8 text-center">
-          <LogoMark className="h-16" />
-          <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
-            {copy.closing.title}
-          </h2>
-          <p className="max-w-md text-navy/70">{copy.closing.lead}</p>
-          {isTodo(contact.whatsapp) ? (
-            <Fill value={contact.whatsapp} label={copy.todo.label} />
-          ) : (
-            <Button href={contact.whatsapp}>{copy.closing.cta}</Button>
-          )}
-          <p className="text-sm text-navy/60">
-            {copy.closing.askInstead}{" "}
-            <a
-              href={`mailto:${contact.email}`}
-              className="underline decoration-amber decoration-2 underline-offset-4"
-            >
-              {contact.email}
-            </a>
-          </p>
-        </div>
-      </Section>
+      <ClosingCta locale={locale} />
     </>
   );
 }

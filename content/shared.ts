@@ -27,6 +27,27 @@ export const defaultLocale: Locale = "de";
 /** German sits at the root, English one level down. No redirect involved. */
 export const localeHome: Record<Locale, string> = { de: "/", en: "/en" };
 
+/** The tabs in the top bar, in the order they appear. */
+export const sections = ["projects", "partners", "members"] as const;
+export type Section = (typeof sections)[number];
+
+export const sectionHref = (locale: Locale, section: Section) =>
+  locale === "de" ? `/${section}` : `/en/${section}`;
+
+/**
+ * The same page in the other language. Used by the language switch, which has
+ * to stay on the current tab rather than dropping the visitor back on the home
+ * page.
+ */
+export const counterpartHref = (pathname: string, target: Locale) => {
+  // next.config sets trailingSlash, so usePathname yields "/projects/".
+  const path = pathname.replace(/\/$/, "") || "/";
+  const section = sections.find(
+    (s) => path === `/${s}` || path === `/en/${s}`,
+  );
+  return section ? sectionHref(target, section) : localeHome[target];
+};
+
 export const site = {
   name: "gREen tumorrow",
   legalName: "gREen tumorrow",

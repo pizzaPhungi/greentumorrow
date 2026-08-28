@@ -25,6 +25,11 @@ beyond the mobile nav toggle.
   directly, and breaking that silently disables it.
 - **Two root layouts, one per language, via route groups.** That is the only way
   `<html lang>` can differ. Legal pages are German only.
+- **Every page exists twice**, once per locale, as a thin route file delegating
+  to a shared component in `components/pages/`. TypeScript cannot catch a wrong
+  `locale` literal in the `(en)` tree, so check the built HTML after adding one.
+- **`next.config` sets `trailingSlash`**, so `usePathname()` returns
+  `/projects/`. Strip it before comparing against a route.
 - **Unknown facts are `TODO("...")`, never invented.** They render as a visible
   amber placeholder. Do not replace one with a plausible-sounding guess.
 - **Base CSS must stay inside `@layer base`** in `app/globals.css`. Unlayered

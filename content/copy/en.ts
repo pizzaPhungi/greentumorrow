@@ -14,6 +14,7 @@ export const en: Copy = {
 
   nav: {
     join: "Join",
+    sections: { projects: "Projects", partners: "Partners", members: "Members" },
     home: "gREen tumorrow, home",
     skipToContent: "Skip to content",
     openMenu: "Open menu",

@@ -1,4 +1,4 @@
-import type { Fillable, ProjectSlug } from "../shared.ts";
+import type { Fillable, ProjectSlug, Section } from "../shared.ts";
 
 /**
  * The contract both languages must satisfy. `content/copy/de.ts` and
@@ -52,6 +52,8 @@ export type Copy = {
   nav: {
     join: string;
     home: string;
+    /** Tab labels, keyed by the section slugs in shared.ts. */
+    sections: Record<Section, string>;
     skipToContent: string;
     openMenu: string;
     closeMenu: string;
