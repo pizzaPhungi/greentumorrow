@@ -52,6 +52,8 @@ export type Copy = {
   nav: {
     join: string;
     home: string;
+    /** First tab, back to the main page. Short: it sits in a tab bar. */
+    homeTab: string;
     /** Tab labels, keyed by the section slugs in shared.ts. */
     sections: Record<Section, string>;
     skipToContent: string;

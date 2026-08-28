@@ -6,6 +6,7 @@ import { useState } from "react";
 import { cn } from "@/components/cn";
 import {
   counterpartHref,
+  localeHome,
   locales,
   sectionHref,
   sections,
@@ -24,6 +25,7 @@ import {
  */
 export function SiteNav({
   locale,
+  homeLabel,
   labels,
   joinHref,
   joinLabel,
@@ -31,6 +33,7 @@ export function SiteNav({
   closeMenu,
 }: {
   locale: Locale;
+  homeLabel: string;
   labels: Record<string, string>;
   joinHref: string;
   joinLabel: string;
@@ -40,10 +43,19 @@ export function SiteNav({
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  const tabs = sections.map((s) => {
-    const href = sectionHref(locale, s);
-    return { href, label: labels[s], active: pathname.replace(/\/$/, "") === href };
-  });
+  // next.config sets trailingSlash, so usePathname yields "/projects/".
+  const path = pathname.replace(/\/$/, "") || "/";
+  const tabs = [
+    {
+      href: localeHome[locale],
+      label: homeLabel,
+      active: path === localeHome[locale],
+    },
+    ...sections.map((s) => {
+      const href = sectionHref(locale, s);
+      return { href, label: labels[s], active: path === href };
+    }),
+  ];
 
   return (
     <>

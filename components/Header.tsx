@@ -28,6 +28,7 @@ export function Header({ locale }: { locale: Locale }) {
           <div className="flex items-center gap-4 sm:gap-6">
             <SiteNav
               locale={locale}
+              homeLabel={copy.nav.homeTab}
               labels={copy.nav.sections}
               joinHref={joinHref}
               joinLabel={copy.nav.join}
