@@ -117,11 +117,11 @@ export function Button({
   className,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200";
+    "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-colors duration-200";
   const variants = {
-    primary: "bg-green text-cream hover:bg-green-dark",
+    primary: "rounded-full bg-green text-cream hover:bg-green-dark",
     secondary:
-      "border border-green/30 text-green-dark hover:border-green hover:bg-green/5",
+      "rounded-lg border border-green/30 text-green-dark hover:border-green hover:bg-green/5",
     quiet: "text-green-dark underline decoration-amber decoration-2 underline-offset-4 hover:decoration-amber-deep px-0 py-0",
   };
   const external = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
@@ -150,20 +150,21 @@ export function Card({
   children,
   className,
   as: Tag = "div",
+  weight = "default",
 }: {
   children: ReactNode;
   className?: string;
   as?: "div" | "li" | "article";
+  /** Lets a card carry more or less visual weight than its neighbours. */
+  weight?: "lead" | "default" | "quiet";
 }) {
+  const weights = {
+    lead: "rounded-xl border-green/25 bg-cream p-8 shadow-[0_2px_0_rgba(58,100,60,0.10)] sm:p-10",
+    default: "rounded-lg border-green/12 bg-cream p-7",
+    quiet: "rounded-lg border-green/10 bg-transparent p-6",
+  };
   return (
-    <Tag
-      className={cn(
-        "rounded-2xl border border-green/12 bg-cream p-7 shadow-[0_1px_0_rgba(58,100,60,0.06)]",
-        className,
-      )}
-    >
-      {children}
-    </Tag>
+    <Tag className={cn("border", weights[weight], className)}>{children}</Tag>
   );
 }
 
@@ -215,7 +216,7 @@ export function Pill({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider",
+        "inline-flex shrink-0 items-center whitespace-nowrap rounded px-2.5 py-1 text-xs font-semibold uppercase tracking-wider",
         tones[tone],
       )}
     >

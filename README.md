@@ -42,11 +42,10 @@ components for text, projects, team members or contact details.
 | The "bring your own project" invitation | `ownProjects` |
 | The three pillars (RE Community / Projects / Knowledge) | `pillars` |
 | People and the work each carries | `team` |
-| What to put in a first mail, and how fast you answer | `join.mail` |
-| The four steps of joining | `journey` |
+| The WhatsApp invite link, which is the whole joining process | `contact.whatsapp` |
 | Partners | `partners` |
+| Alt text for photos | `projects[].photoAlt`, `team[].photoAlt` |
 | Top-level pages besides home (currently empty) | `nav` |
-| Join page copy and expectations | `join` |
 
 ### The `TODO(...)` markers
 
@@ -72,16 +71,16 @@ that:
    TUM student-club infrastructure. See [`app/imprint/page.tsx`](app/imprint/page.tsx).
 2. **Privacy policy.** Fill in the controller and the hosting provider's log
    retention. See [`app/privacy/page.tsx`](app/privacy/page.tsx).
-3. **How to find you at Dachauer Str. 90** (`contact.meetup.room`).
-4. **How fast you answer mail** (`join.mail.responseTime`). Research on newcomer
-   drop-out points at "finding a way to start" as the main reason people who
-   already cared still leave; NN/g's contact-page guidance adds that a stated
-   response window is what makes writing feel low-risk. Commit to a number.
-5. **Weekly time commitment** on the Join page.
+3. **The WhatsApp invite link** (`contact.whatsapp`). Every join button falls
+   back to email until it exists, so nothing is broken, but the site is asking
+   people to join a group it cannot point at.
+4. **Team portraits.** Eight of them, plus the matching `photoAlt` lines. Until
+   they land the member cards show a dashed circle.
+5. **Consent for the Perlacher Herz photo.** It shows roughly ten identifiable
+   people; publishing needs their agreement (GDPR, § 22 KunstUrhG). Same for
+   every portrait.
 6. **Verify the LinkedIn URL** in `contact.linkedin`.
-7. **Team photos.** Currently rendered as initials. Portraits at 400×400 or
-   larger would be better; the deck's versions are too low-resolution.
-8. **Phone number.** `contact.phone` is a private mobile number. Public pages get
+7. **Phone number.** `contact.phone` is a private mobile number. Public pages get
    scraped. Consider a club number.
 
 ## Brand
@@ -101,7 +100,7 @@ once as Tailwind theme tokens in [`app/globals.css`](app/globals.css):
 
 The mark in [`components/Logo.tsx`](components/Logo.tsx) is a vector rebuild of
 the club's logo, traced by eye from a raster image. **If the vector original
-(AI/SVG/EPS) exists, drop it in and replace the hand-built paths** — this version
+(AI/SVG/EPS) exists, drop it in and replace the hand-built paths.** This version
 is an approximation, not the source of truth.
 
 The mark carries its own four colours, kept separate from the brand palette
@@ -124,12 +123,37 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/                       routes: home, join, imprint, privacy
+app/                       routes: home, imprint, privacy
 components/                Logo, Header, Footer, UI primitives, TODO markers
 content/site.ts            all copy and data
+content/images.ts          static photo imports, keyed by slug / name
+content/photos/            the photo files themselves
 scripts/check-content.mjs  the build gate for unfinished content
 ```
 
-The site is currently one page plus the Join page and the two legal pages.
+### Adding a photo
+
+Photos are split across two files on purpose. `scripts/check-content.mjs` imports
+`content/site.ts` with plain Node to run the build gate, and plain Node cannot
+import a `.jpg`; it fails with `ERR_UNKNOWN_FILE_EXTENSION`. So the alt text
+lives in `content/site.ts` and the image import lives in `content/images.ts`.
+
+1. Drop the file in `content/photos/`
+2. Import it in `content/images.ts` and key it by project slug or person name
+3. Replace the matching `photoAlt` TODO in `content/site.ts`
+
+Both halves are needed. Until then the page shows a visible "photo missing" box
+and the build stays blocked. The import is static rather than a string path so
+`next/image` derives `width` and `height` from the file itself, which prevents
+layout shift and means nobody maintains pixel dimensions by hand.
+
+**No stock photography.** A visible placeholder is better than a fake.
+
+**Photos of identifiable people need consent** before they go live (GDPR, and
+§ 22 KunstUrhG). That applies to the Perlacher Herz group shot and to every
+portrait.
+
+The site is currently one page plus the two legal pages. Joining happens in a
+WhatsApp group, not on the site.
 Adding entries to `nav` in `content/site.ts` brings the header navigation and
 the mobile menu back automatically; both handle an empty list.

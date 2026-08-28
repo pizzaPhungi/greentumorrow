@@ -6,7 +6,7 @@ import { useState } from "react";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
 import { cn } from "@/components/cn";
-import { joinCta, nav } from "@/content/site";
+import { joinCta, joinHref, nav } from "@/content/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -53,12 +53,12 @@ export function Header() {
               </nav>
             ) : null}
 
-            <Link
-              href={joinCta.href}
+            <a
+              href={joinHref}
               className="rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-green-dark"
             >
               {joinCta.label}
-            </Link>
+            </a>
 
             {hasNav ? (
               <button

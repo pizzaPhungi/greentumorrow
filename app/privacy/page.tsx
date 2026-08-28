@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       />
       <Container>
         <div className="max-w-2xl space-y-12 py-16 sm:py-24">
-          <div className="rounded-2xl border border-dashed border-amber-deep bg-amber/10 p-7">
+          <div className="rounded-lg border border-dashed border-amber-deep bg-amber/10 p-7">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-deep">
               Placeholder: needs review before launch
             </p>

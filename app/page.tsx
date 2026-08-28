@@ -1,4 +1,5 @@
 import { Arc, LogoMark, Wordmark } from "@/components/Logo";
+import { Photo } from "@/components/Photo";
 import { Fill } from "@/components/Todo";
 import {
   Button,
@@ -12,6 +13,8 @@ import {
 } from "@/components/ui";
 import {
   contact,
+  isTodo,
+  joinHref,
   ownProjects,
   partners,
   pillars,
@@ -19,6 +22,7 @@ import {
   stats,
   team,
 } from "@/content/site";
+import { personPhotos, projectPhotos } from "@/content/images";
 
 export default function HomePage() {
   const live = projects.find((p) => p.status === "Live") ?? projects[0];
@@ -47,7 +51,7 @@ export default function HomePage() {
                 one of them already feeding the grid.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button href="/join">Join the team</Button>
+                <Button href={joinHref}>Join the WhatsApp group</Button>
                 <Button href="#projects" variant="secondary">
                   See what we work on
                 </Button>
@@ -102,25 +106,28 @@ export default function HomePage() {
       </Section>
 
       {/* Pillars: what the club does. Placed above the team on purpose:
-          people come for purpose and accomplishments before personnel. */}
+          people come for purpose and accomplishments before personnel.
+          All three carry equal weight, in the club's own order. Rendered as
+          separated columns rather than three identical boxed cards, which keeps
+          them equal without the row-of-cards look. */}
       <Section tone="mist">
         <SectionHeading
           eyebrow="What we do"
           title="Three things, and they hold each other up."
           lead="Technology alone does not get a renewable energy project built. It takes people who know each other, work that actually ships, and knowledge that outlives the people who gathered it."
         />
-        <ol className="mt-14 grid gap-6 md:grid-cols-3">
-          {pillars.map((p, i) => (
-            <Card key={p.name} as="li" className="flex flex-col">
-              <p className="font-semibold tabular-nums text-amber-deep">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-4 text-2xl font-semibold">
+        <ol className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
+          {pillars.map((p) => (
+            <li
+              key={p.name}
+              className="border-t-2 border-green/25 pt-6 md:border-l-2 md:border-t-0 md:pl-8 md:pt-0"
+            >
+              <h3 className="text-2xl font-semibold">
                 <span className="text-amber-deep">{p.prefix}</span>{" "}
                 <span className="text-green-dark">{p.name}</span>
               </h3>
               <p className="mt-4 leading-relaxed text-navy/75">{p.text}</p>
-            </Card>
+            </li>
           ))}
         </ol>
       </Section>
@@ -136,6 +143,13 @@ export default function HomePage() {
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {projects.map((p) => (
             <Card key={p.slug} as="article" className="flex flex-col">
+              <Photo
+                src={projectPhotos[p.slug]}
+                alt={p.photoAlt}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="aspect-[16/10] w-full rounded"
+              />
+              <div className="mt-6 flex grow flex-col">
               <div className="flex flex-wrap items-center gap-3">
                 <Pill tone={p.status === "Live" ? "live" : "building"}>
                   {p.status}
@@ -161,6 +175,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </dl>
+              </div>
             </Card>
           ))}
         </div>
@@ -205,23 +220,32 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Who you would work with"
           title="Our members"
-          lead="There is no head office behind us. Everything above is done by the people below, which is also why there is room for you."
+          lead="There is no head office behind us. Everything above is done by the people below, and there is no seat here for a passenger. Every member carries one thing that would not happen otherwise."
         />
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((person) => (
             <Card key={person.name} as="li">
-              <div className="flex items-start justify-between gap-3">
-                <p className="text-lg font-semibold text-green-dark">
-                  {person.name}
-                </p>
-                {person.kind === "advisor" ? (
-                  <Pill>Advisor</Pill>
-                ) : null}
+              <div className="flex items-start gap-4">
+                <Photo
+                  src={personPhotos[person.name]}
+                  alt={person.photoAlt}
+                  compact
+                  sizes="64px"
+                  className="h-16 w-16 rounded-full object-cover"
+                />
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-lg font-semibold text-green-dark">
+                      {person.name}
+                    </p>
+                    {person.kind === "advisor" ? <Pill>Advisor</Pill> : null}
+                  </div>
+                  <p className="mt-1 text-sm font-medium text-amber-deep">
+                    {person.role}
+                  </p>
+                </div>
               </div>
-              <p className="mt-1 text-sm font-medium text-amber-deep">
-                {person.role}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-navy/70">
+              <p className="mt-4 text-sm leading-relaxed text-navy/70">
                 {person.work}
               </p>
             </Card>
@@ -246,14 +270,15 @@ export default function HomePage() {
                 rel="noreferrer noopener"
                 className="mt-5 inline-block text-sm font-semibold text-green-dark underline decoration-amber decoration-2 underline-offset-4"
               >
-                Visit site
+                {new URL(p.href).hostname.replace(/^www\./, "")}
               </a>
             </Card>
           ))}
         </ul>
       </Section>
 
-      {/* Closing CTA */}
+      {/* Closing CTA. Joining is the WhatsApp group and nothing else, so this
+          is where a missing invite link has to be impossible to overlook. */}
       <Section tone="mist" className="py-20">
         <div className="flex flex-col items-center gap-8 text-center">
           <LogoMark className="h-16" />
@@ -261,12 +286,24 @@ export default function HomePage() {
             Renewable energy needs people who have already built something.
             Start here.
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button href="/join">Join the team</Button>
-            <Button href={`mailto:${contact.email}`} variant="secondary">
-              Write to us
-            </Button>
-          </div>
+          <p className="max-w-md text-navy/70">
+            There is no application. Everything runs in one WhatsApp group: what
+            is happening this week, who needs a hand, when we next meet.
+          </p>
+          {isTodo(contact.whatsapp) ? (
+            <Fill value={contact.whatsapp} />
+          ) : (
+            <Button href={contact.whatsapp}>Join the WhatsApp group</Button>
+          )}
+          <p className="text-sm text-navy/60">
+            Rather ask something first?{" "}
+            <a
+              href={`mailto:${contact.email}`}
+              className="underline decoration-amber decoration-2 underline-offset-4"
+            >
+              {contact.email}
+            </a>
+          </p>
         </div>
       </Section>
     </>

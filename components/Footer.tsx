@@ -78,11 +78,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-green/15 py-7 text-xs text-navy/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-t border-green/15 py-7 text-xs text-navy/55">
           <p>
             © {new Date().getFullYear()} {site.legalName}
           </p>
-          <p>{site.tagline}</p>
         </div>
       </Container>
     </footer>

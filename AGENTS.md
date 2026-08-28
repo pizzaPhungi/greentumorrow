@@ -40,3 +40,17 @@ beyond the mobile nav toggle.
 - Legal pages (`imprint`, `privacy`) are placeholders pending the e.V.
   registration. Do not present them as final.
 <!-- END:project-rules -->
+
+<!-- BEGIN:design-rules -->
+- **No stock photography, ever.** A missing photo renders as a visible
+  placeholder via `components/Photo`. That is the intended state, not a bug.
+- **Photo imports belong in `content/images.ts`, never in `content/site.ts`.**
+  The build gate imports the content module with plain Node, which cannot load
+  a `.jpg`. Putting an image import there silently breaks the gate.
+- **Radius scale is short on purpose**: `rounded` for pills, `rounded-lg` for
+  cards and secondary buttons, `rounded-xl` for a lead card, `rounded-full` only
+  for primary CTAs. Do not add a fifth.
+- **Not every section is heading + grid.** Vary the form down the page, and give
+  one card in a group more weight than its neighbours rather than shipping rows
+  of identical boxes.
+<!-- END:design-rules -->

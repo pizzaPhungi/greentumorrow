@@ -20,7 +20,6 @@ export const site = {
   url: "https://greentumorrow.de",
   affiliation: "Student initiative at TUM",
   city: "Munich",
-  tagline: "Unleashing the power of Munich",
   description:
     "gREen tumorrow is a student initiative at TUM for everyone who wants to work on renewable energy, not read about it. You join a real project, with one of our partners or one you bring yourself, and you build genuine expertise doing it.",
 };
@@ -39,9 +38,11 @@ export const contact = {
     city: "Munich",
     country: "Germany",
   },
-  meetup: {
-    room: TODO("Room / floor / how to find you at Dachauer Str. 90"),
-  },
+  /**
+   * Invite link to the WhatsApp group. This is the whole joining process, so
+   * until it is here the site cannot honestly ask anyone to join.
+   */
+  whatsapp: TODO("Invite link to the WhatsApp group (https://chat.whatsapp.com/...)") as Fillable,
 };
 
 /** Founded and accredited by TUM in the same year. */
@@ -82,6 +83,12 @@ export type Project = {
   summary: string;
   specs: { label: string; value: string }[];
   partner?: string;
+  /**
+   * Alt text for the project photo. The image itself is a static import in
+   * content/images.ts, keyed by slug. It cannot live here, because plain Node
+   * imports this module to run the build gate and chokes on non-JS files.
+   */
+  photoAlt: Fillable;
 };
 
 export const projects: Project[] = [
@@ -100,6 +107,8 @@ export const projects: Project[] = [
       { label: "On the grid", value: "2026" },
     ],
     partner: "EGM eG",
+    photoAlt:
+      "Members and neighbours standing among the flat-mounted modules on the Perlacher Herz roof",
   },
   {
     slug: "gemeinde-neuperlach",
@@ -116,6 +125,8 @@ export const projects: Project[] = [
       { label: "Status", value: "In construction" },
     ],
     partner: "EGM eG",
+    photoAlt:
+      "The congregation building in Neuperlach from above: a long tiled roof and a white bell tower, before the array goes on",
   },
 ];
 
@@ -168,6 +179,8 @@ export type Person = {
   /** What that role actually does. A department label alone says nothing. */
   work: string;
   kind: "student" | "advisor";
+  /** Alt text for the portrait. The image lives in content/images.ts. */
+  photoAlt: Fillable;
 };
 
 export const team: Person[] = [
@@ -176,68 +189,56 @@ export const team: Person[] = [
     role: "Acquisition",
     work: "Finds the next roof and the partner behind it",
     kind: "student",
+    photoAlt: TODO("Portrait of Alex Treml"),
   },
   {
     name: "Nana Kwabena Osei",
     role: "Engineering",
     work: "Site surveys, system design and yield simulation",
     kind: "student",
+    photoAlt: TODO("Portrait of Nana Kwabena Osei"),
   },
   {
     name: "Duc Viet Phung",
     role: "Finance",
     work: "Business cases, funding routes and project budgets",
     kind: "student",
+    photoAlt: TODO("Portrait of Duc Viet Phung"),
   },
   {
     name: "Marvin Elling",
     role: "Legal",
     work: "Agreements with owners, energy law and compliance",
     kind: "student",
+    photoAlt: TODO("Portrait of Marvin Elling"),
   },
   {
     name: "Salma Gares",
     role: "Public Relations",
     work: "Campus presence, neighbourhood events and this website",
     kind: "student",
+    photoAlt: TODO("Portrait of Salma Gares"),
   },
   {
     name: "Karim Alzahabi",
     role: "Research & Development",
     work: "Energy sharing, storage and new project models",
     kind: "student",
+    photoAlt: TODO("Portrait of Karim Alzahabi"),
   },
   {
     name: "Dr. Markus Eblenkamp",
     role: "Education",
     work: "Connects our projects to TUM chairs and teaching formats",
     kind: "advisor",
+    photoAlt: TODO("Portrait of Dr. Markus Eblenkamp"),
   },
   {
     name: "Dr. Christoph Göbel",
     role: "Education",
     work: "Supervises academic work coming out of our projects",
     kind: "advisor",
-  },
-];
-
-/** The path from interested stranger to member. Every step is an action. */
-export const journey = [
-  {
-    title: "Get in touch",
-    text: "Come to a meet-up in Munich, or just write us. Both work, and you do not need to wait for the next meeting to start a conversation.",
-  },
-  {
-    title: "Pick what you want to work on",
-    text: "A project decides what you work on; the kind of work (engineering, finance, legal, outreach, research) decides how.",
-  },
-  {
-    title: "Meet the person whose work it is",
-    text: "Every part of a project has someone behind it. You talk to them, they show you what is actually on their plate, and you take a piece of it.",
-  },
-  {
-    title: "Or bring your own project",
-    text: "Already have an idea, a building or a question worth answering? Then you skip the queue and lead it yourself.",
+    photoAlt: TODO("Portrait of Dr. Christoph Göbel"),
   },
 ];
 
@@ -257,53 +258,6 @@ export const partners = [
   },
 ];
 
-export const join = {
-  headline: "Six people, two live projects, and more work than we can carry.",
-  intro:
-    "gREen tumorrow is open to any student who wants to work on renewable energy, whatever you study, whatever year you are in. What we cannot offer is a club where you can be a passenger.",
-  expectations: [
-    {
-      title: "Time",
-      text: TODO("Expected weekly time commitment, e.g. “4–6 hours a week during the semester”"),
-    },
-    {
-      title: "Background",
-      text: "Any subject. Engineering, business, law, communication and policy are all load-bearing here. An energy project needs all of them.",
-    },
-    {
-      title: "Language",
-      text: "We work in English. Our projects and partners run in German. You do not need it to start, but it helps.",
-    },
-    {
-      title: "Commitment",
-      text: "One semester minimum. Partners and building owners are counting on continuity.",
-    },
-  ],
-  admission: TODO(
-    "Rolling admission or intake rounds per semester, and whether there is a membership fee",
-  ),
-  /**
-   * With the per-role starter tasks gone, this mail is the concrete first
-   * action. Three things at most, plus a response window. An open-ended ask
-   * with an unknown outcome is the friction the starter tasks removed.
-   */
-  mail: {
-    intro:
-      "One mail is enough, and it does not have to be polished. Tell us three things:",
-    items: [
-      "Which project interests you, or the idea you would bring yourself",
-      "Which kind of work you want to do: engineering, finance, legal, outreach, research, teaching",
-      "What you would want to get out of it",
-    ],
-    responseTime: TODO(
-      "How quickly you answer mail. Commit to a number, e.g. “within three days”",
-    ),
-  },
-  firstWeeks: TODO(
-    "What a new member concretely does in their first four weeks",
-  ),
-};
-
 /**
  * Top-level pages besides the home page. Empty for now: everything lives on one
  * page. The header and footer both handle an empty list.
@@ -311,4 +265,13 @@ export const join = {
 export const nav: { href: string; label: string }[] = [];
 
 /** Kept out of `nav` so the header can render it as a standing button. */
-export const joinCta = { href: "/join", label: "Join" };
+export const joinCta = { label: "Join" };
+
+/**
+ * Where every join button points. The WhatsApp group once it exists, email
+ * until then, so the site never ships a dead link. The build stays blocked
+ * either way until `contact.whatsapp` is filled in.
+ */
+export const joinHref = isTodo(contact.whatsapp)
+  ? `mailto:${contact.email}`
+  : contact.whatsapp;

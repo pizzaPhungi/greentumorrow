@@ -7,7 +7,7 @@ import { isTodo, type Fillable, type Todo } from "@/content/site";
  */
 export function TodoNote({ value }: { value: Todo }) {
   return (
-    <span className="inline-flex items-baseline gap-2 rounded-md border border-dashed border-amber-deep bg-cream px-2.5 py-1 text-sm text-amber-deep">
+    <span className="inline-flex items-baseline gap-2 rounded border border-dashed border-amber-deep bg-cream px-2.5 py-1 text-sm text-amber-deep">
       <span className="text-[0.7em] font-semibold uppercase tracking-widest">
         To do
       </span>
