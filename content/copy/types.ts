@@ -69,8 +69,6 @@ export type Copy = {
 
   pillars: {
     eyebrow: string;
-    title: string;
-    lead: string;
     /** The `RE` prefix is separate so it can be coloured like the wordmark. */
     items: { prefix: string; name: string; text: string }[];
   };

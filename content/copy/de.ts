@@ -53,8 +53,6 @@ export const de: Copy = {
 
   pillars: {
     eyebrow: "Was wir machen",
-    title: "Drei Dinge, und keines geht ohne die anderen.",
-    lead: "Technik allein bringt keine Anlage aufs Dach. Es braucht Leute, die sich kennen, Arbeit, die tatsächlich fertig wird, und Wissen, das bleibt, wenn die Leute weiterziehen.",
     items: [
       {
         prefix: "RE",

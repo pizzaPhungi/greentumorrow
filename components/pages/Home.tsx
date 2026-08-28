@@ -98,12 +98,8 @@ export function Home({ locale }: { locale: Locale }) {
 
       {/* Pillars. Equal weight, separated columns rather than a card row. */}
       <Section tone="mist">
-        <SectionHeading
-          eyebrow={copy.pillars.eyebrow}
-          title={copy.pillars.title}
-          lead={copy.pillars.lead}
-        />
-        <ol className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
+        <Eyebrow>{copy.pillars.eyebrow}</Eyebrow>
+        <ol className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
           {copy.pillars.items.map((p) => (
             <li
               key={p.name}

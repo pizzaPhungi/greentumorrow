@@ -47,8 +47,6 @@ export const en: Copy = {
 
   pillars: {
     eyebrow: "What we do",
-    title: "Three things, and they hold each other up.",
-    lead: "Technology alone does not get a renewable energy project built. It takes people who know each other, work that actually ships, and knowledge that outlives the people who gathered it.",
     items: [
       {
         prefix: "RE",
