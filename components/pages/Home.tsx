@@ -210,7 +210,15 @@ export function Home({ locale }: { locale: Locale }) {
                 className="h-14 w-14 rounded-full object-cover"
               />
               <div className="min-w-0">
-                <p className="font-semibold text-green-dark">{person.name}</p>
+                <p className="font-semibold text-green-dark">
+                  {person.name}
+                  {person.surname ? (
+                    <>
+                      {" "}
+                      <Fill value={person.surname} label={copy.todo.label} />
+                    </>
+                  ) : null}
+                </p>
                 {person.kind === "advisor" ? (
                   <p className="mt-1.5">
                     <Pill>{copy.team.advisorBadge}</Pill>

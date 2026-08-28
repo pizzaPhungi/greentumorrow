@@ -94,11 +94,13 @@ export const projectFacts: ProjectFacts[] = [
 /** Names key the portrait imports in content/images.ts. */
 export type PersonFacts = {
   name: string;
+  /** Set only while a surname is still missing, so the gate keeps blocking. */
+  surname?: Fillable;
   kind: "student" | "advisor";
 };
 
 export const teamFacts: PersonFacts[] = [
-  { name: "Alex Treml", kind: "student" },
+  { name: "Nazli", surname: TODO("Nazli's surname"), kind: "student" },
   { name: "Nana Kwabena Osei", kind: "student" },
   { name: "Duc Viet Phung", kind: "student" },
   { name: "Marvin Elling", kind: "student" },
