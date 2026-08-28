@@ -82,7 +82,7 @@ export function Home({ locale }: { locale: Locale }) {
       </Section>
 
       {/* Pillars. Equal weight, separated columns rather than a card row. */}
-      <Section tone="mist">
+      <Section>
         <Eyebrow>{copy.pillars.eyebrow}</Eyebrow>
         <ol className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-3">
           {copy.pillars.items.map((p) => (
@@ -98,20 +98,6 @@ export function Home({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ol>
-      </Section>
-
-      {/* Events. The Knowledge pillar was a claim until this section existed. */}
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <SectionHeading
-            eyebrow={copy.events.eyebrow}
-            title={copy.events.title}
-            lead={copy.events.lead}
-          />
-          <div className="self-center text-lg leading-relaxed text-navy/80">
-            <Fill value={copy.events.sofar} label={copy.todo.label} />
-          </div>
-        </div>
       </Section>
 
       {/* Projects */}

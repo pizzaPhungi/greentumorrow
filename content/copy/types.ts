@@ -79,13 +79,6 @@ export type Copy = {
     items: { prefix: string; name: string; text: string }[];
   };
 
-  events: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    /** What has actually run. A claim without this is just a claim. */
-    sofar: Fillable;
-  };
 
   projects: {
     eyebrow: string;

@@ -72,14 +72,6 @@ export const de: Copy = {
     ],
   },
 
-  events: {
-    eyebrow: "Weitergeben",
-    title: "Veranstaltungen zu Erneuerbaren",
-    lead: "Etwas zu bauen bringt einem Dinge bei, die keine Vorlesung vermittelt. Diese Abende machen wir für alle, die sie wollen, für Studierende und Nachbarn gleichermaßen.",
-    sofar: TODO(
-      "Welche Veranstaltungen liefen bisher, mit Titel, ungefährem Datum und wer da war",
-    ),
-  },
 
   projects: {
     eyebrow: "Woran wir arbeiten",

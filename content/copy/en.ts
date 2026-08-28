@@ -66,14 +66,6 @@ export const en: Copy = {
     ],
   },
 
-  events: {
-    eyebrow: "Passing it on",
-    title: "Events about renewables",
-    lead: "Building something teaches you things a lecture cannot. We put those evenings on for anyone who wants them, students and neighbours alike.",
-    sofar: TODO(
-      "Which events have run so far, with titles, rough dates and who came",
-    ),
-  },
 
   projects: {
     eyebrow: "What we work on",
