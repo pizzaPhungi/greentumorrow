@@ -52,11 +52,6 @@ export function Footer({ locale }: { locale: Locale }) {
             </h2>
             <address className="mt-5 space-y-3 text-sm not-italic text-navy/75">
               <p>
-                {contact.address.street}
-                <br />
-                {contact.address.postalCode} {contact.address.city}
-              </p>
-              <p>
                 <a
                   href={`mailto:${contact.email}`}
                   className="hover:text-green-dark"

@@ -1,5 +1,5 @@
 /**
- * Facts that do not change with the language: addresses, links, slugs, figures,
+ * Facts that do not change with the language: links, slugs, figures,
  * people's names. Everything you can read in either language lives here once, so
  * a corrected email address cannot go stale in one translation.
  *
@@ -39,11 +39,6 @@ export const contact = {
   instagramHandle: "@greentumorrow",
   linkedin: "https://www.linkedin.com/company/green-tumorrow",
   linkedinHandle: "green-tumorrow",
-  address: {
-    street: "Dachauer Str. 90",
-    postalCode: "80335",
-    city: "München",
-  },
   /**
    * Invite link to the WhatsApp group. This is the whole joining process, so
    * until it is here the site cannot honestly ask anyone to join.
