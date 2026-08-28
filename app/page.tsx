@@ -34,7 +34,7 @@ export default function HomePage() {
         <Container className="relative">
           <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
             <div>
-              <Eyebrow>Student initiative · TUM Munich</Eyebrow>
+              <Eyebrow>Student initiative</Eyebrow>
               <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
                 Learn renewable energy by building it.
               </h1>
