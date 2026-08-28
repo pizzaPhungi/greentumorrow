@@ -25,7 +25,6 @@ import {
 import { personPhotos, projectPhotos } from "@/content/images";
 
 export default function HomePage() {
-  const live = projects.find((p) => p.status === "Live") ?? projects[0];
 
   return (
     <>
@@ -56,37 +55,27 @@ export default function HomePage() {
               </div>
             </div>
 
-            <Card className="relative bg-cream-deep/70">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-                    First plant
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-green-dark">
-                    {live.name}
-                  </p>
-                </div>
-                <Pill tone="live">{live.status}</Pill>
-              </div>
-              <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-green/15 pt-6">
-                {live.specs.map((spec) => (
-                  <div key={spec.label}>
-                    <dt className="text-xs uppercase tracking-wider text-navy/50">
-                      {spec.label}
-                    </dt>
-                    <dd className="mt-1 font-semibold tabular-nums text-navy">
-                      {spec.value}
-                    </dd>
-                  </div>
+            <Card className="bg-cream-deep/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
+                Our two projects
+              </p>
+              <ul className="mt-6 space-y-6">
+                {projects.map((p) => (
+                  <li
+                    key={p.slug}
+                    className="border-t border-green/15 pt-6 first:border-0 first:pt-0"
+                  >
+                    <Pill tone={p.status === "Live" ? "live" : "building"}>
+                      {p.status}
+                    </Pill>
+                    <p className="mt-3 font-semibold text-green-dark">
+                      {p.name}
+                    </p>
+                    <p className="mt-1 text-sm text-navy/70">{p.heroLine}</p>
+                  </li>
                 ))}
-              </dl>
-              <div className="mt-8 flex items-center justify-between gap-4 border-t border-green/15 pt-6">
-                <p className="text-sm text-navy/60">
-                  Built with{" "}
-                  <span className="font-semibold text-green-dark">
-                    {live.partner}
-                  </span>
-                </p>
+              </ul>
+              <div className="mt-7 flex justify-end border-t border-green/15 pt-5">
                 <LogoMark className="h-9 opacity-80" />
               </div>
             </Card>
@@ -135,7 +124,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="What we work on"
           title="Our projects"
-          lead="Everything we do runs on a real building, a real budget or a real research question. Two are running with partners today; the next one could be yours."
+          lead="Everything we do runs on a real building, a real budget or a real research question. One is on the grid, one is being planned, and the next one could be yours."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -172,6 +161,16 @@ export default function HomePage() {
                     </dd>
                   </div>
                 ))}
+                {p.partner ? (
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-navy/50">
+                      Partner
+                    </dt>
+                    <dd className="mt-0.5 font-semibold text-navy">
+                      {p.partner}
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
               </div>
             </Card>

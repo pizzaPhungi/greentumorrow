@@ -60,14 +60,6 @@ export default function ImprintPage() {
               >
                 {contact.email}
               </a>
-              <br />
-              Phone:{" "}
-              <a
-                href={`tel:${contact.phoneHref}`}
-                className="underline decoration-amber decoration-2 underline-offset-4"
-              >
-                {contact.phone}
-              </a>
             </p>
           </section>
 

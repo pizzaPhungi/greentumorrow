@@ -80,8 +80,10 @@ that:
    people; publishing needs their agreement (GDPR, § 22 KunstUrhG). Same for
    every portrait.
 6. **Verify the LinkedIn URL** in `contact.linkedin`.
-7. **Phone number.** `contact.phone` is a private mobile number. Public pages get
-   scraped. Consider a club number.
+7. **A second contact channel.** The phone number is gone, so email is the only
+   way to reach you. § 5 DDG asks for means of quick electronic contact; email
+   alone is generally accepted, but a club phone number or a form would be
+   safer.
 
 ## Brand
 

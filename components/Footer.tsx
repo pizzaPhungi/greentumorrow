@@ -61,11 +61,6 @@ export function Footer() {
                   {contact.email}
                 </a>
               </p>
-              <p>
-                <a href={`tel:${contact.phoneHref}`} className="hover:text-green-dark">
-                  {contact.phone}
-                </a>
-              </p>
               <p className="flex gap-4 pt-1">
                 <a href={contact.instagram} target="_blank" rel="noreferrer noopener" className="hover:text-green-dark">
                   Instagram

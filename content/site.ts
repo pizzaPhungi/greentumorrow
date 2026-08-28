@@ -26,8 +26,6 @@ export const site = {
 
 export const contact = {
   email: "info@greentumorrow.de",
-  phone: "+49 176 36396502",
-  phoneHref: "+4917636396502",
   instagram: "https://instagram.com/greentumorrow",
   instagramHandle: "@greentumorrow",
   linkedin: "https://www.linkedin.com/company/green-tumorrow",
@@ -78,7 +76,7 @@ export type Project = {
   type: "partner" | "own";
   /** Which renewable energy area, e.g. Solar, Solar & storage, Wind. */
   field: string;
-  status: "Live" | "In construction";
+  status: "Live" | "In planning";
   year: string;
   summary: string;
   specs: { label: string; value: string }[];
@@ -89,6 +87,8 @@ export type Project = {
    * imports this module to run the build gate and chokes on non-JS files.
    */
   photoAlt: Fillable;
+  /** One short line for the hero card. Only the essentials. */
+  heroLine: string;
 };
 
 export const projects: Project[] = [
@@ -107,6 +107,7 @@ export const projects: Project[] = [
       { label: "On the grid", value: "2026" },
     ],
     partner: "EGM eG",
+    heroLine: "PV array on the roof, 10.23 kWp, on the grid since 2026",
     photoAlt:
       "Members and neighbours standing among the flat-mounted modules on the Perlacher Herz roof",
   },
@@ -115,16 +116,17 @@ export const projects: Project[] = [
     name: "Evangelisch-Freikirchliche Gemeinde Neuperlach",
     type: "partner",
     field: "Solar & storage",
-    status: "In construction",
-    year: "Current project",
+    status: "In planning",
+    year: "Next project",
     summary:
-      "A congregation roof in Neuperlach, more than twice the size of our first plant and paired with battery storage, so the building uses its own solar power in the evening instead of selling it at the spot price.",
+      "A congregation roof in Neuperlach, more than twice the size of our first plant and paired with battery storage, so the building will use its own solar power in the evening instead of selling it at the spot price.",
     specs: [
       { label: "Capacity", value: "25 kWp" },
       { label: "Storage", value: "11 kWh" },
-      { label: "Status", value: "In construction" },
+      { label: "Status", value: "In planning" },
     ],
     partner: "EGM eG",
+    heroLine: "PV array with battery storage, 25 kWp, in planning",
     photoAlt:
       "The congregation building in Neuperlach from above: a long tiled roof and a white bell tower, before the array goes on",
   },
@@ -247,7 +249,7 @@ export const partners = [
   {
     name: "EGM eG",
     full: "Energiegemeinschaften München eG",
-    text: "The energy cooperative behind our first two solar projects. It owns the installations; its members, the neighbours, own the cooperative.",
+    text: "The energy cooperative that we partner with to realise the PV installation projects.",
     href: "https://www.energiegemeinschaften-muenchen.com/",
   },
   {
