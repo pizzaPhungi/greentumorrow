@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node --experimental-strip-types scripts/check-content.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:content": "node --experimental-strip-types scripts/check-content.mjs"
   },
   "dependencies": {
     "next": "16.3.2",

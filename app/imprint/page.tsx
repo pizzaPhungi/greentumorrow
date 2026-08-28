@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 /**
  * PLACEHOLDER. gREen tumorrow has no legal form yet, so no legal person can be
  * the service provider under § 5 DDG. Until the e.V. is registered, a natural
- * person must be named here — with a real address — and carries personal
+ * person must be named here, with a real address, and carries personal
  * liability for the site's content. Do not launch without resolving this.
  */
 export default function ImprintPage() {
@@ -27,13 +27,13 @@ export default function ImprintPage() {
         <div className="max-w-2xl space-y-12 py-16 sm:py-24">
           <div className="rounded-2xl border border-dashed border-amber-deep bg-amber/10 p-7">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Placeholder — not ready for launch
+              Placeholder: not ready for launch
             </p>
             <p className="mt-4 leading-relaxed text-navy/80">
               {site.name} is not yet a registered association. Until the e.V.
               exists, German law requires a natural person to be named as the
               service provider here, with a postal address at which they can be
-              reached — and that person is personally liable for the content of
+              reached, and that person is personally liable for the content of
               this site. Fill in the fields below, or run the site under TUM
               student-club infrastructure, before going live.
             </p>

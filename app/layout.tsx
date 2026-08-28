@@ -15,8 +15,8 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — student initiative for renewable energy at TUM`,
-    template: `%s — ${site.name}`,
+    default: `${site.name}: student initiative for renewable energy at TUM`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   openGraph: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — student initiative for renewable energy at TUM`,
+    title: `${site.name}: student initiative for renewable energy at TUM`,
     description: site.description,
   },
 };

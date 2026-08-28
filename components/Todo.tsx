@@ -1,13 +1,14 @@
-import { isTodo, type Todo } from "@/content/site";
+import { isTodo, type Fillable, type Todo } from "@/content/site";
 
 /**
  * Renders an unmistakable placeholder for content the club still has to supply.
- * Deliberately loud: nothing here should reach a public launch unnoticed.
+ * Deliberately loud: `npm run build` also refuses to run while any of these
+ * remain (see scripts/check-content.mjs).
  */
 export function TodoNote({ value }: { value: Todo }) {
   return (
     <span className="inline-flex items-baseline gap-2 rounded-md border border-dashed border-amber-deep bg-cream px-2.5 py-1 text-sm text-amber-deep">
-      <span className="font-semibold uppercase tracking-widest text-[0.7em]">
+      <span className="text-[0.7em] font-semibold uppercase tracking-widest">
         To do
       </span>
       <span className="text-navy/80">{value.__todo}</span>
@@ -16,6 +17,6 @@ export function TodoNote({ value }: { value: Todo }) {
 }
 
 /** Renders a plain string as text, or a TODO marker as a visible placeholder. */
-export function Fillable({ value }: { value: string | Todo }) {
+export function Fill({ value }: { value: Fillable }) {
   return isTodo(value) ? <TodoNote value={value} /> : <>{value}</>;
 }

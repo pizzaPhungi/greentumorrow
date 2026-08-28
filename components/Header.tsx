@@ -6,7 +6,7 @@ import { useState } from "react";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
 import { cn } from "@/components/cn";
-import { nav } from "@/content/site";
+import { joinCta, nav } from "@/content/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center gap-3"
-            aria-label="gREen tumorrow — home"
+            aria-label="gREen tumorrow, home"
           >
             <LogoMark className="h-10" />
             <Wordmark className="text-base sm:text-lg" />
@@ -50,6 +50,12 @@ export function Header() {
                 </Link>
               );
             })}
+            <Link
+              href={joinCta.href}
+              className="rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-green-dark"
+            >
+              {joinCta.label}
+            </Link>
           </nav>
 
           <button
@@ -80,12 +86,21 @@ export function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-green/8 py-4 text-base font-medium text-navy last:border-0"
+                    className="block border-b border-green/8 py-4 text-base font-medium text-navy"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
+              <li className="py-4">
+                <Link
+                  href={joinCta.href}
+                  onClick={() => setOpen(false)}
+                  className="inline-flex rounded-full bg-green px-6 py-3 text-sm font-semibold text-cream"
+                >
+                  {joinCta.label}
+                </Link>
+              </li>
             </ul>
           </Container>
         </nav>

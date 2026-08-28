@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Arc, LogoMark, Wordmark } from "@/components/Logo";
-import { Fillable } from "@/components/Todo";
+import { Fill } from "@/components/Todo";
 import {
   Button,
   Card,
@@ -12,35 +12,22 @@ import {
   Stat,
 } from "@/components/ui";
 import {
-  academics,
   contact,
+  openRoles,
+  ownProjects,
   partners,
+  pillars,
   projects,
   stats,
-  units,
+  team,
 } from "@/content/site";
 
-const differentiators = [
-  {
-    title: "Real plants, not concepts",
-    text: "Our first system has been feeding the Munich grid since 2026. The second is on a church roof right now. Nothing here ends as a slide deck.",
-  },
-  {
-    title: "Real money, not a play budget",
-    text: "Our projects are financed by cooperative members — neighbours who bought shares. That changes how carefully you work, and how much you learn.",
-  },
-  {
-    title: "Real academic credit",
-    text: "Field data from live plants makes unusually good thesis material. We supply topic and supervision, a TUM chair supplies the format.",
-  },
-];
-
 export default function HomePage() {
-  const live = projects[0];
+  const live = projects.find((p) => p.status === "Live") ?? projects[0];
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero. The credibility sits in the lead so it precedes the journey. */}
       <div className="relative overflow-hidden">
         <Arc
           className="pointer-events-none absolute -top-28 left-1/2 hidden h-auto w-[1900px] -translate-x-1/2 text-green/12 md:block"
@@ -49,20 +36,21 @@ export default function HomePage() {
         <Container className="relative">
           <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
             <div>
-              <Eyebrow>TUM student initiative · Munich</Eyebrow>
+              <Eyebrow>Student initiative · TUM Munich</Eyebrow>
               <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
-                You can drive past our first project.
+                Learn renewable energy by building it.
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl">
-                <Wordmark className="text-[1.05em]" /> plans, finances and
-                delivers community-owned solar in Munich together with the
-                energy cooperative EGM&nbsp;eG. One plant is on the grid. The
-                next is under construction. Six of us are doing it.
+                <Wordmark className="text-[1.05em]" /> is where students who care
+                about renewable energy do the work instead of reading about it.
+                You join a real project, with one of our partners or one you
+                bring yourself, and you build genuine expertise doing it. Two
+                solar plants in Munich are what that has produced so far.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Button href="/join">Join the team</Button>
                 <Button href="/projects" variant="secondary">
-                  See the projects
+                  See what we work on
                 </Button>
               </div>
             </div>
@@ -114,37 +102,43 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Why */}
-      <Section>
+      {/* Pillars: what the club does. Placed above the team on purpose:
+          people come for purpose and accomplishments before personnel. */}
+      <Section tone="mist">
         <SectionHeading
-          eyebrow="Why this one"
-          title="There are 250 student clubs at TUM. Here is what is different about ours."
+          eyebrow="What we do"
+          title="Three things, and they hold each other up."
+          lead="Technology alone does not get a renewable energy project built. It takes people who know each other, work that actually ships, and knowledge that outlives the people who gathered it."
         />
-        <div className="mt-14 grid gap-10 md:grid-cols-3">
-          {differentiators.map((d, i) => (
-            <div key={d.title}>
+        <ol className="mt-14 grid gap-6 md:grid-cols-3">
+          {pillars.map((p, i) => (
+            <Card key={p.name} as="li" className="flex flex-col">
               <p className="font-semibold tabular-nums text-amber-deep">
                 {String(i + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-3 text-xl font-semibold">{d.title}</h3>
-              <p className="mt-3 leading-relaxed text-navy/75">{d.text}</p>
-            </div>
+              <h3 className="mt-4 text-2xl font-semibold">
+                <span className="text-amber-deep">{p.prefix}</span>{" "}
+                <span className="text-green-dark">{p.name}</span>
+              </h3>
+              <p className="mt-4 leading-relaxed text-navy/75">{p.text}</p>
+            </Card>
           ))}
-        </div>
+        </ol>
       </Section>
 
-      {/* Projects */}
-      <Section tone="sage">
+      {/* Projects: the evidence, in full */}
+      <Section>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Projects"
-            title="Two roofs in Munich"
-            lead="Community-owned photovoltaics, developed with EGM eG and owned by the people who live around them."
+            eyebrow="What we work on"
+            title="Real projects, with real consequences if you get them wrong."
+            lead="Everything we do runs on a real building, a real budget or a real research question. Two are running with partners today; the next one could be yours."
           />
           <Button href="/projects" variant="secondary" className="shrink-0">
             All projects
           </Button>
         </div>
+
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {projects.map((p) => (
             <Card key={p.slug} as="article" className="flex flex-col">
@@ -152,10 +146,13 @@ export default function HomePage() {
                 <Pill tone={p.status === "Live" ? "live" : "building"}>
                   {p.status}
                 </Pill>
+                <span className="text-sm font-medium text-green-dark">
+                  {p.field}
+                </span>
                 <span className="text-sm text-navy/55">{p.year}</span>
               </div>
               <h3 className="mt-4 text-xl font-semibold">{p.name}</h3>
-              <p className="mt-5 grow leading-relaxed text-navy/75">
+              <p className="mt-4 grow leading-relaxed text-navy/75">
                 {p.summary}
               </p>
               <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-5">
@@ -173,129 +170,102 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
-      </Section>
 
-      {/* Units */}
-      <Section>
-        <SectionHeading
-          eyebrow="Where you plug in"
-          title="Seven units. Six people. You can do the maths."
-          lead="Every unit below is a real part of getting a plant built. Pick the one that sounds like you — you do not need prior experience, you need to show up."
-        />
-        <ul className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {units.map((u) => (
-            <Card
-              key={u.slug}
-              as="li"
-              className={u.open ? "border-amber-deep/50 bg-amber/8" : undefined}
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-lg font-semibold">{u.name}</h3>
-                {u.open ? <Pill tone="building">Lead open</Pill> : null}
-              </div>
-              <p className="mt-2 text-navy/75">{u.blurb}</p>
-              <ul className="mt-5 space-y-2 text-sm text-navy/65">
-                {u.work.map((w) => (
-                  <li key={w} className="flex gap-2.5">
-                    <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber-deep" />
-                    {w}
+        {/* Own projects: an invitation, never dressed up as an existing project. */}
+        <Card className="mt-6 border-dashed border-amber-deep/50 bg-amber/8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
+            <div>
+              <Pill tone="building">Open</Pill>
+              <h3 className="mt-4 text-xl font-semibold">
+                {ownProjects.headline}
+              </h3>
+              <p className="mt-4 leading-relaxed text-navy/75">
+                {ownProjects.intro}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
+                For example
+              </p>
+              <ul className="mt-4 space-y-2 text-navy/75">
+                {ownProjects.examples.map((e) => (
+                  <li key={e} className="flex gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber-deep"
+                    />
+                    {e}
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 border-t border-green/12 pt-4 text-sm text-navy/55">
-                {u.lead ? `Led by ${u.lead}` : "Looking for a student lead"}
+              <p className="mt-6 text-sm text-navy/70">
+                <Fill value={ownProjects.requirements} />
+              </p>
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      {/* The team: who does the work. Each role names the work, not a label. */}
+      <Section tone="deep">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="Who you would work with"
+            title="Our members"
+            lead="There is no head office behind us. Everything above is done by the people below, which is also why there is room for you."
+          />
+          <Button href="/team" variant="secondary" className="shrink-0">
+            More about the team
+          </Button>
+        </div>
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {team
+            .filter((person) => person.kind === "student")
+            .map((person) => (
+              <Card key={person.name} as="li">
+                <p className="text-lg font-semibold text-green-dark">
+                  {person.name}
+                </p>
+                <p className="mt-1 text-sm font-medium text-amber-deep">
+                  {person.role}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-navy/70">
+                  {person.work}
+                </p>
+              </Card>
+            ))}
+          {openRoles.map((role) => (
+            <Card
+              key={role.role}
+              as="li"
+              className="border-dashed border-amber-deep/60 bg-amber/8"
+            >
+              <div className="flex items-baseline justify-between gap-3">
+                <p className="text-lg font-semibold text-green-dark">Open</p>
+                <Pill tone="building">Join</Pill>
+              </div>
+              <p className="mt-1 text-sm font-medium text-amber-deep">
+                {role.role}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-navy/70">
+                {role.work}
               </p>
             </Card>
           ))}
         </ul>
       </Section>
 
-      {/* Academics */}
-      <Section tone="green">
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <SectionHeading
-              eyebrow="Thesis & internships"
-              title="Write your master's thesis about a plant you helped build."
-              lead={academics.intro}
-              invert
-            />
-            <Button href="/academics" variant="secondary" className="mt-9 border-mist/30 text-mist hover:border-mist hover:bg-mist/10">
-              How it works
-            </Button>
-          </div>
-          <ul className="space-y-5">
-            {academics.majors.map((m) => (
-              <li
-                key={m}
-                className="flex items-center gap-4 border-b border-mist/15 pb-5 text-lg text-mist/90"
-              >
-                <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-amber" />
-                {m}
-              </li>
-            ))}
-            <li className="pt-2 text-mist/60">
-              Other programmes welcome — talk to us.
-            </li>
-          </ul>
-        </div>
-      </Section>
-
-      {/* Come by */}
-      <Section tone="deep">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <div>
-            <SectionHeading
-              eyebrow="Come by"
-              title="The best way to find out is to turn up."
-              lead="We meet regularly in Munich. No application needed to visit — bring questions."
-            />
-          </div>
-          <div className="space-y-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-                Where
-              </p>
-              <p className="mt-2 text-lg text-navy">
-                {contact.address.street}
-                <br />
-                {contact.address.postalCode} {contact.address.city}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-                When
-              </p>
-              <p className="mt-2 text-lg text-navy">
-                <Fillable value={contact.meetup.cadence} />
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-                Ask first
-              </p>
-              <p className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-lg">
-                <a href={`mailto:${contact.email}`} className="text-green-dark underline decoration-amber decoration-2 underline-offset-4">
-                  {contact.email}
-                </a>
-                <a href={`tel:${contact.phoneHref}`} className="text-green-dark underline decoration-amber decoration-2 underline-offset-4">
-                  {contact.phone}
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* Partners */}
       <Section>
         <SectionHeading eyebrow="Who we work with" title="Partners" />
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {partners.map((p) => (
             <Card key={p.name} as="li">
               <h3 className="text-lg font-semibold">{p.name}</h3>
               <p className="mt-1 text-sm text-navy/55">{p.full}</p>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">{p.text}</p>
+              <p className="mt-4 text-sm leading-relaxed text-navy/75">
+                {p.text}
+              </p>
               <a
                 href={p.href}
                 target="_blank"
@@ -310,11 +280,12 @@ export default function HomePage() {
       </Section>
 
       {/* Closing CTA */}
-      <Section tone="sage" className="py-20">
+      <Section tone="mist" className="py-20">
         <div className="flex flex-col items-center gap-8 text-center">
           <LogoMark className="h-16" />
           <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
-            The next roof is already out there. Help us find it.
+            Renewable energy needs people who have already built something.
+            Start here.
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <Button href="/join">Join the team</Button>
@@ -324,7 +295,10 @@ export default function HomePage() {
           </div>
           <p className="text-sm text-navy/60">
             Or read{" "}
-            <Link href="/about" className="underline decoration-amber decoration-2 underline-offset-4">
+            <Link
+              href="/about"
+              className="underline decoration-amber decoration-2 underline-offset-4"
+            >
               what we stand for
             </Link>
             .

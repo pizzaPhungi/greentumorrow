@@ -1,46 +1,63 @@
 # greentumorrow.de
 
-Website for **gREen tumorrow**, a TUM student initiative building community-owned
-renewable energy projects in Munich with the energy cooperative EGM eG.
+Website for **gREen tumorrow**, a student initiative at TUM for people who want to
+work on renewable energy, by joining real projects, with partners or their own,
+and building expertise doing it.
 
-Static site — Next.js 16 (App Router) + Tailwind v4, exported to plain HTML.
+Static site. Next.js 16 (App Router) + Tailwind v4, exported to plain HTML.
 No backend, no database, no cookies, no analytics.
 
 ## Run it
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # static export → ./out
+npm run dev              # http://localhost:3000
+npm run check:content    # list unfinished content
+npm run build            # static export → ./out  (blocked while content is unfinished)
 npm run lint
 ```
 
-`npm run build` writes a fully static site to `out/`. Any static host serves it —
+`npm run build` writes a fully static site to `out/`. Any static host serves it:
 Vercel, GitHub Pages, TUM webspace.
+
+**The build refuses to run while `TODO(...)` placeholders remain.** That is
+deliberate: it is what stops "Weekday + time of the regular meet-up" from ending
+up on the live site. To build a preview anyway:
+
+```bash
+ALLOW_TODOS=1 npm run build
+```
 
 ## Editing content
 
 **Almost every word on the site lives in [`content/site.ts`](content/site.ts).**
 Change it there and it updates everywhere. You do not need to touch the
-components for text, projects, team members, units or contact details.
+components for text, projects, team members or contact details.
 
 | What | Where in `content/site.ts` |
 | --- | --- |
 | Contact details, address, meet-up time | `contact` |
-| Headline numbers on the home page | `stats` |
-| PV projects | `projects` |
-| Units and who leads them (`open: true` = advertised as vacant) | `units` |
-| People | `team` |
+| Headline numbers on the home page | `stats`, `founded` |
+| Projects (`type: "partner"` or `"own"`, plus a `field`) | `projects` |
+| The "bring your own project" invitation | `ownProjects` |
+| The three pillars (RE Community / Projects / Knowledge) | `pillars` |
+| People, the work each carries, and the roles nobody covers yet | `team`, `openRoles` |
+| What to put in a first mail, and how fast you answer | `join.mail` |
+| The four steps of joining | `journey` |
+| What members learn and take away | `learning` |
+| Recurring formats that actually run | `activities` |
+| Who runs the club | `leadership` |
 | Mission, vision, values | `missionVision`, `values` |
-| Thesis / internship content | `academics` |
-| Partners and EU projects | `partners`, `euProjects` |
+| Partners and EU projects | `partners`, `morePartners`, `euProjects` |
 | Join page copy and expectations | `join` |
 
 ### The `TODO(...)` markers
 
-Content that is still missing is written as `TODO("what is needed")`. It renders
-on the page as a loud dashed amber box, so nothing unfinished slips into a
-launch unnoticed. Replace the whole `TODO(...)` call with a plain string:
+Content that is still missing is written as `TODO("what is needed")`. It does two
+things: it renders on the page as a loud dashed amber box, and it makes
+`npm run build` fail with a list of everything outstanding. Run
+`npm run check:content` any time to see that list. Replace the whole `TODO(...)`
+call with a plain string:
 
 ```ts
 cadence: TODO("Weekday + time of the regular meet-up"),   // before
@@ -49,20 +66,27 @@ cadence: "Every Tuesday, 18:00",                          // after
 
 ## Before going live
 
+Run `npm run check:content`; it prints everything still outstanding. On top of
+that:
+
 1. **Imprint.** gREen tumorrow has no legal form yet, so no legal person can be
    the service provider under § 5 DDG. A natural person must be named with a
-   real postal address and carries personal liability — or the site runs under
+   real postal address and carries personal liability, or the site runs under
    TUM student-club infrastructure. See [`app/imprint/page.tsx`](app/imprint/page.tsx).
 2. **Privacy policy.** Fill in the controller and the hosting provider's log
    retention. See [`app/privacy/page.tsx`](app/privacy/page.tsx).
-3. **Meet-up time and room.** The single most important missing piece — the site
-   invites people to turn up but cannot yet say when.
-4. **Weekly time commitment** on the Join page.
-5. **Verify the LinkedIn URL** in `contact.linkedin`.
-6. **Team photos.** Currently rendered as initials. Portraits at 400×400 or
+3. **Meet-up time and room.** The site invites people to turn up but cannot yet
+   say when.
+4. **How fast you answer mail** (`join.mail.responseTime`). Research on newcomer
+   drop-out points at "finding a way to start" as the main reason people who
+   already cared still leave; NN/g's contact-page guidance adds that a stated
+   response window is what makes writing feel low-risk. Commit to a number.
+5. **Weekly time commitment** on the Join page.
+6. **Verify the LinkedIn URL** in `contact.linkedin`.
+7. **Team photos.** Currently rendered as initials. Portraits at 400×400 or
    larger would be better; the deck's versions are too low-resolution.
-7. **Phone number.** `contact.phone` is a private mobile number. Public pages get
-   scraped — consider a club number.
+8. **Phone number.** `contact.phone` is a private mobile number. Public pages get
+   scraped. Consider a club number.
 
 ## Brand
 
@@ -89,7 +113,8 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/            routes — one folder per page
-components/     Logo, Header, Footer, UI primitives, TODO markers
-content/site.ts all copy and data
+app/                       routes, one folder per page
+components/                Logo, Header, Footer, UI primitives, TODO markers
+content/site.ts            all copy and data
+scripts/check-content.mjs  the build gate for unfinished content
 ```

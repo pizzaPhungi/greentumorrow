@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/components/cn";
+import { TodoNote } from "@/components/Todo";
+import { isTodo, type Fillable as FillableValue } from "@/content/site";
 
 export function Container({
   children,
@@ -25,13 +27,13 @@ export function Section({
   children: ReactNode;
   className?: string;
   id?: string;
-  tone?: "cream" | "deep" | "green" | "sage";
+  tone?: "cream" | "deep" | "green" | "mist";
 }) {
   const tones = {
     cream: "bg-cream",
     deep: "bg-cream-deep",
     green: "bg-green-dark text-mist",
-    sage: "bg-mist",
+    mist: "bg-mist",
   };
   return (
     <section
@@ -171,7 +173,7 @@ export function Stat({
   label,
   note,
 }: {
-  value: string;
+  value: FillableValue;
   unit?: string;
   label: string;
   note?: string;
@@ -179,10 +181,18 @@ export function Stat({
   return (
     <div className="border-t border-green/20 pt-5">
       <p className="font-semibold tracking-tight text-green-dark tabular-nums">
-        <span className="text-4xl sm:text-5xl">{value}</span>
-        {unit ? (
-          <span className="ml-1 text-xl text-amber-deep sm:text-2xl">{unit}</span>
-        ) : null}
+        {isTodo(value) ? (
+          <TodoNote value={value} />
+        ) : (
+          <>
+            <span className="text-4xl sm:text-5xl">{value}</span>
+            {unit ? (
+              <span className="ml-1 text-xl text-amber-deep sm:text-2xl">
+                {unit}
+              </span>
+            ) : null}
+          </>
+        )}
       </p>
       <p className="mt-2 text-sm font-medium text-navy">{label}</p>
       {note ? <p className="mt-0.5 text-sm text-navy/55">{note}</p> : null}

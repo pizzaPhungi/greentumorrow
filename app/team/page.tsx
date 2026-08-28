@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Button, Card, Pill, Section, SectionHeading, PageHeader } from "@/components/ui";
-import { contact, team, units } from "@/content/site";
+import { Fill } from "@/components/Todo";
+import {
+  Button,
+  Card,
+  PageHeader,
+  Pill,
+  Section,
+  SectionHeading,
+} from "@/components/ui";
+import { contact, leadership, openRoles, team } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "The students and academic advisors behind gREen tumorrow, a TUM student initiative for community-owned renewable energy.",
+    "The people behind gREen tumorrow: six students and two academic advisors building renewable energy projects in Munich.",
 };
 
-/** Portrait photography is not available yet — initials keep the grid honest. */
+/** Portrait photography is not available yet; initials keep the grid honest. */
 function Avatar({ name, kind }: { name: string; kind: "student" | "advisor" }) {
   const initials = name
     .replace(/^Dr\.\s*/, "")
@@ -31,47 +39,80 @@ function Avatar({ name, kind }: { name: string; kind: "student" | "advisor" }) {
   );
 }
 
+function PersonCard({
+  name,
+  role,
+  work,
+  kind,
+}: {
+  name: string;
+  role: string;
+  work: string;
+  kind: "student" | "advisor";
+}) {
+  return (
+    <Card as="li">
+      <div className="flex items-start gap-5">
+        <Avatar name={name} kind={kind} />
+        <div>
+          <p className="text-lg font-semibold text-green-dark">{name}</p>
+          <p className="mt-1 text-sm font-medium text-amber-deep">{role}</p>
+        </div>
+      </div>
+      <p className="mt-5 text-sm leading-relaxed text-navy/70">{work}</p>
+    </Card>
+  );
+}
+
 export default function TeamPage() {
   const students = team.filter((p) => p.kind === "student");
   const advisors = team.filter((p) => p.kind === "advisor");
-  const open = units.filter((u) => u.open);
 
   return (
     <>
       <PageHeader
         eyebrow="Team"
         title="Six students and two academic advisors."
-        lead="Small enough that everyone owns something real. Small enough that we are visibly short-staffed — which is the honest reason this page exists."
+        lead="No head office, no staff. Everything this club has built was built by the people on this page, which is also the honest reason it is worth joining."
       />
 
       <Section>
-        <SectionHeading eyebrow="Students" title="Unit leads" />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading
+          eyebrow="Students"
+          title="Who does what"
+          lead="Each of us carries one kind of work. That is the whole structure."
+        />
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {students.map((p) => (
-            <Card key={p.name} as="li" className="flex items-center gap-5">
-              <Avatar name={p.name} kind={p.kind} />
-              <div>
-                <p className="font-semibold text-green-dark">{p.name}</p>
-                <p className="mt-0.5 text-sm text-navy/60">{p.role}</p>
-              </div>
-            </Card>
+            <PersonCard key={p.name} {...p} />
           ))}
-          {open.map((u) => (
+          {openRoles.map((role) => (
             <Card
-              key={u.slug}
+              key={role.role}
               as="li"
-              className="flex items-center gap-5 border-dashed border-amber-deep/60 bg-amber/8"
+              className="border-dashed border-amber-deep/60 bg-amber/8"
             >
-              <span
-                aria-hidden="true"
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-dashed border-amber-deep/60 text-2xl font-light text-amber-deep"
-              >
-                +
-              </span>
-              <div>
-                <p className="font-semibold text-green-dark">Open</p>
-                <p className="mt-0.5 text-sm text-navy/60">{u.name} lead</p>
+              <div className="flex items-start gap-5">
+                <span
+                  aria-hidden="true"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-dashed border-amber-deep/60 text-2xl font-light text-amber-deep"
+                >
+                  +
+                </span>
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <p className="text-lg font-semibold text-green-dark">Open</p>
+                    <Pill tone="building">Yours?</Pill>
+                  </div>
+                  <p className="mt-1 text-sm font-medium text-amber-deep">
+                    {role.role}
+                  </p>
+                </div>
               </div>
+              <p className="mt-5 text-sm leading-relaxed text-navy/70">
+                {role.work}
+              </p>
+              <p className="mt-3 text-sm text-navy/55">{role.note}</p>
             </Card>
           ))}
         </ul>
@@ -81,41 +122,31 @@ export default function TeamPage() {
         <SectionHeading
           eyebrow="Academic advisors"
           title="Our link into TUM"
-          lead="They keep our Education unit running until a student takes it over, and connect our projects to chairs and teaching formats."
+          lead="They connect our projects to chairs and teaching formats, and they hold the Education role until a student takes it on."
         />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2">
           {advisors.map((p) => (
-            <Card key={p.name} as="li" className="flex items-center gap-5">
-              <Avatar name={p.name} kind={p.kind} />
-              <div>
-                <p className="font-semibold text-green-dark">{p.name}</p>
-                <p className="mt-0.5 text-sm text-navy/60">{p.role}</p>
-              </div>
-            </Card>
+            <PersonCard key={p.name} {...p} />
           ))}
         </ul>
       </Section>
 
-      <Section tone="sage">
-        <div className="flex flex-wrap items-end justify-between gap-8">
+      <Section tone="mist">
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
-            eyebrow="Structure"
-            title="Seven units, one central management"
-            lead="Each unit runs its own work and reports into central management, which coordinates across the project pipeline. If a unit has no lead, its work still has to happen — usually by someone already carrying another unit."
+            eyebrow="How we organise"
+            title="Small enough that nothing hides."
+            lead="Work is coordinated centrally across the project pipeline, but there is no layer between a member and the thing they are building."
           />
-          <Button href="/join">See open roles</Button>
+          <div className="self-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
+              Who runs the club
+            </p>
+            <p className="mt-3 text-lg text-navy/80">
+              <Fill value={leadership} />
+            </p>
+          </div>
         </div>
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {units.map((u) => (
-            <li
-              key={u.slug}
-              className="flex items-center justify-between gap-3 rounded-xl border border-green/15 bg-cream px-5 py-4"
-            >
-              <span className="font-medium text-green-dark">{u.name}</span>
-              {u.open ? <Pill tone="building">Open</Pill> : null}
-            </li>
-          ))}
-        </ul>
       </Section>
 
       <Section>
@@ -123,9 +154,14 @@ export default function TeamPage() {
           <SectionHeading
             eyebrow="Get in touch"
             title="Want to talk to one of us?"
-            lead="Mail reaches the whole team. Say which unit you are after and it lands with the right person."
+            lead="Mail reaches the whole team. Name the person or the kind of work you are after and it lands with the right one."
           />
-          <Button href={`mailto:${contact.email}`}>{contact.email}</Button>
+          <div className="flex flex-wrap gap-4">
+            <Button href={`mailto:${contact.email}`}>{contact.email}</Button>
+            <Button href="/join" variant="secondary">
+              How joining works
+            </Button>
+          </div>
         </div>
       </Section>
     </>

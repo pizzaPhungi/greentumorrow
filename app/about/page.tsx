@@ -1,25 +1,41 @@
 import type { Metadata } from "next";
-import { Card, Section, SectionHeading, PageHeader } from "@/components/ui";
-import { euProjects, missionVision, partners, site, values } from "@/content/site";
+import { Fill } from "@/components/Todo";
+import { Card, PageHeader, Section, SectionHeading } from "@/components/ui";
+import {
+  euProjects,
+  founded,
+  leadership,
+  missionVision,
+  morePartners,
+  ownProjects,
+  partners,
+  pillars,
+  site,
+  values,
+} from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What gREen tumorrow is, how community energy cooperatives work, and who we build with in Munich.",
+    "What gREen tumorrow is, how our projects come about, and who we work with in Munich.",
 };
 
-const cooperativeSteps = [
+const howProjectsStart = [
   {
-    title: "Neighbours become owners",
-    text: "People from the district join the cooperative by buying shares. That capital is what pays for the panels.",
+    title: "A partner brings a need",
+    text: "A cooperative, a building owner or a chair has something that has to get done and no team to do it. We take it on as a project.",
   },
   {
-    title: "The cooperative builds",
-    text: "It signs the roof agreement, orders the system and takes on the project — as one legal body instead of forty private households.",
+    title: "Or a member brings an idea",
+    text: "Someone in the club sees a building, a gap or a question worth chasing and proposes it. Own projects start here.",
   },
   {
-    title: "The district keeps the value",
-    text: "The electricity and the earnings stay with the members rather than leaving for a distant utility.",
+    title: "People pick it up",
+    text: "Engineering, finance, legal, outreach: whichever kinds of work the project needs. Most need several at once, so most projects are shared.",
+  },
+  {
+    title: "It ships, or it teaches us something",
+    text: "Some projects end as an installation on a roof. Others end as a study, a model or a clear answer that a project was not viable. Both are worth the work.",
   },
 ];
 
@@ -28,23 +44,62 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About"
-        title="A student initiative sitting between a university and a power plant."
+        title="A student club for people who want to work on renewable energy."
         lead={site.description}
       />
 
       <Section>
+        <SectionHeading
+          eyebrow="Our three pillars"
+          title="Technology alone does not get anything built."
+          lead="Accelerating renewable energy takes people who know each other, work that actually ships, and knowledge that outlives whoever gathered it. Everything we do sits under one of these three."
+        />
+        <ol className="mt-14 grid gap-6 md:grid-cols-3">
+          {pillars.map((p, i) => (
+            <Card key={p.name} as="li" className="flex flex-col">
+              <p className="font-semibold tabular-nums text-amber-deep">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold">
+                <span className="text-amber-deep">{p.prefix}</span>{" "}
+                <span className="text-green-dark">{p.name}</span>
+              </h3>
+              <p className="mt-4 leading-relaxed text-navy/75">{p.text}</p>
+            </Card>
+          ))}
+        </ol>
+      </Section>
+
+      <Section tone="mist">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+          <SectionHeading eyebrow="Mission" title={missionVision.mission} />
+          <SectionHeading eyebrow="Vision" title={missionVision.vision} />
+        </div>
+        <div className="mt-16 grid gap-8 border-t border-green/15 pt-10 sm:grid-cols-2">
           <div>
-            <SectionHeading eyebrow="Mission" title={missionVision.mission} />
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
+              Founded
+            </p>
+            <p className="mt-3 text-navy/75">
+              <Fill value={founded} />
+            </p>
           </div>
           <div>
-            <SectionHeading eyebrow="Vision" title={missionVision.vision} />
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
+              Who runs it
+            </p>
+            <p className="mt-3 text-navy/75">
+              <Fill value={leadership} />
+            </p>
           </div>
         </div>
       </Section>
 
       <Section tone="deep">
-        <SectionHeading eyebrow="Values" title="Three things we hold ourselves to" />
+        <SectionHeading
+          eyebrow="Values"
+          title="Three things we hold ourselves to"
+        />
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
           {values.map((v) => (
             <Card key={v.name} as="li">
@@ -57,12 +112,12 @@ export default function AboutPage() {
 
       <Section>
         <SectionHeading
-          eyebrow="How community energy works"
-          title="Why a cooperative, and not a company"
-          lead="An energy cooperative (eG) lets a neighbourhood collectively own the thing that generates its power. It is the legal form our projects run on, and understanding it is half the work."
+          eyebrow="How a project starts"
+          title="Two ways in, one way of working"
+          lead="We are not a consultancy waiting for briefs, and not a think tank writing concepts. Work arrives one of two ways, and then it gets done the same way."
         />
-        <ol className="mt-14 grid gap-10 md:grid-cols-3">
-          {cooperativeSteps.map((s, i) => (
+        <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {howProjectsStart.map((s, i) => (
             <li key={s.title}>
               <p className="font-semibold tabular-nums text-amber-deep">
                 {String(i + 1).padStart(2, "0")}
@@ -73,25 +128,24 @@ export default function AboutPage() {
           ))}
         </ol>
         <p className="mt-12 max-w-2xl text-sm leading-relaxed text-navy/60">
-          Membership terms, shares and any financial details are a matter for the
-          cooperative itself, not for us. If you are considering joining EGM eG as
-          a member, go to their site — we are the student initiative that works on
-          the projects, not the issuer.
+          <Fill value={ownProjects.requirements} />
         </p>
       </Section>
 
-      <Section tone="sage">
+      <Section tone="mist">
         <SectionHeading
-          eyebrow="Ecosystem"
-          title="Who else is in this"
-          lead="Munich has a growing network of citizen energy cooperatives and EU-funded district projects. Our work sits inside it — as a partner, not as a subsidiary."
+          eyebrow="Who we work with"
+          title="Partners"
+          lead="Munich has a growing network of energy cooperatives, chairs and district projects. We work inside it as a partner, not as anyone's subsidiary."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {partners.map((p) => (
             <Card key={p.name}>
               <h3 className="text-lg font-semibold">{p.name}</h3>
               <p className="mt-1 text-sm text-navy/55">{p.full}</p>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">{p.text}</p>
+              <p className="mt-4 text-sm leading-relaxed text-navy/75">
+                {p.text}
+              </p>
               <a
                 href={p.href}
                 target="_blank"
@@ -103,9 +157,12 @@ export default function AboutPage() {
             </Card>
           ))}
         </div>
+        <p className="mt-8 text-sm text-navy/70">
+          <Fill value={morePartners} />
+        </p>
 
         <h3 className="mt-16 text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-          EU district projects in our neighbourhoods
+          EU district projects our partners are part of
         </h3>
         <ul className="mt-6 grid gap-6 md:grid-cols-2">
           {euProjects.map((p) => (
@@ -114,7 +171,9 @@ export default function AboutPage() {
                 <h4 className="text-lg font-semibold">{p.name}</h4>
                 <span className="text-sm text-navy/55">{p.place}</span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">{p.text}</p>
+              <p className="mt-4 text-sm leading-relaxed text-navy/75">
+                {p.text}
+              </p>
               <a
                 href={p.href}
                 target="_blank"

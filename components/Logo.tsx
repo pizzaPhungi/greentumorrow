@@ -24,7 +24,7 @@ export function LogoMark({ className }: { className?: string }) {
 }
 
 /**
- * "gREen tumorrow" — the RE of Renewable Energy and the TUM of Munich are
+ * "gREen tumorrow": the RE of Renewable Energy and the TUM of Munich are
  * carried in the colour, so never render this as plain text.
  */
 export function Wordmark({

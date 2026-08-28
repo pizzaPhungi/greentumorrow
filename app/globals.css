@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — sampled from the club's own deck (greentumorrow.pptx). */
+  /* Brand palette, sampled from the club's own deck (greentumorrow.pptx). */
   --color-cream: #fff3dd;
   --color-cream-deep: #f8e8c8;
   --color-green: #3a643c;

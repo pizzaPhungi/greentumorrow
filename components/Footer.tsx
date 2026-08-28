@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
-import { Fillable } from "@/components/Todo";
+import { Fill } from "@/components/Todo";
 import { contact, nav, site } from "@/content/site";
 
 const legal = [
@@ -20,8 +20,8 @@ export function Footer() {
               <Wordmark className="text-xl" />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-navy/70">
-              {site.affiliation} in {site.city}, building community-owned solar
-              with the energy cooperative EGM eG.
+              {site.affiliation} in {site.city}. Students working on renewable
+              energy, on real projects, with partners and their own.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export function Footer() {
                 {contact.address.postalCode} {contact.address.city}
               </p>
               <p className="text-navy/60">
-                <Fillable value={contact.meetup.cadence} />
+                <Fill value={contact.meetup.cadence} />
               </p>
               <p>
                 <a href={`mailto:${contact.email}`} className="hover:text-green-dark">

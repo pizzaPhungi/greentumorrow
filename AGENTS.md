@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # gREen tumorrow website
 
 Static marketing site for a TUM student initiative. Next.js 16 App Router,
-Tailwind v4, `output: "export"` — no server, no database, no client state
+Tailwind v4, `output: "export"`. No server, no database, no client state
 beyond the mobile nav toggle.
 
 - **All copy and data live in `content/site.ts`.** Never hardcode text in a
@@ -23,13 +23,20 @@ beyond the mobile nav toggle.
 - **Base CSS must stay inside `@layer base`** in `app/globals.css`. Unlayered
   rules outrank Tailwind's utility layer, which silently breaks colour
   utilities on headings.
-- **The wordmark is never plain text** — use `Wordmark` from `components/Logo`
+- **The wordmark is never plain text.** Use `Wordmark` from `components/Logo`
   so `RE` and `TUM` keep their colour.
 - **Section backgrounds** come from `Section`'s `tone` prop
-  (`cream` | `deep` | `mist`-backed `sage` | `green`). Alternate them; do not
-  invent one-off background colours.
-- Primary audience is TUM master's students. Copy is British-leaning English,
-  concrete and unhyped — no "empowering the future of sustainability".
+  (`cream` | `deep` | `mist` | `green`). Alternate them; do not invent one-off
+  background colours.
+- **Never use em dashes** in copy, comments or docs. Rewrite with a comma,
+  colon, semicolon, full stop or parentheses instead.
+- **Scope is renewable energy**, not the energy transition at large. The name
+  carries `RE`, and so do the three pillars.
+- **There are no units.** Work is described through the people who carry it:
+  `team[].role` names the department, `team[].work` names the actual work.
+- Audience is any student interested in renewable energy. Copy is
+  British-leaning English, concrete and unhyped. No "empowering the future of
+  sustainability".
 - Legal pages (`imprint`, `privacy`) are placeholders pending the e.V.
   registration. Do not present them as final.
 <!-- END:project-rules -->

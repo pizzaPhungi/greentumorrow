@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  * PLACEHOLDER. The final wording depends on where the site is hosted and which
  * third parties are actually contacted at runtime. Today the site is fully
  * static, loads Google Fonts self-hosted through next/font, sets no cookies and
- * runs no analytics — keep it that way and this document stays short.
+ * runs no analytics. Keep it that way and this document stays short.
  */
 export default function PrivacyPage() {
   return (
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
         <div className="max-w-2xl space-y-12 py-16 sm:py-24">
           <div className="rounded-2xl border border-dashed border-amber-deep bg-amber/10 p-7">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Placeholder — needs review before launch
+              Placeholder: needs review before launch
             </p>
             <p className="mt-4 leading-relaxed text-navy/80">
               The text below reflects how the site is built today: static pages,
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Controller</h2>
-            <TodoNote value={TODO("Name and address of the controller — same person as in the imprint")} />
+            <TodoNote value={TODO("Name and address of the controller, same person as in the imprint")} />
             <p className="text-navy/80">
               Email:{" "}
               <a
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
               Our hosting provider records technical access data (IP address,
               time of request, page requested, browser and operating system) in
               server log files. This is necessary to deliver the site and to keep
-              it secure — the legal basis is Art. 6(1)(f) GDPR.
+              it secure. The legal basis is Art. 6(1)(f) GDPR.
             </p>
             <TodoNote value={TODO("Name of the hosting provider and its retention period for log files")} />
           </section>
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             <p className="leading-relaxed text-navy/80">
               You have the right to access, rectification, erasure, restriction of
               processing, data portability and to object to processing. You may
-              also lodge a complaint with a supervisory authority — for us the
+              also lodge a complaint with a supervisory authority, for us the
               Bayerisches Landesamt für Datenschutzaufsicht.
             </p>
           </section>

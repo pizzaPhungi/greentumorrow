@@ -1,13 +1,16 @@
 /**
  * Single source of truth for every piece of copy and data on the site.
- * Edit this file to update the website — the components read from here.
+ * Edit this file to update the website; the components read from here.
  *
- * `TODO` markers render as a visible amber placeholder on the page, so
- * unfinished content cannot be shipped by accident.
+ * `TODO(...)` marks content the club still has to supply. It renders as a loud
+ * amber placeholder on the page AND fails `npm run build` via the `prebuild`
+ * check, so nothing unfinished can reach a launch unnoticed. Use
+ * `ALLOW_TODOS=1 npm run build` for previews while placeholders remain.
  */
 
 export const TODO = (what: string) => ({ __todo: what }) as const;
 export type Todo = ReturnType<typeof TODO>;
+export type Fillable = string | Todo;
 export const isTodo = (v: unknown): v is Todo =>
   typeof v === "object" && v !== null && "__todo" in v;
 
@@ -15,11 +18,11 @@ export const site = {
   name: "gREen tumorrow",
   legalName: "gREen tumorrow",
   url: "https://greentumorrow.de",
-  affiliation: "TUM-accredited student initiative",
+  affiliation: "Student initiative at TUM",
   city: "Munich",
   tagline: "Unleashing the power of Munich",
   description:
-    "gREen tumorrow is a TUM student initiative that plans, finances and delivers community-owned solar projects in Munich — and turns them into master's theses, research internships and careers in energy.",
+    "gREen tumorrow is a student initiative at TUM for everyone who wants to work on renewable energy, not read about it. You join a real project, with one of our partners or one you bring yourself, and you build genuine expertise doing it.",
 };
 
 export const contact = {
@@ -43,31 +46,54 @@ export const contact = {
   },
 };
 
-export const stats = [
-  { value: "10.23", unit: "kWp", label: "live on the grid", note: "Perlacher Herz" },
-  { value: "25", unit: "kWp", label: "in construction", note: "Gemeinde Neuperlach" },
-  { value: "11", unit: "kWh", label: "battery storage", note: "Gemeinde Neuperlach" },
-  { value: "6", unit: "", label: "active members", note: "and hiring" },
+/** Founding year lives here rather than in a stat tile so About can carry it too. */
+export const founded: Fillable = TODO(
+  "Year the initiative was founded, and when it was accredited by TUM",
+);
+
+export type Stat = {
+  value: Fillable;
+  unit?: string;
+  label: string;
+  note?: string;
+};
+
+export const stats: Stat[] = [
+  { value: "6", label: "active members", note: "and one open role" },
+  { value: "2", label: "energy projects", note: "running with partners" },
+  {
+    value: "35.23",
+    unit: "kWp",
+    label: "solar installed and in build",
+    note: "what those two projects add up to",
+  },
+  { value: founded, label: "founded", note: "student-run since day one" },
 ];
 
 export type Project = {
   slug: string;
   name: string;
+  /** Where the project came from. Drives how the projects page groups entries. */
+  type: "partner" | "own";
+  /** Which renewable energy area, e.g. Solar, Solar & storage, Wind. */
+  field: string;
   status: "Live" | "In construction";
   year: string;
   summary: string;
   specs: { label: string; value: string }[];
-  partner: string;
+  partner?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "perlacher-herz",
     name: "Perlacher Herz",
+    type: "partner",
+    field: "Solar",
     status: "Live",
     year: "On the grid since 2026",
     summary:
-      "Our first plant. A rooftop PV system on a community building in Perlach, developed with the energy cooperative EGM eG and financed by its members — the neighbours who now own it.",
+      "Our first plant. A rooftop PV system on a community building in Perlach, developed with the energy cooperative EGM eG and financed by its members, the neighbours who now own it.",
     specs: [
       { label: "Capacity", value: "10.23 kWp" },
       { label: "Modules", value: "24" },
@@ -78,10 +104,12 @@ export const projects: Project[] = [
   {
     slug: "gemeinde-neuperlach",
     name: "Evangelisch-Freikirchliche Gemeinde Neuperlach",
+    type: "partner",
+    field: "Solar & storage",
     status: "In construction",
     year: "Current project",
     summary:
-      "A church roof in Neuperlach, three times the size of our first plant and paired with battery storage — so the congregation uses its own solar power in the evening instead of selling it at the spot price.",
+      "A congregation roof in Neuperlach, more than twice the size of our first plant and paired with battery storage, so the building uses its own solar power in the evening instead of selling it at the spot price.",
     specs: [
       { label: "Capacity", value: "25 kWp" },
       { label: "Storage", value: "11 kWh" },
@@ -91,103 +119,155 @@ export const projects: Project[] = [
   },
 ];
 
-export type Unit = {
-  slug: string;
-  name: string;
-  blurb: string;
-  work: string[];
-  lead: string | null;
-  open: boolean;
+/**
+ * Own projects are an invitation, not a claim. No placeholder entry is added to
+ * `projects`. The `type: "own"` variant exists so the projects page can group
+ * by it the day a real one starts.
+ */
+export const ownProjects = {
+  headline: "Bring your own project",
+  intro:
+    "Not everything has to come through a partner. If you have an idea, a building, a measurement you want to run or a question you want answered, that can become a gREen tumorrow project, and you lead it.",
+  examples: [
+    "A roof whose owner you already know",
+    "A tool or model renewable energy projects are missing",
+    "A study or measurement campaign nobody has run",
+  ],
+  requirements: TODO(
+    "What a project proposal needs and who approves it: how a project actually starts",
+  ),
 };
 
-export const units: Unit[] = [
+/**
+ * The club's three pillars. The published LinkedIn carousel had
+ * Community / Knowledge / Investment; Investment is dropped and Projects takes
+ * its place, because building things is what the club actually does.
+ * The `RE` prefix is a separate field so it can be coloured like the wordmark.
+ */
+export const pillars = [
   {
-    slug: "engineering",
-    name: "Engineering",
-    blurb: "Turning a roof into a system that produces power.",
-    work: ["Site surveys and roof assessment", "PV layout and yield simulation", "Storage sizing and grid connection"],
-    lead: "Nana Kwabena Osei",
-    open: false,
+    prefix: "RE",
+    name: "Community",
+    text: "A network between neighbourhoods, industry and students, so a project has people behind it, not just a plan.",
   },
   {
-    slug: "finance",
-    name: "Finance",
-    blurb: "Making the numbers work before anyone climbs a roof.",
-    work: ["Project business cases", "Cooperative shares and member loans", "Funding and subsidy applications"],
-    lead: "Leonie Merkl",
-    open: false,
+    prefix: "RE",
+    name: "Projects",
+    text: "Planning, financing and delivering renewable energy installations that actually get built. This is where most of the work happens.",
   },
   {
-    slug: "legal",
-    name: "Legal",
-    blurb: "The contracts that let a community own a power plant.",
-    work: ["Roof lease and usage agreements", "Cooperative and energy law", "Compliance and documentation"],
-    lead: "Marvin Elling",
-    open: false,
-  },
-  {
-    slug: "acquisition",
-    name: "Acquisition",
-    blurb: "Finding the next roof — and the people on it.",
-    work: ["Churches, housing associations, schools", "First contact and site visits", "Building the project pipeline"],
-    lead: "Alex Treml",
-    open: false,
-  },
-  {
-    slug: "public-relations",
-    name: "Public Relations",
-    blurb: "Getting a neighbourhood to care about its own roof.",
-    work: ["Neighbourhood events and info evenings", "Social media and campus presence", "This website"],
-    lead: "Salma Gares",
-    open: false,
-  },
-  {
-    slug: "research-development",
-    name: "Research & Development",
-    blurb: "What comes after the first plant.",
-    work: ["Energy sharing and community models", "Sector coupling and heat", "Feeding findings back into TUM research"],
-    lead: "Karim Alzahabi",
-    open: false,
-  },
-  {
-    slug: "education",
-    name: "Education",
-    blurb: "The bridge between our projects and TUM lecture halls.",
-    work: ["Matching thesis topics to chairs", "Ring lectures and seminars", "Mentoring new members"],
-    lead: null,
-    open: true,
+    prefix: "RE",
+    name: "Knowledge",
+    text: "Closing the gap between theory and practice through teaching, exchange and expertise you can carry into a career.",
   },
 ];
 
 export type Person = {
   name: string;
   role: string;
+  /** What that role actually does. A department label alone says nothing. */
+  work: string;
   kind: "student" | "advisor";
 };
 
 export const team: Person[] = [
-  { name: "Alex Treml", role: "Acquisition", kind: "student" },
-  { name: "Nana Kwabena Osei", role: "Engineering", kind: "student" },
-  { name: "Leonie Merkl", role: "Finance", kind: "student" },
-  { name: "Marvin Elling", role: "Legal", kind: "student" },
-  { name: "Salma Gares", role: "Public Relations", kind: "student" },
-  { name: "Karim Alzahabi", role: "Research & Development", kind: "student" },
-  { name: "Dr. Markus Eblenkamp", role: "Education", kind: "advisor" },
-  { name: "Dr. Christoph Göbel", role: "Education", kind: "advisor" },
+  {
+    name: "Alex Treml",
+    role: "Acquisition",
+    work: "Finds the next roof and the partner behind it",
+    kind: "student",
+  },
+  {
+    name: "Nana Kwabena Osei",
+    role: "Engineering",
+    work: "Site surveys, system design and yield simulation",
+    kind: "student",
+  },
+  {
+    name: "Leonie Merkl",
+    role: "Finance",
+    work: "Business cases, funding routes and project budgets",
+    kind: "student",
+  },
+  {
+    name: "Marvin Elling",
+    role: "Legal",
+    work: "Agreements with owners, energy law and compliance",
+    kind: "student",
+  },
+  {
+    name: "Salma Gares",
+    role: "Public Relations",
+    work: "Campus presence, neighbourhood events and this website",
+    kind: "student",
+  },
+  {
+    name: "Karim Alzahabi",
+    role: "Research & Development",
+    work: "Energy sharing, storage and new project models",
+    kind: "student",
+  },
+  {
+    name: "Dr. Markus Eblenkamp",
+    role: "Education",
+    work: "Connects our projects to TUM chairs and teaching formats",
+    kind: "advisor",
+  },
+  {
+    name: "Dr. Christoph Göbel",
+    role: "Education",
+    work: "Supervises academic work coming out of our projects",
+    kind: "advisor",
+  },
 ];
+
+/** Roles nobody covers yet. The recruiting signal on the team grid. */
+export const openRoles = [
+  {
+    role: "Education",
+    work: "Matching thesis topics to chairs, running ring lectures, onboarding new members",
+    note: "Currently held by our academic advisors. We are looking for a student to take it on.",
+  },
+];
+
+/** Who actually runs the club. */
+export const leadership: Fillable = TODO(
+  "Who leads the club: is “Central Management” a board, and who sits on it?",
+);
+
+/** The path from interested stranger to member. Every step is an action. */
+export const journey = [
+  {
+    title: "Get in touch",
+    text: "Come to a meet-up in Munich, or just write us. Both work, and you do not need to wait for the next meeting to start a conversation.",
+  },
+  {
+    title: "Pick what you want to work on",
+    text: "A project decides what you work on; the kind of work (engineering, finance, legal, outreach, research) decides how.",
+  },
+  {
+    title: "Meet the person whose work it is",
+    text: "Every part of a project has someone behind it. You talk to them, they show you what is actually on their plate, and you take a piece of it.",
+  },
+  {
+    title: "Or bring your own project",
+    text: "Already have an idea, a building or a question worth answering? Then you skip the queue and lead it yourself.",
+  },
+];
+
 
 export const values = [
   {
     name: "Sustainability",
-    text: "We measure ourselves in kilowatt-peak on real roofs, not in pledges.",
+    text: "We measure ourselves in what actually got built, not in pledges.",
   },
   {
     name: "Innovation",
-    text: "Community energy is a young field. We build the models it still lacks.",
+    text: "Community-scale energy is a young field. We build the models it still lacks.",
   },
   {
     name: "Integrity",
-    text: "Members' money is in these projects. We are honest about risk and returns.",
+    text: "Real money and real buildings are involved. We are honest about what we can and cannot do.",
   },
 ];
 
@@ -198,64 +278,12 @@ export const missionVision = {
     "A future where renewable energy is led by the community, for the community.",
 };
 
-export const academics = {
-  intro:
-    "Our projects are not simulations. That makes them unusually good material for academic work — and TUM chairs treat them accordingly.",
-  majors: [
-    "M.Sc. Power Engineering",
-    "M.Sc. Electrical Engineering and Information Technology",
-    "M.Sc. Management & Technology",
-  ],
-  formats: [
-    {
-      name: "Master's thesis",
-      text: "We supply the topic and the field data, a TUM chair supplies the academic supervision and the grade.",
-    },
-    {
-      name: "Research internship",
-      text: "A shorter, credited format for measurement campaigns, simulations and feasibility studies.",
-    },
-    {
-      name: "Ring lectures & seminars",
-      text: "Practitioners from Munich's energy cooperatives in front of a lecture hall, organised by us.",
-    },
-    {
-      name: "Mentoring",
-      text: "Our academic advisors and cooperative partners help you find the direction, not just the topic.",
-    },
-  ],
-  steps: [
-    {
-      title: "You bring the interest",
-      text: "A study programme in energy, engineering or management — and a question you actually want answered.",
-    },
-    {
-      title: "We bring the topic and the field",
-      text: "Live plants, real yield data, real cooperative economics, and supervision from people who built them.",
-    },
-    {
-      title: "A TUM chair brings the format",
-      text: "Thesis, research internship or seminar. The chair sets the academic frame and supervises alongside us.",
-    },
-    {
-      title: "Your results go back to the field",
-      text: "Findings are presented at our forum and feed into the next project instead of a drawer.",
-    },
-  ],
-};
-
 export const partners = [
   {
     name: "EGM eG",
     full: "Energiegemeinschaften München eG",
-    text: "The energy cooperative we build our PV projects with. It owns the plants; its members — the neighbours — own the cooperative.",
+    text: "The energy cooperative behind our first two solar projects. It owns the installations; its members, the neighbours, own the cooperative.",
     href: "https://www.energiegemeinschaften-muenchen.com/",
-  },
-  {
-    name: "BENG eG",
-    full: "Bürgerenergiegenossenschaft BENG eG",
-    text: "One of Munich's established citizen energy cooperatives and a partner of EGM eG.",
-    href: "https://www.beng-eg.de/",
   },
   {
     name: "TUM",
@@ -264,6 +292,11 @@ export const partners = [
     href: "https://www.tum.de/",
   },
 ];
+
+/** The further partners the club named but has not yet identified for the site. */
+export const morePartners = TODO(
+  "Names of the one to two further partners besides EGM eG, and one line on each",
+);
 
 export const euProjects = [
   {
@@ -281,47 +314,57 @@ export const euProjects = [
 ];
 
 export const join = {
-  headline: "We are six people and two live projects. That is the honest pitch.",
+  headline: "Six people, two live projects, and more work than we can carry.",
   intro:
-    "Six people cannot cover seven units, and a plant in construction does not wait for the semester to end. If you want a student club where you can be a passenger, this is the wrong one.",
+    "gREen tumorrow is open to any student who wants to work on renewable energy, whatever you study, whatever year you are in. What we cannot offer is a club where you can be a passenger.",
   expectations: [
     {
       title: "Time",
       text: TODO("Expected weekly time commitment, e.g. “4–6 hours a week during the semester”"),
     },
     {
-      title: "Language",
-      text: "We work in English. Our projects, partners and neighbourhoods run in German — you do not need it to start, but it helps.",
+      title: "Background",
+      text: "Any subject. Engineering, business, law, communication and policy are all load-bearing here. An energy project needs all of them.",
     },
     {
-      title: "Background",
-      text: "Any TUM programme. Engineering, business, law and communication are all load-bearing here.",
+      title: "Language",
+      text: "We work in English. Our projects and partners run in German. You do not need it to start, but it helps.",
     },
     {
       title: "Commitment",
-      text: "One semester minimum. Roof owners and cooperative members are counting on continuity.",
+      text: "One semester minimum. Partners and building owners are counting on continuity.",
     },
   ],
-  steps: [
-    {
-      title: "Come to a meet-up",
-      text: "We meet at Dachauer Str. 90 in Munich. Turn up, ask what is actually happening, decide afterwards.",
-    },
-    {
-      title: "Write to us",
-      text: "Tell us which unit interests you and what you would want to work on. Two paragraphs are enough.",
-    },
-    {
-      title: "Talk to the unit",
-      text: "You meet the people you would work with and we agree on a first concrete task.",
-    },
-  ],
+  admission: TODO(
+    "Rolling admission or intake rounds per semester, and whether there is a membership fee",
+  ),
+  /**
+   * With the per-role starter tasks gone, this mail is the concrete first
+   * action. Three things at most, plus a response window. An open-ended ask
+   * with an unknown outcome is the friction the starter tasks removed.
+   */
+  mail: {
+    intro:
+      "One mail is enough, and it does not have to be polished. Tell us three things:",
+    items: [
+      "Which project interests you, or the idea you would bring yourself",
+      "Which kind of work you want to do: engineering, finance, legal, outreach, research, teaching",
+      "What you would want to get out of it",
+    ],
+    responseTime: TODO(
+      "How quickly you answer mail. Commit to a number, e.g. “within three days”",
+    ),
+  },
+  firstWeeks: TODO(
+    "What a new member concretely does in their first four weeks",
+  ),
 };
 
 export const nav = [
   { href: "/projects", label: "Projects" },
-  { href: "/academics", label: "Thesis & Internships" },
   { href: "/team", label: "Team" },
   { href: "/about", label: "About" },
-  { href: "/join", label: "Join" },
 ];
+
+/** Kept out of `nav` so the header can render it as a standing button. */
+export const joinCta = { href: "/join", label: "Join" };
