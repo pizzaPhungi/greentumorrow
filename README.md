@@ -83,8 +83,9 @@ that:
 3. **The WhatsApp invite link** (`contact.whatsapp`). Every join button falls
    back to email until it exists, so nothing is broken, but the site is asking
    people to join a group it cannot point at.
-4. **Team portraits.** Eight of them, plus the matching `photoAlt` lines. Until
-   they land the member cards show a dashed circle.
+4. **Team portraits.** Eight of them, plus a `photoAlt` line for each. These no
+   longer block the build: the member cards show a dashed circle until the
+   photos arrive.
 5. **Consent for the Perlacher Herz photo.** It shows roughly ten identifiable
    people; publishing needs their agreement (GDPR, § 22 KunstUrhG). Same for
    every portrait.
@@ -158,8 +159,10 @@ image import lives in `content/images.ts`.
 
 1. Drop the file in `content/photos/`
 2. Import it in `content/images.ts` and key it by project slug or person name
-3. Replace the matching `photoAlt` TODO in **both** `content/copy/de.ts`
-   and `content/copy/en.ts`
+3. Add `photoAlt` in **both** `content/copy/de.ts` and `content/copy/en.ts`.
+   For portraits the field is optional and only needed once the photo exists:
+   a photo without alt text is an accessibility hole, alt text without a photo
+   is nothing at all.
 
 Both halves are needed. Until then the page shows a visible "photo missing" box
 and the build stays blocked. The import is static rather than a string path so

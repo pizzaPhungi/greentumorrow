@@ -29,7 +29,12 @@ export type PersonCopy = {
   role: string;
   /** What that role actually does. A department label alone says nothing. */
   work: string;
-  photoAlt: Fillable;
+  /**
+   * Only needed once a portrait exists in content/images.ts. Add both together:
+   * a photo without alt text is an accessibility hole, alt text without a photo
+   * is nothing at all.
+   */
+  photoAlt?: Fillable;
 };
 
 export type Copy = {

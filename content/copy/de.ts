@@ -130,42 +130,34 @@ export const de: Copy = {
       "Alex Treml": {
         role: "Akquise",
         work: "Findet das nächste Dach und den Partner dahinter",
-        photoAlt: TODO("Porträt von Alex Treml"),
       },
       "Nana Kwabena Osei": {
         role: "Technik",
         work: "Begehungen, Auslegung und Ertragssimulation",
-        photoAlt: TODO("Porträt von Nana Kwabena Osei"),
       },
       "Duc Viet Phung": {
         role: "Finanzen",
         work: "Wirtschaftlichkeit, Förderwege und Projektbudgets",
-        photoAlt: TODO("Porträt von Duc Viet Phung"),
       },
       "Marvin Elling": {
         role: "Recht",
         work: "Verträge mit Eigentümern, Energierecht und Nachweise",
-        photoAlt: TODO("Porträt von Marvin Elling"),
       },
       "Salma Gares": {
         role: "Öffentlichkeitsarbeit",
         work: "Präsenz auf dem Campus, Termine im Viertel und diese Website",
-        photoAlt: TODO("Porträt von Salma Gares"),
       },
       "Karim Alzahabi": {
         role: "Forschung und Entwicklung",
         work: "Energy Sharing, Speicher und neue Projektmodelle",
-        photoAlt: TODO("Porträt von Karim Alzahabi"),
       },
       "Dr. Markus Eblenkamp": {
         role: "Lehre",
         work: "Verbindet unsere Projekte mit Lehrstühlen und Lehrformaten der TUM",
-        photoAlt: TODO("Porträt von Dr. Markus Eblenkamp"),
       },
       "Dr. Christoph Göbel": {
         role: "Lehre",
         work: "Betreut wissenschaftliche Arbeiten aus unseren Projekten",
-        photoAlt: TODO("Porträt von Dr. Christoph Göbel"),
       },
     },
   },

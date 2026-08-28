@@ -19,7 +19,7 @@ export function Photo({
   missingLabel,
 }: {
   src: StaticImageData | undefined;
-  alt: Fillable;
+  alt: Fillable | undefined;
   className?: string;
   sizes?: string;
   compact?: boolean;
@@ -31,7 +31,7 @@ export function Photo({
       return (
         <span
           aria-hidden="true"
-          title={isTodo(alt) ? alt.__todo : alt}
+          title={typeof alt === "string" ? alt : undefined}
           className={cn(
             "flex shrink-0 items-center justify-center border border-dashed border-amber-deep/60 bg-amber/10 text-lg font-light text-amber-deep",
             className,
@@ -53,7 +53,7 @@ export function Photo({
             {missingLabel}
           </span>
           <span className="mt-1 block text-navy/70">
-            {isTodo(alt) ? alt.__todo : alt}
+            {isTodo(alt) ? alt.__todo : (alt ?? missingLabel)}
           </span>
         </span>
       </div>
@@ -63,7 +63,7 @@ export function Photo({
   return (
     <Image
       src={src}
-      alt={isTodo(alt) ? "" : alt}
+      alt={typeof alt === "string" ? alt : ""}
       sizes={sizes}
       className={cn("object-cover", className)}
     />
