@@ -28,8 +28,8 @@ export const de: Copy = {
 
   hero: {
     eyebrow: "Studenteninitiative",
-    headline: "Erneuerbare lernt man, indem man sie baut.",
-    lead: "ist der Ort für Studierende, die an Erneuerbaren arbeiten wollen, statt darüber zu lesen. Du steigst in ein echtes Projekt ein, mit einem unserer Partner oder mit einem eigenen, und lernst dabei, wie es wirklich läuft.",
+    headline: "Erneuerbare Energien lernt man, indem man sie baut.",
+    lead: "ist der Ort für Studierende, die an Erneuerbaren Energien arbeiten wollen, statt darüber zu lesen. Du steigst in ein echtes Projekt ein, mit einem unserer Partner oder mit einem eigenen, und lernst dabei, wie es wirklich läuft.",
     joinCta: "Zur WhatsApp-Gruppe",
     projectsCta: "Woran wir arbeiten",
     cardTitle: "Unsere zwei Projekte",
@@ -39,7 +39,7 @@ export const de: Copy = {
     { value: "6", label: "Studierende", note: "dazu zwei Betreuer" },
     { value: "2", label: "Energieprojekte", note: "mit Partnern" },
     {
-      value: "35,23",
+      value: "35",
       unit: "kWp",
       label: "in laufenden Projekten",
       note: "was die beiden zusammen ergeben",
@@ -63,12 +63,12 @@ export const de: Copy = {
       },
       {
         prefix: "RE",
-        name: "Projects",
+        name: "Projekte",
         text: "Anlagen planen, finanzieren und bauen, bis sie am Netz sind. Hier passiert der größte Teil der Arbeit.",
       },
       {
         prefix: "RE",
-        name: "Knowledge",
+        name: "Wissen",
         text: "Die Lücke zwischen Vorlesung und Baustelle schließen: Lehre, Austausch und Können, das du mitnimmst.",
       },
     ],
@@ -88,7 +88,7 @@ export const de: Copy = {
         summary:
           "Unsere erste Anlage. Eine Aufdach-PV auf einem Gemeinschaftsgebäude in Perlach, entwickelt mit der Energiegenossenschaft EGM eG und finanziert von deren Mitgliedern, den Nachbarn, denen sie jetzt gehört.",
         specLabels: ["Leistung", "Module", "Am Netz seit"],
-        heroLine: "PV-Anlage auf dem Dach, 10,23 kWp, seit 2026 am Netz",
+        heroLine: "PV-Anlage auf dem Dach, 10 kWp, seit 2026 am Netz",
         photoAlt:
           "Mitglieder und Nachbarn stehen zwischen den flach montierten Modulen auf dem Dach des Perlacher Herz",
       },

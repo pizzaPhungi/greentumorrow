@@ -85,7 +85,7 @@ export const projectFacts: ProjectFacts[] = [
     type: "partner",
     status: "live",
     partner: "EGM eG",
-    specs: ["10,23 kWp", "24", "2026"],
+    specs: ["10 kWp", "24", "2026"],
   },
   {
     slug: "gemeinde-neuperlach",

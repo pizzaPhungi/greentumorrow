@@ -33,7 +33,7 @@ export const en: Copy = {
     { value: "6", label: "students", note: "plus two academic advisors" },
     { value: "2", label: "energy projects", note: "running with partners" },
     {
-      value: "35.23",
+      value: "35",
       unit: "kWp",
       label: "in ongoing projects",
       note: "what those two projects add up to",
@@ -82,7 +82,7 @@ export const en: Copy = {
         summary:
           "Our first plant. A rooftop PV system on a community building in Perlach, developed with the energy cooperative EGM eG and financed by its members, the neighbours who now own it.",
         specLabels: ["Capacity", "Modules", "On the grid"],
-        heroLine: "PV array on the roof, 10.23 kWp, on the grid since 2026",
+        heroLine: "PV array on the roof, 10 kWp, on the grid since 2026",
         photoAlt:
           "Members and neighbours standing among the flat-mounted modules on the Perlacher Herz roof",
       },
