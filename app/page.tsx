@@ -46,9 +46,7 @@ export default function HomePage() {
                 <Wordmark className="text-[1.05em]" /> is where students who care
                 about renewable energy do the work instead of reading about it.
                 You join a real project, with one of our partners or one you
-                bring yourself, and you build genuine expertise doing it. Two
-                solar projects in Munich are what that has produced so far,
-                one of them already feeding the grid.
+                bring yourself, and you build genuine expertise doing it.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Button href={joinHref}>Join the WhatsApp group</Button>
@@ -136,7 +134,7 @@ export default function HomePage() {
       <Section id="projects">
         <SectionHeading
           eyebrow="What we work on"
-          title="Real projects, with real consequences if you get them wrong."
+          title="Our projects"
           lead="Everything we do runs on a real building, a real budget or a real research question. Two are running with partners today; the next one could be yours."
         />
 
@@ -217,11 +215,7 @@ export default function HomePage() {
 
       {/* The team: who does the work. Each role names the work, not a label. */}
       <Section tone="deep">
-        <SectionHeading
-          eyebrow="Who you would work with"
-          title="Our members"
-          lead="There is no head office behind us. Everything above is done by the people below, and there is no seat here for a passenger. Every member carries one thing that would not happen otherwise."
-        />
+        <SectionHeading eyebrow="Who you would work with" title="Our members" />
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((person) => (
             <Card key={person.name} as="li">
