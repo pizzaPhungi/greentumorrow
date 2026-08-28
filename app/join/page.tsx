@@ -12,7 +12,6 @@ import {
   contact,
   join,
   journey,
-  openRoles,
   ownProjects,
   projects,
   team,
@@ -25,8 +24,6 @@ export const metadata: Metadata = {
 };
 
 export default function JoinPage() {
-  const students = team.filter((person) => person.kind === "student");
-
   return (
     <>
       <PageHeader eyebrow="Join" title={join.headline} lead={join.intro} />
@@ -80,39 +77,23 @@ export default function JoinPage() {
         <SectionHeading
           eyebrow="Step two"
           title="Find the person whose work you want a piece of"
-          lead="There is no department to apply to. Each of us carries one kind of work, and that is who you would actually sit next to."
+          lead="There is no department to apply to. Each of us carries one kind of work, and that is who you would actually sit next to. Our two academic advisors connect that work back to TUM."
         />
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {students.map((person) => (
+          {team.map((person) => (
             <Card key={person.name} as="li">
-              <p className="text-lg font-semibold text-green-dark">
-                {person.name}
-              </p>
+              <div className="flex items-start justify-between gap-3">
+                <p className="text-lg font-semibold text-green-dark">
+                  {person.name}
+                </p>
+                {person.kind === "advisor" ? <Pill>Advisor</Pill> : null}
+              </div>
               <p className="mt-1 text-sm font-medium text-amber-deep">
                 {person.role}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-navy/70">
                 {person.work}
               </p>
-            </Card>
-          ))}
-          {openRoles.map((role) => (
-            <Card
-              key={role.role}
-              as="li"
-              className="border-dashed border-amber-deep/60 bg-amber/8"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="text-lg font-semibold text-green-dark">Open</p>
-                <Pill tone="building">Yours?</Pill>
-              </div>
-              <p className="mt-1 text-sm font-medium text-amber-deep">
-                {role.role}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-navy/70">
-                {role.work}
-              </p>
-              <p className="mt-3 text-sm text-navy/55">{role.note}</p>
             </Card>
           ))}
         </ul>
@@ -212,8 +193,8 @@ export default function JoinPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
             eyebrow="Come by"
-            title="Or turn up before you commit."
-            lead="Visiting a meet-up costs you an evening and tells you more than any page can. Writing works just as well if the timing does not."
+            title="Or meet us in person."
+            lead="We meet regularly in Munich, and an evening there tells you more than any page can. Write or call and we will tell you when the next one is."
             invert
           />
           <div className="space-y-7 text-mist/85">
@@ -224,14 +205,6 @@ export default function JoinPage() {
               <p className="mt-2 text-lg">
                 {contact.address.street}, {contact.address.postalCode}{" "}
                 {contact.address.city}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
-                When
-              </p>
-              <p className="mt-2 text-lg">
-                <Fill value={contact.meetup.cadence} />
               </p>
             </div>
             <div>

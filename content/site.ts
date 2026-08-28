@@ -39,17 +39,13 @@ export const contact = {
     city: "Munich",
     country: "Germany",
   },
-  /** Recurring meet-up. Without a weekday and time this is useless to a visitor. */
   meetup: {
-    cadence: TODO("Weekday + time of the regular meet-up, e.g. “Every Tuesday, 18:00”"),
     room: TODO("Room / floor / how to find you at Dachauer Str. 90"),
   },
 };
 
-/** Founding year lives here rather than in a stat tile so About can carry it too. */
-export const founded: Fillable = TODO(
-  "Year the initiative was founded, and when it was accredited by TUM",
-);
+/** Founded and accredited by TUM in the same year. */
+export const founded: Fillable = "2026";
 
 export type Stat = {
   value: Fillable;
@@ -59,15 +55,19 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { value: "6", label: "active members", note: "and one open role" },
+  { value: "6", label: "students", note: "plus two academic advisors" },
   { value: "2", label: "energy projects", note: "running with partners" },
   {
     value: "35.23",
     unit: "kWp",
-    label: "solar installed and in build",
+    label: "in ongoing projects",
     note: "what those two projects add up to",
   },
-  { value: founded, label: "founded", note: "student-run since day one" },
+  {
+    value: founded,
+    label: "founded and accredited",
+    note: "as a TUM student initiative",
+  },
 ];
 
 export type Project = {
@@ -184,7 +184,7 @@ export const team: Person[] = [
     kind: "student",
   },
   {
-    name: "Leonie Merkl",
+    name: "Duc Viet Phung",
     role: "Finance",
     work: "Business cases, funding routes and project budgets",
     kind: "student",
@@ -221,20 +221,6 @@ export const team: Person[] = [
   },
 ];
 
-/** Roles nobody covers yet. The recruiting signal on the team grid. */
-export const openRoles = [
-  {
-    role: "Education",
-    work: "Matching thesis topics to chairs, running ring lectures, onboarding new members",
-    note: "Currently held by our academic advisors. We are looking for a student to take it on.",
-  },
-];
-
-/** Who actually runs the club. */
-export const leadership: Fillable = TODO(
-  "Who leads the club: is “Central Management” a board, and who sits on it?",
-);
-
 /** The path from interested stranger to member. Every step is an action. */
 export const journey = [
   {
@@ -256,28 +242,6 @@ export const journey = [
 ];
 
 
-export const values = [
-  {
-    name: "Sustainability",
-    text: "We measure ourselves in what actually got built, not in pledges.",
-  },
-  {
-    name: "Innovation",
-    text: "Community-scale energy is a young field. We build the models it still lacks.",
-  },
-  {
-    name: "Integrity",
-    text: "Real money and real buildings are involved. We are honest about what we can and cannot do.",
-  },
-];
-
-export const missionVision = {
-  mission:
-    "Connecting people, knowledge and capital to accelerate the renewable energy transition.",
-  vision:
-    "A future where renewable energy is led by the community, for the community.",
-};
-
 export const partners = [
   {
     name: "EGM eG",
@@ -290,26 +254,6 @@ export const partners = [
     full: "Technical University of Munich",
     text: "Our university. We are an accredited TUM student initiative and work with chairs across engineering and management.",
     href: "https://www.tum.de/",
-  },
-];
-
-/** The further partners the club named but has not yet identified for the site. */
-export const morePartners = TODO(
-  "Names of the one to two further partners besides EGM eG, and one line on each",
-);
-
-export const euProjects = [
-  {
-    name: "Creating NEBourhoods Together",
-    place: "Neuperlach",
-    text: "EU-funded New European Bauhaus project in which the Neuperlach energy community was founded.",
-    href: "https://www.nebourhoods.de/",
-  },
-  {
-    name: "ASCEND",
-    place: "Harthof",
-    text: "EU project accelerating positive clean energy districts, home of the Harthof energy community.",
-    href: "https://ascend-project.eu/",
   },
 ];
 
@@ -360,11 +304,11 @@ export const join = {
   ),
 };
 
-export const nav = [
-  { href: "/projects", label: "Projects" },
-  { href: "/team", label: "Team" },
-  { href: "/about", label: "About" },
-];
+/**
+ * Top-level pages besides the home page. Empty for now: everything lives on one
+ * page. The header and footer both handle an empty list.
+ */
+export const nav: { href: string; label: string }[] = [];
 
 /** Kept out of `nav` so the header can render it as a standing button. */
 export const joinCta = { href: "/join", label: "Join" };

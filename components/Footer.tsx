@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
-import { Fill } from "@/components/Todo";
 import { contact, nav, site } from "@/content/site";
 
 const legal = [
@@ -27,7 +26,7 @@ export function Footer() {
 
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-              Site
+              {nav.length > 0 ? "Site" : "Legal"}
             </h2>
             <ul className="mt-5 space-y-3 text-sm">
               {nav.map((item) => (
@@ -56,9 +55,6 @@ export function Footer() {
                 {contact.address.street}
                 <br />
                 {contact.address.postalCode} {contact.address.city}
-              </p>
-              <p className="text-navy/60">
-                <Fill value={contact.meetup.cadence} />
               </p>
               <p>
                 <a href={`mailto:${contact.email}`} className="hover:text-green-dark">

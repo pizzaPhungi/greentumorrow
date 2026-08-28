@@ -21,8 +21,8 @@ npm run lint
 Vercel, GitHub Pages, TUM webspace.
 
 **The build refuses to run while `TODO(...)` placeholders remain.** That is
-deliberate: it is what stops "Weekday + time of the regular meet-up" from ending
-up on the live site. To build a preview anyway:
+deliberate: it is what stops an unanswered "how quickly do you reply?" from
+ending up on the live site. To build a preview anyway:
 
 ```bash
 ALLOW_TODOS=1 npm run build
@@ -36,19 +36,16 @@ components for text, projects, team members or contact details.
 
 | What | Where in `content/site.ts` |
 | --- | --- |
-| Contact details, address, meet-up time | `contact` |
+| Contact details and address | `contact` |
 | Headline numbers on the home page | `stats`, `founded` |
 | Projects (`type: "partner"` or `"own"`, plus a `field`) | `projects` |
 | The "bring your own project" invitation | `ownProjects` |
 | The three pillars (RE Community / Projects / Knowledge) | `pillars` |
-| People, the work each carries, and the roles nobody covers yet | `team`, `openRoles` |
+| People and the work each carries | `team` |
 | What to put in a first mail, and how fast you answer | `join.mail` |
 | The four steps of joining | `journey` |
-| What members learn and take away | `learning` |
-| Recurring formats that actually run | `activities` |
-| Who runs the club | `leadership` |
-| Mission, vision, values | `missionVision`, `values` |
-| Partners and EU projects | `partners`, `morePartners`, `euProjects` |
+| Partners | `partners` |
+| Top-level pages besides home (currently empty) | `nav` |
 | Join page copy and expectations | `join` |
 
 ### The `TODO(...)` markers
@@ -60,8 +57,8 @@ things: it renders on the page as a loud dashed amber box, and it makes
 call with a plain string:
 
 ```ts
-cadence: TODO("Weekday + time of the regular meet-up"),   // before
-cadence: "Every Tuesday, 18:00",                          // after
+responseTime: TODO("How quickly you answer mail"),   // before
+responseTime: "Within three days",                   // after
 ```
 
 ## Before going live
@@ -75,8 +72,7 @@ that:
    TUM student-club infrastructure. See [`app/imprint/page.tsx`](app/imprint/page.tsx).
 2. **Privacy policy.** Fill in the controller and the hosting provider's log
    retention. See [`app/privacy/page.tsx`](app/privacy/page.tsx).
-3. **Meet-up time and room.** The site invites people to turn up but cannot yet
-   say when.
+3. **How to find you at Dachauer Str. 90** (`contact.meetup.room`).
 4. **How fast you answer mail** (`join.mail.responseTime`). Research on newcomer
    drop-out points at "finding a way to start" as the main reason people who
    already cared still leave; NN/g's contact-page guidance adds that a stated
@@ -113,8 +109,12 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/                       routes, one folder per page
+app/                       routes: home, join, imprint, privacy
 components/                Logo, Header, Footer, UI primitives, TODO markers
 content/site.ts            all copy and data
 scripts/check-content.mjs  the build gate for unfinished content
 ```
+
+The site is currently one page plus the Join page and the two legal pages.
+Adding entries to `nav` in `content/site.ts` brings the header navigation and
+the mobile menu back automatically; both handle an empty list.

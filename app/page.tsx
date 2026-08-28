@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Arc, LogoMark, Wordmark } from "@/components/Logo";
 import { Fill } from "@/components/Todo";
 import {
@@ -13,7 +12,6 @@ import {
 } from "@/components/ui";
 import {
   contact,
-  openRoles,
   ownProjects,
   partners,
   pillars,
@@ -45,11 +43,12 @@ export default function HomePage() {
                 about renewable energy do the work instead of reading about it.
                 You join a real project, with one of our partners or one you
                 bring yourself, and you build genuine expertise doing it. Two
-                solar plants in Munich are what that has produced so far.
+                solar projects in Munich are what that has produced so far,
+                one of them already feeding the grid.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Button href="/join">Join the team</Button>
-                <Button href="/projects" variant="secondary">
+                <Button href="#projects" variant="secondary">
                   See what we work on
                 </Button>
               </div>
@@ -127,17 +126,12 @@ export default function HomePage() {
       </Section>
 
       {/* Projects: the evidence, in full */}
-      <Section>
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="What we work on"
-            title="Real projects, with real consequences if you get them wrong."
-            lead="Everything we do runs on a real building, a real budget or a real research question. Two are running with partners today; the next one could be yours."
-          />
-          <Button href="/projects" variant="secondary" className="shrink-0">
-            All projects
-          </Button>
-        </div>
+      <Section id="projects">
+        <SectionHeading
+          eyebrow="What we work on"
+          title="Real projects, with real consequences if you get them wrong."
+          lead="Everything we do runs on a real building, a real budget or a real research question. Two are running with partners today; the next one could be yours."
+        />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {projects.map((p) => (
@@ -208,47 +202,27 @@ export default function HomePage() {
 
       {/* The team: who does the work. Each role names the work, not a label. */}
       <Section tone="deep">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="Who you would work with"
-            title="Our members"
-            lead="There is no head office behind us. Everything above is done by the people below, which is also why there is room for you."
-          />
-          <Button href="/team" variant="secondary" className="shrink-0">
-            More about the team
-          </Button>
-        </div>
+        <SectionHeading
+          eyebrow="Who you would work with"
+          title="Our members"
+          lead="There is no head office behind us. Everything above is done by the people below, which is also why there is room for you."
+        />
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {team
-            .filter((person) => person.kind === "student")
-            .map((person) => (
-              <Card key={person.name} as="li">
+          {team.map((person) => (
+            <Card key={person.name} as="li">
+              <div className="flex items-start justify-between gap-3">
                 <p className="text-lg font-semibold text-green-dark">
                   {person.name}
                 </p>
-                <p className="mt-1 text-sm font-medium text-amber-deep">
-                  {person.role}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-navy/70">
-                  {person.work}
-                </p>
-              </Card>
-            ))}
-          {openRoles.map((role) => (
-            <Card
-              key={role.role}
-              as="li"
-              className="border-dashed border-amber-deep/60 bg-amber/8"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="text-lg font-semibold text-green-dark">Open</p>
-                <Pill tone="building">Join</Pill>
+                {person.kind === "advisor" ? (
+                  <Pill>Advisor</Pill>
+                ) : null}
               </div>
               <p className="mt-1 text-sm font-medium text-amber-deep">
-                {role.role}
+                {person.role}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-navy/70">
-                {role.work}
+                {person.work}
               </p>
             </Card>
           ))}
@@ -293,16 +267,6 @@ export default function HomePage() {
               Write to us
             </Button>
           </div>
-          <p className="text-sm text-navy/60">
-            Or read{" "}
-            <Link
-              href="/about"
-              className="underline decoration-amber decoration-2 underline-offset-4"
-            >
-              what we stand for
-            </Link>
-            .
-          </p>
         </div>
       </Section>
     </>

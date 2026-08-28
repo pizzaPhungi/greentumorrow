@@ -12,6 +12,9 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  /** With a single-page site there is nothing to reveal, so no burger menu. */
+  const hasNav = nav.length > 0;
+
   return (
     <header className="sticky top-0 z-50 border-b border-green/10 bg-cream/85 backdrop-blur-md">
       <Container>
@@ -25,55 +28,68 @@ export function Header() {
             <Wordmark className="text-base sm:text-lg" />
           </Link>
 
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
-            {nav.map((item) => {
-              const active = pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors",
-                    active
-                      ? "text-green-dark"
-                      : "text-navy/70 hover:text-green-dark",
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "pb-1",
-                      active && "border-b-2 border-amber",
-                    )}
-                  >
-                    {item.label}
-                  </span>
-                </Link>
-              );
-            })}
+          <div className="flex items-center gap-6">
+            {hasNav ? (
+              <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
+                {nav.map((item) => {
+                  const active = pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={cn(
+                        "text-sm font-medium transition-colors",
+                        active
+                          ? "text-green-dark"
+                          : "text-navy/70 hover:text-green-dark",
+                      )}
+                    >
+                      <span className={cn("pb-1", active && "border-b-2 border-amber")}>
+                        {item.label}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            ) : null}
+
             <Link
               href={joinCta.href}
               className="rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-green-dark"
             >
               {joinCta.label}
             </Link>
-          </nav>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-lg text-green-dark md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" strokeWidth="2" stroke="currentColor" strokeLinecap="round">
-              {open ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M4 8h16M4 16h16" />}
-            </svg>
-          </button>
+            {hasNav ? (
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-lg text-green-dark md:hidden"
+                aria-expanded={open}
+                aria-controls="mobile-nav"
+                aria-label={open ? "Close menu" : "Open menu"}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6"
+                  fill="none"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                >
+                  {open ? (
+                    <path d="m6 6 12 12M18 6 6 18" />
+                  ) : (
+                    <path d="M4 8h16M4 16h16" />
+                  )}
+                </svg>
+              </button>
+            ) : null}
+          </div>
         </div>
       </Container>
 
-      {open ? (
+      {hasNav && open ? (
         <nav
           id="mobile-nav"
           aria-label="Main"
@@ -92,15 +108,6 @@ export function Header() {
                   </Link>
                 </li>
               ))}
-              <li className="py-4">
-                <Link
-                  href={joinCta.href}
-                  onClick={() => setOpen(false)}
-                  className="inline-flex rounded-full bg-green px-6 py-3 text-sm font-semibold text-cream"
-                >
-                  {joinCta.label}
-                </Link>
-              </li>
             </ul>
           </Container>
         </nav>
