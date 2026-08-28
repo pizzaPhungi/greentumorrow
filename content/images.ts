@@ -29,8 +29,7 @@ export const projectPhotos: Record<string, StaticImageData> = {
 };
 
 /** The one image above the fold. Nothing else on the page carries as much. */
-export const heroPhoto: StaticImageData | undefined = undefined;
-// import heroPhoto from "./photos/hero.jpg";
+export { default as heroPhoto } from "./photos/re-stock-image.jpeg";
 
 export const personPhotos: Record<string, StaticImageData> = {
   // "Alex Treml": alexTreml,

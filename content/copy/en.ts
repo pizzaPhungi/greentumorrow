@@ -26,7 +26,8 @@ export const en: Copy = {
     lead: "is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. We foster exchange and collaboration, and create opportunities to turn ideas into action. From sharing knowledge to collaborating on and realising real-world energy projects, for a sustainable and decentralised energy future.",
     joinCta: "Join the WhatsApp group",
     projectsCta: "See what we work on",
-    photoAlt: TODO("Alt text for the hero photo, written together with the photo"),
+    photoAlt:
+      "Solar modules in the foreground, workers in high-visibility gear behind them, wind turbines on the horizon at sunset",
   },
 
   stats: [
@@ -51,7 +52,7 @@ export const en: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "Industry, university and neighbourhoods rarely sit at the same table. We put them there, because that is what a project needs before anything gets built.",
+        text: "Building a strong network between locals, industry and students to foster collaboration and develop real-world projects.",
       },
       {
         prefix: "RE",
@@ -61,7 +62,7 @@ export const en: Copy = {
       {
         prefix: "RE",
         name: "Knowledge",
-        text: "What we learn on a roof does not stay there. We run events about renewables, open to anyone who wants to understand how this actually works.",
+        text: "Bridging the gap between theory and practice through education, knowledge exchange, and building expertise.",
       },
     ],
   },

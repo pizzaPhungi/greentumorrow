@@ -10,19 +10,11 @@ Drop project and portrait photos here, then wire them up in
 `.webp`, `.png`, `.jpg` and `.avif` all work. The build derives width and height
 from the file, so there is nothing to keep in sync.
 
-## Waiting on
-
-| File name | What it is |
-| --- | --- |
-| `hero.jpg` | The one image above the fold. Renewable energy at first glance: an array, a site, people at work. It carries the whole top of the page, so it should be yours and specific, not a stock panel. |
-
-Drop it in, then uncomment the import in [`../images.ts`](../images.ts) and
-replace the `hero.photoAlt` TODO in **both** copy modules.
-
 ## In use
 
 | File | Size | Where |
 | --- | --- | --- |
+| `re-stock-image.jpeg` | 1537x872 | Hero, next to the headline |
 | `perlacher-herz.webp` | 1920x1078 | Perlacher Herz project card |
 | `gemeinde-neuperlach.png` | 703x376 | Neuperlach project card |
 

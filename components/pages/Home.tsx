@@ -40,7 +40,7 @@ export function Home({ locale }: { locale: Locale }) {
           aria-hidden="true"
         />
         <Container className="relative">
-          <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
               <Eyebrow>{copy.hero.eyebrow}</Eyebrow>
               <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
@@ -62,7 +62,7 @@ export function Home({ locale }: { locale: Locale }) {
               alt={copy.hero.photoAlt}
               missingLabel={copy.photo.missing}
               sizes="(min-width: 1024px) 40vw, 100vw"
-              className="aspect-[4/3] w-full rounded-lg"
+              className="aspect-[3/2] w-full rounded-lg object-cover"
             />
           </div>
         </Container>

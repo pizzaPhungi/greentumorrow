@@ -32,7 +32,8 @@ export const de: Copy = {
     lead: "ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Wir fördern Austausch und Zusammenarbeit und schaffen Gelegenheiten, aus Ideen etwas Konkretes zu machen. Von Wissen weitergeben bis zu echten Energieprojekten, die wir gemeinsam planen und umsetzen, für eine nachhaltige und dezentrale Energieversorgung.",
     joinCta: "Zur WhatsApp-Gruppe",
     projectsCta: "Woran wir arbeiten",
-    photoAlt: TODO("Alt-Text für das Hero-Foto, zusammen mit dem Foto zu schreiben"),
+    photoAlt:
+      "Solarmodule im Vordergrund, dahinter Monteure in Warnkleidung, am Horizont Windräder bei Sonnenuntergang",
   },
 
   stats: [
@@ -57,7 +58,7 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "Industrie, Hochschule und Quartier sitzen selten am selben Tisch. Wir setzen sie zusammen, weil ein Projekt genau das braucht, bevor irgendwo gebaut wird.",
+        text: "Ein starkes Netzwerk zwischen Anwohnern, Industrie und Studierenden aufbauen, das Zusammenarbeit fördert und echte Projekte hervorbringt.",
       },
       {
         prefix: "RE",
@@ -67,7 +68,7 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Wissen",
-        text: "Was wir auf dem Dach lernen, bleibt nicht dort. Wir machen Veranstaltungen zu Erneuerbaren, offen für alle, die verstehen wollen, wie das wirklich funktioniert.",
+        text: "Die Lücke zwischen Theorie und Praxis schließen: durch Lehre, Wissensaustausch und den Aufbau von Fachwissen.",
       },
     ],
   },
