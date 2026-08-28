@@ -115,5 +115,6 @@ export const teamFacts: PersonFacts[] = [
 
 export const partnerLinks = [
   { name: "EGM eG", href: "https://www.energiegemeinschaften-muenchen.com/" },
+  { name: "BENG eG", href: "https://www.beng-eg.de/" },
   { name: "TUM", href: "https://www.tum.de/" },
 ];

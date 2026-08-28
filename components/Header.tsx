@@ -23,7 +23,7 @@ export function Header({ locale }: { locale: Locale }) {
             aria-label={copy.nav.home}
           >
             <LogoMark className="h-10" />
-            <Wordmark className="text-base sm:text-lg" />
+            <Wordmark className="hidden text-lg sm:inline" />
           </Link>
 
           <div className="flex items-center gap-4 sm:gap-6">

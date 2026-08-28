@@ -28,6 +28,10 @@ export const projectPhotos: Record<string, StaticImageData> = {
   "gemeinde-neuperlach": gemeindeNeuperlach,
 };
 
+/** The one image above the fold. Nothing else on the page carries as much. */
+export const heroPhoto: StaticImageData | undefined = undefined;
+// import heroPhoto from "./photos/hero.jpg";
+
 export const personPhotos: Record<string, StaticImageData> = {
   // "Alex Treml": alexTreml,
 };

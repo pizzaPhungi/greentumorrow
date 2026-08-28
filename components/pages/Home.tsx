@@ -21,7 +21,7 @@ import {
   teamFacts,
   type Locale,
 } from "@/content/shared";
-import { personPhotos, projectPhotos } from "@/content/images";
+import { heroPhoto, personPhotos, projectPhotos } from "@/content/images";
 
 /**
  * One structure, two dictionaries. Facts come from shared.ts and are identical
@@ -57,32 +57,13 @@ export function Home({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <Card className="bg-cream-deep/70">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-                {copy.hero.cardTitle}
-              </p>
-              <ul className="mt-6 space-y-6">
-                {projectFacts.map((p) => (
-                  <li
-                    key={p.slug}
-                    className="border-t border-green/15 pt-6 first:border-0 first:pt-0"
-                  >
-                    <Pill tone={p.status === "live" ? "live" : "building"}>
-                      {t.entries[p.slug].status}
-                    </Pill>
-                    <p className="mt-3 font-semibold text-green-dark">
-                      {t.entries[p.slug].name}
-                    </p>
-                    <p className="mt-1 text-sm text-navy/70">
-                      {t.entries[p.slug].heroLine}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7 flex justify-end border-t border-green/15 pt-5">
-                <LogoMark className="h-9 opacity-80" />
-              </div>
-            </Card>
+            <Photo
+              src={heroPhoto}
+              alt={copy.hero.photoAlt}
+              missingLabel={copy.photo.missing}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-[4/3] w-full rounded-lg"
+            />
           </div>
         </Container>
       </div>
@@ -115,8 +96,22 @@ export function Home({ locale }: { locale: Locale }) {
         </ol>
       </Section>
 
+      {/* Events. The Knowledge pillar was a claim until this section existed. */}
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <SectionHeading
+            eyebrow={copy.events.eyebrow}
+            title={copy.events.title}
+            lead={copy.events.lead}
+          />
+          <div className="self-center text-lg leading-relaxed text-navy/80">
+            <Fill value={copy.events.sofar} label={copy.todo.label} />
+          </div>
+        </div>
+      </Section>
+
       {/* Projects */}
-      <Section id="projects">
+      <Section id="projects" tone="mist">
         <SectionHeading
           eyebrow={t.eyebrow}
           title={t.title}
@@ -256,7 +251,7 @@ export function Home({ locale }: { locale: Locale }) {
           eyebrow={copy.partners.eyebrow}
           title={copy.partners.title}
         />
-        <ul className="mt-12 grid gap-6 md:grid-cols-2">
+        <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {copy.partners.entries.map((p, i) => (
             <Card key={p.name} as="li">
               <h3 className="text-lg font-semibold">{p.name}</h3>

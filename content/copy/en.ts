@@ -8,7 +8,7 @@ export const en: Copy = {
   meta: {
     title: "gREen tumorrow: student initiative for renewable energy at TUM",
     description:
-      "gREen tumorrow is a student initiative at TUM for everyone who wants to work on renewable energy, not read about it. You join a real project, with one of our partners or one you bring yourself, and you build genuine expertise doing it.",
+      "gREen tumorrow is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. From sharing knowledge to realising real-world energy projects, for a sustainable and decentralised energy future.",
     ogLocale: "en_GB",
   },
 
@@ -22,26 +22,26 @@ export const en: Copy = {
 
   hero: {
     eyebrow: "Student initiative",
-    headline: "Learn renewable energy by building it.",
-    lead: "is where students who care about renewable energy do the work instead of reading about it. You join a real project, with one of our partners or one you bring yourself, and you build genuine expertise doing it.",
+    headline: "As students, we move the energy transition forward.",
+    lead: "is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. We foster exchange and collaboration, and create opportunities to turn ideas into action. From sharing knowledge to collaborating on and realising real-world energy projects, for a sustainable and decentralised energy future.",
     joinCta: "Join the WhatsApp group",
     projectsCta: "See what we work on",
-    cardTitle: "Our two projects",
+    photoAlt: TODO("Alt text for the hero photo, written together with the photo"),
   },
 
   stats: [
     { value: "6", label: "students", note: "plus two academic advisors" },
     { value: "2", label: "energy projects", note: "running with partners" },
     {
+      value: TODO("How many events have you run so far?"),
+      label: "events",
+      note: "talks and evenings about renewables",
+    },
+    {
       value: "35",
       unit: "kWp",
       label: "in ongoing projects",
       note: "what those two projects add up to",
-    },
-    {
-      value: "2026",
-      label: "founded and accredited",
-      note: "as a TUM student initiative",
     },
   ],
 
@@ -51,7 +51,7 @@ export const en: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "A network between neighbourhoods, industry and students, so a project has people behind it, not just a plan.",
+        text: "Industry, university and neighbourhoods rarely sit at the same table. We put them there, because that is what a project needs before anything gets built.",
       },
       {
         prefix: "RE",
@@ -61,9 +61,18 @@ export const en: Copy = {
       {
         prefix: "RE",
         name: "Knowledge",
-        text: "Closing the gap between theory and practice through teaching, exchange and expertise you can carry into a career.",
+        text: "What we learn on a roof does not stay there. We run events about renewables, open to anyone who wants to understand how this actually works.",
       },
     ],
+  },
+
+  events: {
+    eyebrow: "Passing it on",
+    title: "Events about renewables",
+    lead: "Building something teaches you things a lecture cannot. We put those evenings on for anyone who wants them, students and neighbours alike.",
+    sofar: TODO(
+      "Which events have run so far: titles, roughly when, and who came",
+    ),
   },
 
   projects: {
@@ -162,6 +171,11 @@ export const en: Copy = {
         name: "EGM eG",
         full: "Energiegemeinschaften München eG",
         text: "The energy cooperative that we partner with to realise the PV installation projects.",
+      },
+      {
+        name: "BENG eG",
+        full: "Bürgerenergiegenossenschaft BENG eG",
+        text: "One of Munich's established citizen energy cooperatives, and a second route from an idea to an installation that a neighbourhood owns.",
       },
       {
         name: "TUM",

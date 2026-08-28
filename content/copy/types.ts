@@ -62,7 +62,8 @@ export type Copy = {
     lead: string;
     joinCta: string;
     projectsCta: string;
-    cardTitle: string;
+    /** Written together with the photo, never after it. */
+    photoAlt: Fillable;
   };
 
   stats: { value: Fillable; unit?: string; label: string; note?: string }[];
@@ -71,6 +72,14 @@ export type Copy = {
     eyebrow: string;
     /** The `RE` prefix is separate so it can be coloured like the wordmark. */
     items: { prefix: string; name: string; text: string }[];
+  };
+
+  events: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    /** What has actually run. A claim without this is just a claim. */
+    sofar: Fillable;
   };
 
   projects: {

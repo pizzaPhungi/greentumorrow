@@ -14,7 +14,7 @@ export const de: Copy = {
   meta: {
     title: "gREen tumorrow: Studenteninitiative für Erneuerbare an der TUM",
     description:
-      "gREen tumorrow ist eine Studenteninitiative an der TUM für alle, die an Erneuerbaren arbeiten wollen, statt darüber zu lesen. Du steigst in ein echtes Projekt ein, mit einem unserer Partner oder mit einem eigenen, und lernst dabei, wie es wirklich läuft.",
+      "gREen tumorrow ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Von Wissen weitergeben bis zu echten Energieprojekten, für eine nachhaltige und dezentrale Energieversorgung.",
     ogLocale: "de_DE",
   },
 
@@ -28,26 +28,26 @@ export const de: Copy = {
 
   hero: {
     eyebrow: "Studenteninitiative",
-    headline: "Erneuerbare Energien lernt man, indem man sie baut.",
-    lead: "ist der Ort für Studierende, die an Erneuerbaren Energien arbeiten wollen, statt darüber zu lesen. Du steigst in ein echtes Projekt ein, mit einem unserer Partner oder mit einem eigenen, und lernst dabei, wie es wirklich läuft.",
+    headline: "Als Studierende bringen wir die Energiewende voran.",
+    lead: "ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Wir fördern Austausch und Zusammenarbeit und schaffen Gelegenheiten, aus Ideen etwas Konkretes zu machen. Von Wissen weitergeben bis zu echten Energieprojekten, die wir gemeinsam planen und umsetzen, für eine nachhaltige und dezentrale Energieversorgung.",
     joinCta: "Zur WhatsApp-Gruppe",
     projectsCta: "Woran wir arbeiten",
-    cardTitle: "Unsere zwei Projekte",
+    photoAlt: TODO("Alt-Text für das Hero-Foto, zusammen mit dem Foto zu schreiben"),
   },
 
   stats: [
     { value: "6", label: "Studierende", note: "dazu zwei Betreuer" },
     { value: "2", label: "Energieprojekte", note: "mit Partnern" },
     {
+      value: TODO("Wie viele Veranstaltungen habt ihr bisher gemacht?"),
+      label: "Veranstaltungen",
+      note: "Vorträge und Abende zu Erneuerbaren",
+    },
+    {
       value: "35",
       unit: "kWp",
       label: "in laufenden Projekten",
       note: "was die beiden zusammen ergeben",
-    },
-    {
-      value: "2026",
-      label: "gegründet und akkreditiert",
-      note: "als Studenteninitiative der TUM",
     },
   ],
 
@@ -57,7 +57,7 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "Ein Netz aus Nachbarschaft, Branche und Studierenden, damit hinter einem Projekt Menschen stehen und nicht nur ein Plan.",
+        text: "Industrie, Hochschule und Quartier sitzen selten am selben Tisch. Wir setzen sie zusammen, weil ein Projekt genau das braucht, bevor irgendwo gebaut wird.",
       },
       {
         prefix: "RE",
@@ -67,9 +67,18 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Wissen",
-        text: "Die Lücke zwischen Vorlesung und Baustelle schließen: Lehre, Austausch und Können, das du mitnimmst.",
+        text: "Was wir auf dem Dach lernen, bleibt nicht dort. Wir machen Veranstaltungen zu Erneuerbaren, offen für alle, die verstehen wollen, wie das wirklich funktioniert.",
       },
     ],
+  },
+
+  events: {
+    eyebrow: "Weitergeben",
+    title: "Veranstaltungen zu Erneuerbaren",
+    lead: "Etwas zu bauen bringt einem Dinge bei, die keine Vorlesung vermittelt. Diese Abende machen wir für alle, die sie wollen: Studierende und Nachbarn gleichermaßen.",
+    sofar: TODO(
+      "Welche Veranstaltungen liefen bisher: Titel, ungefähr wann, und wer da war",
+    ),
   },
 
   projects: {
@@ -168,6 +177,11 @@ export const de: Copy = {
         name: "EGM eG",
         full: "Energiegemeinschaften München eG",
         text: "Die Energiegenossenschaft, mit der wir die PV-Projekte umsetzen.",
+      },
+      {
+        name: "BENG eG",
+        full: "Bürgerenergiegenossenschaft BENG eG",
+        text: "Eine der etablierten Bürgerenergiegenossenschaften Münchens, und ein zweiter Weg von der Idee zu einer Anlage, die einem Viertel gehört.",
       },
       {
         name: "TUM",
