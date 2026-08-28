@@ -96,11 +96,26 @@ once as Tailwind theme tokens in [`app/globals.css`](app/globals.css):
 | `mist` | `#E8EDE9` | cool alternating bands |
 | `green` / `green-dark` | `#3A643C` / `#1F4438` | headings, primary buttons, dark sections |
 | `amber` / `amber-deep` | `#FFC246` / `#D98F0D` | accents, eyebrows, underlines |
-| `blue` | `#32459A` | logo turbine, advisor avatars |
+| `blue` | `#32459A` | advisor avatars |
 | `navy` | `#0E2841` | body text |
 
 The mark in [`components/Logo.tsx`](components/Logo.tsx) is a vector rebuild of
-the deck's logo. If a proper vector original (AI/SVG) turns up, swap it in there.
+the club's logo, traced by eye from a raster image. **If the vector original
+(AI/SVG/EPS) exists, drop it in and replace the hand-built paths** — this version
+is an approximation, not the source of truth.
+
+The mark carries its own four colours, kept separate from the brand palette
+because they do not match it:
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| `sun` | `#F2A81B` | the ring |
+| `teal` | `#0E5B57` | turbine and buildings |
+| `grass` | `#57A82B` | hills and the window |
+| `grass-dark` | `#3C8A1C` | the darker hill |
+
+[`app/icon.svg`](app/icon.svg) is a deliberately simplified variant (ring,
+turbine, hill only) because the full mark turns to mush at favicon sizes.
 
 The wordmark is never plain text: `gREen tumorrow` carries **RE** (renewable
 energy) in amber and **TUM** inside "tumorrow". Always render it via the

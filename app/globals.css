@@ -13,6 +13,12 @@
   --color-sage: #a5b294;
   --color-mist: #e8ede9;
 
+  /* Logo mark only. The wordmark and the site keep the brand palette above. */
+  --color-sun: #f2a81b;
+  --color-teal: #0e5b57;
+  --color-grass: #57a82b;
+  --color-grass-dark: #3c8a1c;
+
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 }
