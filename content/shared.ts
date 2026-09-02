@@ -121,7 +121,7 @@ export type PersonFacts = {
 };
 
 export const teamFacts: PersonFacts[] = [
-  { name: "Nazli", surname: TODO("Nazli's surname"), kind: "student" },
+  { name: "Nazli Ghazvanchahi", kind: "student" },
   { name: "Nana Kwabena Osei", kind: "student" },
   { name: "Duc Viet Phung", kind: "student" },
   { name: "Marvin Elling", kind: "student" },
