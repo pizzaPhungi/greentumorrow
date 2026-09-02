@@ -7,7 +7,7 @@ const copy = getCopy("de");
 
 export const metadata: Metadata = {
   title: copy.nav.sections.projects,
-  openGraph: { url: `${site.url}/${"projects"}/` },
+  openGraph: { url: `${site.url}/projects/` },
   alternates: {
     canonical: "/projects",
     languages: { de: "/projects", en: "/en/projects", "x-default": "/projects" },
