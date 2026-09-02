@@ -20,6 +20,15 @@ import type { StaticImageData } from "next/image";
  * and without the import the page shows a visible placeholder.
  */
 
+import nazliGhazvanchahi from "./photos/nazli-ghazvanchahi.jpeg";
+import nanaKwabenaOsei from "./photos/nana-kwabena-osei.jpeg";
+import ducVietPhung from "./photos/duc-viet-phung.jpeg";
+import marvinElling from "./photos/marvin-elling.jpeg";
+import salmaGares from "./photos/salma-gares.jpeg";
+import karimAlzahabi from "./photos/karim-alzahabi.jpeg";
+import markusEblenkamp from "./photos/markus-eblenkamp.jpeg";
+import christophGoebel from "./photos/christoph-goebel.jpeg";
+
 import perlacherHerz from "./photos/perlacher-herz.webp";
 import gemeindeNeuperlach from "./photos/gemeinde-neuperlach.png";
 
@@ -31,6 +40,23 @@ export const projectPhotos: Record<string, StaticImageData> = {
 /** The one image above the fold. Nothing else on the page carries as much. */
 export { default as heroPhoto } from "./photos/re-stock-image.jpeg";
 
+/**
+ * Keyed by the exact `name` in teamFacts, including the "Dr." on the advisors.
+ * A typo here shows as a placeholder rather than an error, so check the page
+ * after adding one.
+ *
+ * No `photoAlt` goes with these. The person's name sits directly beside the
+ * portrait, so alt text would only repeat it; Photo renders `alt=""` and screen
+ * readers skip straight to the name. That is the intended result here, unlike
+ * the hero and project photos, which show a scene and do need describing.
+ */
 export const personPhotos: Record<string, StaticImageData> = {
-  // "Alex Treml": alexTreml,
+  "Nazli Ghazvanchahi": nazliGhazvanchahi,
+  "Nana Kwabena Osei": nanaKwabenaOsei,
+  "Duc Viet Phung": ducVietPhung,
+  "Marvin Elling": marvinElling,
+  "Salma Gares": salmaGares,
+  "Karim Alzahabi": karimAlzahabi,
+  "Dr. Markus Eblenkamp": markusEblenkamp,
+  "Dr. Christoph Göbel": christophGoebel,
 };

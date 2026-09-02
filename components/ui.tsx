@@ -209,12 +209,19 @@ export function Pill({
   tone = "neutral",
 }: {
   children: ReactNode;
-  tone?: "neutral" | "live" | "building";
+  tone?: "neutral" | "live" | "building" | "open";
 }) {
   const tones = {
     neutral: "bg-green/10 text-green-dark",
     live: "bg-green text-cream",
     building: "bg-amber text-navy",
+    /**
+     * Hollow on purpose. Solid green reads as running and solid amber as under
+     * way; an outline reads as the slot nobody has taken yet, which is what an
+     * open invitation is. The inset ring keeps the box the same height as a
+     * filled pill, so a row of mixed tones still lines up.
+     */
+    open: "text-green-dark ring-1 ring-inset ring-green/40",
   };
   return (
     <span
