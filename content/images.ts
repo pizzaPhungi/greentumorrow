@@ -25,7 +25,7 @@ import nanaKwabenaOsei from "./photos/nana-kwabena-osei.jpeg";
 import ducVietPhung from "./photos/duc-viet-phung.jpeg";
 import marvinElling from "./photos/marvin-elling.jpeg";
 import salmaGares from "./photos/salma-gares.jpeg";
-import karimAlzahabi from "./photos/karim-alzahabi.jpeg";
+import karimAlZahabi from "./photos/karim-al-zahabi.jpg";
 import markusEblenkamp from "./photos/markus-eblenkamp.jpeg";
 import christophGoebel from "./photos/christoph-goebel.jpeg";
 
@@ -56,7 +56,7 @@ export const personPhotos: Record<string, StaticImageData> = {
   "Duc Viet Phung": ducVietPhung,
   "Marvin Elling": marvinElling,
   "Salma Gares": salmaGares,
-  "Karim Alzahabi": karimAlzahabi,
+  "Karim Al Zahabi": karimAlZahabi,
   "Dr. Markus Eblenkamp": markusEblenkamp,
   "Dr. Christoph Göbel": christophGoebel,
 };

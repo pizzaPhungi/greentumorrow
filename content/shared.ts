@@ -198,7 +198,7 @@ export const teamFacts: PersonFacts[] = [
     kind: "student",
     programme: "M.Sc. Electrical Engineering & Information Technology",
   },
-  { name: "Karim Alzahabi", kind: "student", programme: "M.Sc. Power Engineering" },
+  { name: "Karim Al Zahabi", kind: "student", programme: "M.Sc. Power Engineering" },
   {
     name: "Dr. Markus Eblenkamp",
     kind: "advisor",
