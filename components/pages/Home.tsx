@@ -10,7 +10,7 @@ import {
 } from "@/components/ui";
 import { ClosingCta } from "@/components/pages/ClosingCta";
 import { getCopy } from "@/content/copy";
-import { joinHref, sectionHref, type Locale } from "@/content/shared";
+import { joinCta, sectionHref, type Locale } from "@/content/shared";
 import { heroPhoto } from "@/content/images";
 
 /**
@@ -39,7 +39,7 @@ export function Home({ locale }: { locale: Locale }) {
                 <Wordmark className="text-[1.05em]" /> {copy.hero.lead}
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button href={joinHref}>{copy.hero.joinCta}</Button>
+                <Button href={joinCta}>{copy.hero.joinCta}</Button>
                 <Button href={sectionHref(locale, "projects")} variant="secondary">
                   {copy.hero.projectsCta}
                 </Button>

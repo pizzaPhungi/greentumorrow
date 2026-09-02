@@ -3,7 +3,7 @@ import { LogoMark, Wordmark } from "@/components/Logo";
 import { SiteNav } from "@/components/SiteNav";
 import { Container } from "@/components/ui";
 import { getCopy } from "@/content/copy";
-import { joinHref, localeHome, type Locale } from "@/content/shared";
+import { localeHome, type Locale } from "@/content/shared";
 
 /**
  * Stays a server component. Everything that needs the current path lives in
@@ -30,7 +30,6 @@ export function Header({ locale }: { locale: Locale }) {
               locale={locale}
               homeLabel={copy.nav.homeTab}
               labels={copy.nav.sections}
-              joinHref={joinHref}
               joinLabel={copy.nav.join}
               openMenu={copy.nav.openMenu}
               closeMenu={copy.nav.closeMenu}

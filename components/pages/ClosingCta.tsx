@@ -8,12 +8,17 @@ import { contact, isTodo, type Locale } from "@/content/shared";
  * The only call to action on the site, so it closes every page rather than
  * living on the home page alone. A missing form link has to be impossible to
  * overlook, which is why the placeholder renders where the button would be.
+ *
+ * `id="join"` is what every Join button in the header and the hero scrolls to.
+ * They deliberately do not link to the form directly: people should read what
+ * they are signing up for before they land in a Notion form. This section is on
+ * every page, so the anchor never leaves the current page.
  */
 export function ClosingCta({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
 
   return (
-    <Section tone="mist" className="py-20">
+    <Section id="join" tone="mist" className="scroll-mt-18 py-20">
       <div className="flex flex-col items-center gap-8 text-center">
         <LogoMark className="h-16" />
         <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">

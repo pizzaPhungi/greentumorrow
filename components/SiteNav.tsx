@@ -6,6 +6,7 @@ import { useState } from "react";
 import { cn } from "@/components/cn";
 import {
   counterpartHref,
+  joinCtaFrom,
   localeHome,
   locales,
   sectionHref,
@@ -27,7 +28,6 @@ export function SiteNav({
   locale,
   homeLabel,
   labels,
-  joinHref,
   joinLabel,
   openMenu,
   closeMenu,
@@ -35,7 +35,6 @@ export function SiteNav({
   locale: Locale;
   homeLabel: string;
   labels: Record<string, string>;
-  joinHref: string;
   joinLabel: string;
   openMenu: string;
   closeMenu: string;
@@ -103,7 +102,8 @@ export function SiteNav({
       </p>
 
       <a
-        href={joinHref}
+        href={joinCtaFrom(locale, pathname)}
+        onClick={() => setOpen(false)}
         className="rounded-full bg-green px-4 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-green-dark sm:px-5"
       >
         {joinLabel}

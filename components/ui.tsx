@@ -124,9 +124,12 @@ export function Button({
       "rounded-lg border border-green/30 text-green-dark hover:border-green hover:bg-green/5",
     quiet: "text-green-dark underline decoration-amber decoration-2 underline-offset-4 hover:decoration-amber-deep px-0 py-0",
   };
+  // A hash is a scroll target on the current page, not a route, so it takes the
+  // plain anchor branch together with the external schemes.
   const external = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+  const plain = external || href.startsWith("#");
 
-  if (external) {
+  if (plain) {
     return (
       <a
         href={href}

@@ -88,13 +88,25 @@ export const contact = {
 };
 
 /**
- * Where every join button points. The form once it exists, email until then, so
- * the site never ships a dead link. The build stays blocked either way until
- * `contact.joinForm` is filled in.
+ * Where the Join buttons in the header and the hero point. Not the form: they
+ * scroll to the closing section, which says what joining involves before anyone
+ * is handed a form. Only the button in that section opens the form itself, and
+ * it falls back to a visible placeholder while `contact.joinForm` is a TODO, so
+ * the site never ships a dead link.
  */
-export const joinHref = isTodo(contact.joinForm)
-  ? `mailto:${contact.email}`
-  : contact.joinForm;
+export const joinCta = "#join";
+
+/**
+ * The same target from anywhere in the header. Every content page carries the
+ * closing section, but the legal pages do not, so from there Join has to reach
+ * the home page's copy of it instead of scrolling nowhere.
+ */
+export const joinCtaFrom = (locale: Locale, pathname: string) => {
+  const path = pathname.replace(/\/$/, "") || "/";
+  if (!legalPages.some((p) => legalHref(p) === path)) return joinCta;
+  const home = localeHome[locale];
+  return `${home === "/" ? "" : home}/${joinCta}`;
+};
 
 /** Founded and accredited by TUM in the same year. */
 export const founded = "2026";
@@ -136,17 +148,50 @@ export type PersonFacts = {
   /** Set only while a surname is still missing, so the gate keeps blocking. */
   surname?: Fillable;
   kind: "student" | "advisor";
+  /**
+   * Degree programme for students, position for advisors. Official programme
+   * titles, so they stay in English in both locales.
+   */
+  programme: string;
 };
 
 export const teamFacts: PersonFacts[] = [
-  { name: "Nazli Ghazvanchahi", kind: "student" },
-  { name: "Nana Kwabena Osei", kind: "student" },
-  { name: "Duc Viet Phung", kind: "student" },
-  { name: "Marvin Elling", kind: "student" },
-  { name: "Salma Gares", kind: "student" },
-  { name: "Karim Alzahabi", kind: "student" },
-  { name: "Dr. Markus Eblenkamp", kind: "advisor" },
-  { name: "Dr. Christoph Göbel", kind: "advisor" },
+  {
+    name: "Nazli Ghazvanchahi",
+    kind: "student",
+    programme: "Sustainable Management and Technology",
+  },
+  {
+    name: "Nana Kwabena Osei",
+    kind: "student",
+    programme: "Engineering Science",
+  },
+  {
+    name: "Duc Viet Phung",
+    kind: "student",
+    programme: "Management & Technology",
+  },
+  {
+    name: "Marvin Elling",
+    kind: "student",
+    programme: "Electrical & Computer Engineering",
+  },
+  {
+    name: "Salma Gares",
+    kind: "student",
+    programme: "Electrical Engineering & Information Technology",
+  },
+  { name: "Karim Alzahabi", kind: "student", programme: "Power Engineering" },
+  {
+    name: "Dr. Markus Eblenkamp",
+    kind: "advisor",
+    programme: "Program Manager M. Sc. Power Engineering at TUM",
+  },
+  {
+    name: "Dr. Christoph Göbel",
+    kind: "advisor",
+    programme: "PhD in Materials Chemistry and Catalysis",
+  },
 ];
 
 export const partnerLinks = [
