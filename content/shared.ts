@@ -176,33 +176,33 @@ export const teamFacts: PersonFacts[] = [
   {
     name: "Nazli Ghazvanchahi",
     kind: "student",
-    programme: "Sustainable Management and Technology",
+    programme: "M.Sc. Sustainable Management & Technology",
   },
   {
     name: "Nana Kwabena Osei",
     kind: "student",
-    programme: "Engineering Science",
+    programme: "M.Sc. Engineering Science",
   },
   {
     name: "Duc Viet Phung",
     kind: "student",
-    programme: "Management & Technology",
+    programme: "M.Sc. Management & Technology",
   },
   {
     name: "Marvin Elling",
     kind: "student",
-    programme: "Electrical & Computer Engineering",
+    programme: "M.Sc. Electrical & Computer Engineering",
   },
   {
     name: "Salma Gares",
     kind: "student",
-    programme: "Electrical Engineering & Information Technology",
+    programme: "M.Sc. Electrical Engineering & Information Technology",
   },
-  { name: "Karim Alzahabi", kind: "student", programme: "Power Engineering" },
+  { name: "Karim Alzahabi", kind: "student", programme: "M.Sc. Power Engineering" },
   {
     name: "Dr. Markus Eblenkamp",
     kind: "advisor",
-    programme: "Program Manager M. Sc. Power Engineering at TUM",
+    programme: "Program Manager M.Sc. Power Engineering at TUM",
   },
   {
     name: "Dr. Christoph Göbel",
