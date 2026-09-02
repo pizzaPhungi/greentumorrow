@@ -1,6 +1,6 @@
 import { ClosingCta } from "@/components/pages/ClosingCta";
 import { Photo } from "@/components/Photo";
-import { Card, Pill, Section, SectionHeading } from "@/components/ui";
+import { Card, Eyebrow, Pill, Section, SectionHeading } from "@/components/ui";
 import { getCopy } from "@/content/copy";
 import { projectFacts, type Locale } from "@/content/shared";
 import { projectPhotos } from "@/content/images";
@@ -74,19 +74,18 @@ export function Projects({ locale }: { locale: Locale }) {
 
         {/* An invitation, never dressed up as an existing project. */}
         <Card className="mt-6 border-dashed border-amber-deep/50 bg-amber/8">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
+          {/* Both columns open with the same eyebrow, so the examples start on the
+              line the headline does. A Pill would not: on this page it means
+              "status of an existing project", which is exactly what this is not. */}
+          <div className="grid items-start gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
             <div>
-              <span className="inline-flex">
-                <Pill tone="building">{t.own.badge}</Pill>
-              </span>
-              <h3 className="mt-4 text-xl font-semibold">{t.own.headline}</h3>
+              <Eyebrow>{t.own.badge}</Eyebrow>
+              <h3 className="text-xl font-semibold">{t.own.headline}</h3>
               <p className="mt-4 leading-relaxed text-navy/75">{t.own.intro}</p>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-deep">
-                {t.own.examplesLabel}
-              </p>
-              <ul className="mt-4 space-y-2 text-navy/75">
+              <Eyebrow>{t.own.examplesLabel}</Eyebrow>
+              <ul className="space-y-2 text-navy/75">
                 {t.own.examples.map((e) => (
                   <li key={e} className="flex gap-2.5">
                     <span
