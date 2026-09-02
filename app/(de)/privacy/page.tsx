@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { TodoNote } from "@/components/Todo";
+import { Fill, TodoNote } from "@/components/Todo";
 import { Container, PageHeader } from "@/components/ui";
-import { TODO, contact } from "@/content/shared";
+import { TODO, contact, responsible } from "@/content/shared";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -39,7 +39,12 @@ export default function PrivacyPage() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Controller</h2>
-            <TodoNote label="To do" value={TODO("Name and address of the controller, same person as in the imprint")} />
+            <div className="space-y-3 text-navy/80">
+              <p>{responsible.name}</p>
+              <p>
+                <Fill value={responsible.address} label="To do" />
+              </p>
+            </div>
             <p className="text-navy/80">
               Email an{" "}
               <a

@@ -96,7 +96,6 @@ export type Copy = {
       intro: string;
       examplesLabel: string;
       examples: string[];
-      requirements: Fillable;
     };
   };
 

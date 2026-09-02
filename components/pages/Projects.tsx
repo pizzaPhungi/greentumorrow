@@ -1,6 +1,5 @@
 import { ClosingCta } from "@/components/pages/ClosingCta";
 import { Photo } from "@/components/Photo";
-import { Fill } from "@/components/Todo";
 import { Card, Pill, Section, SectionHeading } from "@/components/ui";
 import { getCopy } from "@/content/copy";
 import { projectFacts, type Locale } from "@/content/shared";
@@ -98,9 +97,6 @@ export function Projects({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm text-navy/70">
-                <Fill value={t.own.requirements} label={copy.todo.label} />
-              </p>
             </div>
           </div>
         </Card>

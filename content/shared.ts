@@ -108,6 +108,23 @@ export const joinCtaFrom = (locale: Locale, pathname: string) => {
   return `${home === "/" ? "" : home}/${joinCta}`;
 };
 
+/**
+ * The natural person the legal pages have to name: service provider under § 5
+ * DDG, responsible for content under § 18 Abs. 2 MStV, and controller under
+ * Art. 4 Nr. 7 DSGVO. Until the e.V. exists there is no legal person to carry
+ * this, so a real person does, personally.
+ *
+ * Kept here rather than in the pages so the build gate sees what is still
+ * missing. An imprint without a postal address does not satisfy § 5 DDG.
+ */
+export const responsible = {
+  name: "Duc Viet Phung",
+  address: TODO("Postal address of the responsible person, no P.O. box"),
+  legalForm: TODO(
+    "Legal form once the e.V. is registered, incl. register court and number",
+  ),
+};
+
 /** Founded and accredited by TUM in the same year. */
 export const founded = "2026";
 

@@ -1,4 +1,3 @@
-import { TODO } from "../shared.ts";
 import type { Copy } from "./types.ts";
 
 /**
@@ -117,9 +116,6 @@ export const de: Copy = {
         "Ein Werkzeug oder Modell, das in Erneuerbaren-Projekten fehlt",
         "Eine Untersuchung oder Messreihe, die noch niemand gemacht hat",
       ],
-      requirements: TODO(
-        "Was ein Projektvorschlag braucht und wer ihn freigibt, also wie ein Projekt tatsächlich startet",
-      ),
     },
   },
 
