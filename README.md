@@ -30,8 +30,10 @@ ALLOW_TODOS=1 npm run build
 
 ## Editing content
 
-The site is bilingual: **German at `/`, English at `/en`**, German is the
-default. Text and facts are split across three files:
+The site is bilingual: **English at `/`, German at `/de`**, English is the
+default. Which language is unprefixed is decided by `defaultLocale` in
+`content/shared.ts`; `localeHome`, `sectionHref` and `counterpartHref` all
+derive from it. Text and facts are split across three files:
 
 - [`content/shared.ts`](content/shared.ts) holds everything that is the same in
   both languages: email, address, links, project figures, people's names.
@@ -136,9 +138,9 @@ energy) in amber and **TUM** inside "tumorrow". Always render it via the
 ## Structure
 
 ```
-app/(de)/                  German routes: /, /projects, /partners, /members,
-                           /imprint, /privacy
-app/(en)/en/               English routes: /en and the same three tabs
+app/(en)/                  English routes: /, /projects, /partners, /members
+app/(de)/de/               German routes: /de and the same three tabs
+app/(de)/imprint, privacy  legal pages, German only, unprefixed
 components/                Logo, Header, Footer, UI primitives, TODO markers
 components/pages/          page bodies, shared by both languages
 content/shared.ts          language-independent facts
@@ -149,7 +151,10 @@ scripts/check-content.mjs  the build gate for unfinished content
 ```
 
 Two route groups means two root layouts, which is the only way `<html lang>` can
-differ per language. Legal pages exist in German only and are linked from both.
+differ per language. The legal pages exist in German only, because the club is
+based in Germany and they are its one legal document rather than a translation
+of an English page. They therefore keep unprefixed URLs but sit in the German
+route group, so they render with `lang="de"`, and both languages link to them.
 
 ### Adding a photo
 

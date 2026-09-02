@@ -20,19 +20,34 @@ export type Fillable = string | Todo;
 export const isTodo = (v: unknown): v is Todo =>
   typeof v === "object" && v !== null && "__todo" in v;
 
-export const locales = ["de", "en"] as const;
+export const locales = ["en", "de"] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "de";
 
-/** German sits at the root, English one level down. No redirect involved. */
-export const localeHome: Record<Locale, string> = { de: "/", en: "/en" };
+/**
+ * The default language sits at the root without a prefix, every other one gets
+ * one. Everything below derives from this, so flipping the default is this one
+ * line plus moving the route folders.
+ */
+export const defaultLocale: Locale = "en";
+
+export const localeHome = Object.fromEntries(
+  locales.map((l) => [l, l === defaultLocale ? "/" : `/${l}`]),
+) as Record<Locale, string>;
 
 /** The tabs in the top bar, in the order they appear. */
 export const sections = ["projects", "partners", "members"] as const;
 export type Section = (typeof sections)[number];
 
 export const sectionHref = (locale: Locale, section: Section) =>
-  locale === "de" ? `/${section}` : `/en/${section}`;
+  locale === defaultLocale ? `/${section}` : `/${locale}/${section}`;
+
+/**
+ * Imprint and privacy exist in German only and stay unprefixed: they are the
+ * one legal document this site has, not a translation of an English page. They
+ * live in the German route group so their `lang` attribute stays honest.
+ */
+export const legalPages = ["imprint", "privacy"] as const;
+export const legalHref = (page: (typeof legalPages)[number]) => `/${page}`;
 
 /**
  * The same page in the other language. Used by the language switch, which has
@@ -42,8 +57,8 @@ export const sectionHref = (locale: Locale, section: Section) =>
 export const counterpartHref = (pathname: string, target: Locale) => {
   // next.config sets trailingSlash, so usePathname yields "/projects/".
   const path = pathname.replace(/\/$/, "") || "/";
-  const section = sections.find(
-    (s) => path === `/${s}` || path === `/en/${s}`,
+  const section = sections.find((s) =>
+    locales.some((l) => sectionHref(l, s) === path),
   );
   return section ? sectionHref(target, section) : localeHome[target];
 };

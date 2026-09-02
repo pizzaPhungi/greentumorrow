@@ -16,8 +16,10 @@ Static marketing site for a TUM student initiative. Next.js 16 App Router,
 Tailwind v4, `output: "export"`. No server, no database, no client state
 beyond the mobile nav toggle.
 
-- **The site is bilingual: German at `/`, English at `/en`, German is the
-  default.** Never hardcode a user-visible string in a component. Facts go in
+- **The site is bilingual: English at `/`, German at `/de`, English is the
+  default.** `defaultLocale` in `content/shared.ts` decides which language is
+  unprefixed, and every href helper derives from it. Never hardcode a
+  user-visible string in a component. Facts go in
   `content/shared.ts`, prose goes in `content/copy/de.ts` and
   `content/copy/en.ts`, both typed `Copy` so a missing translation fails `tsc`.
 - **Content modules must stay importable by plain Node**: relative imports with

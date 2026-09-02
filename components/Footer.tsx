@@ -2,13 +2,10 @@ import Link from "next/link";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { Container } from "@/components/ui";
 import { getCopy } from "@/content/copy";
-import { contact, site, type Locale } from "@/content/shared";
+import { contact, legalHref, legalPages, site, type Locale } from "@/content/shared";
 
 /** The legal pages exist in German only and are linked from both languages. */
-const legal = [
-  { href: "/imprint", key: "imprint" as const },
-  { href: "/privacy", key: "privacy" as const },
-];
+const legal = legalPages.map((key) => ({ key, href: legalHref(key) }));
 
 export function Footer({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);

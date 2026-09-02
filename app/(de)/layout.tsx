@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   title: copy.meta.title,
   description: copy.meta.description,
   alternates: {
-    canonical: "/",
-    languages: { de: "/", en: "/en", "x-default": "/" },
+    canonical: "/de",
+    languages: { en: "/", de: "/de", "x-default": "/" },
   },
   openGraph: {
     type: "website",
     locale: copy.meta.ogLocale,
-    url: site.url,
+    url: `${site.url}/de`,
     siteName: site.name,
     title: copy.meta.title,
     description: copy.meta.description,
