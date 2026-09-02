@@ -6,7 +6,7 @@ import { contact, isTodo, type Locale } from "@/content/shared";
 
 /**
  * The only call to action on the site, so it closes every page rather than
- * living on the home page alone. A missing invite link has to be impossible to
+ * living on the home page alone. A missing form link has to be impossible to
  * overlook, which is why the placeholder renders where the button would be.
  */
 export function ClosingCta({ locale }: { locale: Locale }) {
@@ -20,10 +20,10 @@ export function ClosingCta({ locale }: { locale: Locale }) {
           {copy.closing.title}
         </h2>
         <p className="max-w-md text-navy/70">{copy.closing.lead}</p>
-        {isTodo(contact.whatsapp) ? (
-          <Fill value={contact.whatsapp} label={copy.todo.label} />
+        {isTodo(contact.joinForm) ? (
+          <Fill value={contact.joinForm} label={copy.todo.label} />
         ) : (
-          <Button href={contact.whatsapp}>{copy.closing.cta}</Button>
+          <Button href={contact.joinForm}>{copy.closing.cta}</Button>
         )}
         <p className="text-sm text-navy/60">
           {copy.closing.askInstead}{" "}

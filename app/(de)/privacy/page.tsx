@@ -62,6 +62,24 @@ export default function PrivacyPage() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">The join form</h2>
+            <p className="leading-relaxed text-navy/80">
+              The join buttons lead to a form hosted by Notion. Nothing is
+              embedded here, so following the link is what takes you to Notion,
+              and only what you type there reaches us: your name and how to
+              contact you. We use it to get in touch and to invite you to our
+              group, on the basis of Art. 6(1)(b) and (f) GDPR, and delete it
+              once it is no longer needed for that.
+            </p>
+            <TodoNote
+              label="To do"
+              value={TODO(
+                "Notion is a US provider. Name the data processing agreement and the transfer basis, and say how long entries are kept",
+              )}
+            />
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Server log files</h2>
             <p className="leading-relaxed text-navy/80">
               Our hosting provider records technical access data (IP address,

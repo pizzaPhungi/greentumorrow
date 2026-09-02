@@ -51,7 +51,7 @@ components.
 | The "bring your own project" invitation | `copy.projects.own` |
 | The three pillars (RE Community / Projects / Knowledge) | `copy.pillars` |
 | People | `shared.teamFacts` and `copy.team.people` |
-| The WhatsApp invite link, which is the whole joining process | `shared.contact.whatsapp` |
+| The Notion form people fill in to join | `shared.contact.joinForm` |
 | Partners | `shared.partnerLinks` and `copy.partners` |
 | Alt text for photos | `copy.projects.entries[].photoAlt`, `copy.team.people[].photoAlt` |
 
@@ -80,9 +80,10 @@ that:
    TUM student-club infrastructure. See [`app/imprint/page.tsx`](app/imprint/page.tsx).
 2. **Privacy policy.** Fill in the controller and the hosting provider's log
    retention. See [`app/privacy/page.tsx`](app/privacy/page.tsx).
-3. **The WhatsApp invite link** (`contact.whatsapp`). Every join button falls
-   back to email until it exists, so nothing is broken, but the site is asking
-   people to join a group it cannot point at.
+3. **Notion processing agreement and retention period** on the privacy page.
+   Joining runs through a Notion form (`contact.joinForm`), linked and never
+   embedded so no consent banner is needed. Notion is a US provider, so the
+   agreement and the retention period still have to be named.
 4. **Team portraits.** Eight of them, plus a `photoAlt` line for each. These no
    longer block the build: the member cards show a dashed circle until the
    photos arrive.
@@ -176,7 +177,7 @@ layout shift and means nobody maintains pixel dimensions by hand.
 § 22 KunstUrhG). That applies to the Perlacher Herz group shot and to every
 portrait.
 
-Joining happens in a WhatsApp group, not on the site.
+Joining runs through a Notion form, then the WhatsApp group. Neither lives on this site.
 The site has four pages per language: home plus the Projects, Partners and
 Members tabs. Add or rename a tab in `sections` in
 [`content/shared.ts`](content/shared.ts), add its label to `nav.sections` in both

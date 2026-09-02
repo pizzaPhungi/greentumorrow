@@ -61,22 +61,25 @@ export const contact = {
   linkedin: "https://www.linkedin.com/company/green-tumorrow",
   linkedinHandle: "green-tumorrow",
   /**
-   * Invite link to the WhatsApp group. This is the whole joining process, so
-   * until it is here the site cannot honestly ask anyone to join.
+   * Notion form where people leave their name and number. It sits in front of
+   * the WhatsApp group so the club sees who is coming before inviting them, and
+   * it lives in the same Notion workspace as the club's own knowledge base, so
+   * there is no second tool to keep alive.
+   *
+   * Linked, never embedded: an iframe would put Notion's cookies on this domain.
    */
-  whatsapp: TODO(
-    "Invite link to the WhatsApp group (https://chat.whatsapp.com/...)",
-  ) as Fillable,
+  joinForm:
+    "https://pretty-racer-d37.notion.site/3cf68aefbeb280899b7de042461094b1?pvs=105" as Fillable,
 };
 
 /**
- * Where every join button points. The WhatsApp group once it exists, email
- * until then, so the site never ships a dead link. The build stays blocked
- * either way until `contact.whatsapp` is filled in.
+ * Where every join button points. The form once it exists, email until then, so
+ * the site never ships a dead link. The build stays blocked either way until
+ * `contact.joinForm` is filled in.
  */
-export const joinHref = isTodo(contact.whatsapp)
+export const joinHref = isTodo(contact.joinForm)
   ? `mailto:${contact.email}`
-  : contact.whatsapp;
+  : contact.joinForm;
 
 /** Founded and accredited by TUM in the same year. */
 export const founded = "2026";

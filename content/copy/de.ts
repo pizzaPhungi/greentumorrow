@@ -32,7 +32,7 @@ export const de: Copy = {
     eyebrow: "Studenteninitiative",
     headline: "Als Studierende bringen wir die Energiewende voran.",
     lead: "ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Wir fördern Austausch und Zusammenarbeit und schaffen Gelegenheiten, aus Ideen etwas Konkretes zu machen. Von Wissen weitergeben bis zu echten Energieprojekten, die wir gemeinsam planen und umsetzen, für eine nachhaltige und dezentrale Energieversorgung.",
-    joinCta: "Zur WhatsApp-Gruppe",
+    joinCta: "Mitmachen",
     projectsCta: "Woran wir arbeiten",
     photoAlt:
       "Solarmodule im Vordergrund, dahinter Monteure in Warnkleidung, am Horizont Windräder bei Sonnenuntergang",
@@ -155,8 +155,8 @@ export const de: Copy = {
 
   closing: {
     title: "Du willst die Energiewende voranbringen? Fang hier an.",
-    lead: "Es gibt keine Bewerbung. Alles läuft über eine WhatsApp-Gruppe. Dort steht, was diese Woche ansteht, wo jemand Hilfe braucht und wann wir uns treffen.",
-    cta: "Zur WhatsApp-Gruppe",
+    lead: "Sag uns kurz, wer du bist und wie wir dich erreichen. Wir melden uns und holen dich in die WhatsApp-Gruppe, in der alles läuft. Was diese Woche ansteht, wo jemand Hilfe braucht, wann wir uns treffen.",
+    cta: "Formular ausfüllen",
     askInstead: "Lieber erst etwas fragen?",
   },
 

@@ -26,7 +26,7 @@ export const en: Copy = {
     eyebrow: "Student initiative",
     headline: "As students, we move the energy transition forward.",
     lead: "is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. We foster exchange and collaboration, and create opportunities to turn ideas into action. From sharing knowledge to collaborating on and realising real-world energy projects, for a sustainable and decentralised energy future.",
-    joinCta: "Join the WhatsApp group",
+    joinCta: "Join us",
     projectsCta: "See what we work on",
     photoAlt:
       "Solar modules in the foreground, workers in high-visibility gear behind them, wind turbines on the horizon at sunset",
@@ -149,8 +149,8 @@ export const en: Copy = {
 
   closing: {
     title: "Want to move the energy transition forward? Start here.",
-    lead: "There is no application. Everything runs in one WhatsApp group. That is where you find what is happening this week, who needs a hand and when we next meet.",
-    cta: "Join the WhatsApp group",
+    lead: "Tell us who you are and how to reach you. We will get back to you and add you to the WhatsApp group where everything runs. What is happening this week, who needs a hand, when we next meet.",
+    cta: "Fill in the form",
     askInstead: "Rather ask something first?",
   },
 
