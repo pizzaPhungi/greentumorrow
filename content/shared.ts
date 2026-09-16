@@ -97,6 +97,12 @@ export const contact = {
 export const joinCta = "#join";
 
 /**
+ * The hero's Join button on the home page. The header hides its own Join while
+ * this one is on screen, so the page never shows two identical buttons at once.
+ */
+export const heroJoinId = "hero-join";
+
+/**
  * The same target from anywhere in the header. Every content page carries the
  * closing section, but the legal pages do not, so from there Join has to reach
  * the home page's copy of it instead of scrolling nowhere.

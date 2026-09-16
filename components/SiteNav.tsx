@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/components/cn";
 import {
   counterpartHref,
+  heroJoinId,
   joinCtaFrom,
   localeHome,
   locales,
@@ -44,6 +45,25 @@ export function SiteNav({
 
   // next.config sets trailingSlash, so usePathname yields "/projects/".
   const path = pathname.replace(/\/$/, "") || "/";
+
+  // On the home page the header's Join stays hidden while the hero's Join is
+  // on screen. Starting hidden there keeps the prerendered HTML from flashing a
+  // second button before the observer reports.
+  const isHome = path === localeHome[locale];
+  const [heroJoinInView, setHeroJoinInView] = useState(isHome);
+  useEffect(() => {
+    if (!isHome) return;
+    const target = document.getElementById(heroJoinId);
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroJoinInView(entry.isIntersecting),
+      // The sticky header is h-18 (72px): a button under it counts as gone.
+      { rootMargin: "-72px 0px 0px 0px" },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [isHome]);
+  const hideJoin = isHome && heroJoinInView;
   const tabs = [
     {
       href: localeHome[locale],
@@ -104,7 +124,13 @@ export function SiteNav({
       <a
         href={joinCtaFrom(locale, pathname)}
         onClick={() => setOpen(false)}
-        className="rounded-full bg-green px-4 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-green-dark sm:px-5"
+        // Hidden, not removed: keeping its space stops the tabs from shifting.
+        aria-hidden={hideJoin || undefined}
+        tabIndex={hideJoin ? -1 : undefined}
+        className={cn(
+          "rounded-full bg-green px-4 py-2.5 text-sm font-semibold text-cream transition-[opacity,background-color] duration-200 hover:bg-green-dark sm:px-5",
+          hideJoin && "pointer-events-none invisible opacity-0",
+        )}
       >
         {joinLabel}
       </a>

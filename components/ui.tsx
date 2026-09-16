@@ -105,6 +105,7 @@ export function SectionHeading({
 
 type ButtonProps = {
   href: string;
+  id?: string;
   children: ReactNode;
   variant?: "primary" | "secondary" | "quiet";
   className?: string;
@@ -112,6 +113,7 @@ type ButtonProps = {
 
 export function Button({
   href,
+  id,
   children,
   variant = "primary",
   className,
@@ -132,6 +134,7 @@ export function Button({
   if (plain) {
     return (
       <a
+        id={id}
         href={href}
         className={cn(base, variants[variant], className)}
         {...(href.startsWith("http")
@@ -143,7 +146,7 @@ export function Button({
     );
   }
   return (
-    <Link href={href} className={cn(base, variants[variant], className)}>
+    <Link id={id} href={href} className={cn(base, variants[variant], className)}>
       {children}
     </Link>
   );
