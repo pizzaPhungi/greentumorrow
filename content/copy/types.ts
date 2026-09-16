@@ -72,7 +72,6 @@ export type Copy = {
     headline: string;
     lead: string;
     joinCta: string;
-    projectsCta: string;
     /** Written together with the photo, never after it. */
     photoAlt: Fillable;
   };

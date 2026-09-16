@@ -108,6 +108,11 @@ type ButtonProps = {
   id?: string;
   children: ReactNode;
   variant?: "primary" | "secondary" | "quiet";
+  /**
+   * `lg` is for the one CTA a page is built around: larger target, a shadow
+   * and a slight lift on hover, so it reads as pressable at a glance.
+   */
+  size?: "md" | "lg";
   className?: string;
 };
 
@@ -116,10 +121,14 @@ export function Button({
   id,
   children,
   variant = "primary",
+  size = "md",
   className,
 }: ButtonProps) {
-  const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-colors duration-200";
+  const base = "inline-flex items-center justify-center gap-2 font-semibold";
+  const sizes = {
+    md: "px-6 py-3 text-sm transition-colors duration-200",
+    lg: "px-8 py-4 text-base shadow-lg shadow-green/25 transition-[color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green/30",
+  };
   const variants = {
     primary: "rounded-full bg-green text-cream hover:bg-green-dark",
     secondary:
@@ -136,7 +145,7 @@ export function Button({
       <a
         id={id}
         href={href}
-        className={cn(base, variants[variant], className)}
+        className={cn(base, sizes[size], variants[variant], className)}
         {...(href.startsWith("http")
           ? { target: "_blank", rel: "noreferrer noopener" }
           : {})}
@@ -146,7 +155,7 @@ export function Button({
     );
   }
   return (
-    <Link id={id} href={href} className={cn(base, variants[variant], className)}>
+    <Link id={id} href={href} className={cn(base, sizes[size], variants[variant], className)}>
       {children}
     </Link>
   );

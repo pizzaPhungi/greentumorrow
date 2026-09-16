@@ -128,7 +128,10 @@ export function SiteNav({
         aria-hidden={hideJoin || undefined}
         tabIndex={hideJoin ? -1 : undefined}
         className={cn(
-          "rounded-full bg-green px-4 py-2.5 text-sm font-semibold text-cream transition-[opacity,background-color] duration-200 hover:bg-green-dark sm:px-5",
+          // visibility is in the transition list on purpose: it then flips at
+          // the end of a fade-out and at the start of a fade-in, so both
+          // directions animate the same way instead of vanishing instantly.
+          "rounded-full bg-green px-5 py-3 text-sm font-semibold text-cream shadow-md shadow-green/25 transition-[opacity,visibility,background-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-lg hover:shadow-green/30 sm:px-6",
           hideJoin && "pointer-events-none invisible opacity-0",
         )}
       >
