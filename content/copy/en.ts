@@ -24,8 +24,8 @@ export const en: Copy = {
   hero: {
     eyebrow: "Student initiative",
     headline: "As students, we move the energy transition forward.",
-    lead: "is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. We foster exchange and collaboration, and create opportunities to turn ideas into action. From sharing knowledge to collaborating on and realising real-world energy projects, for a sustainable and decentralised energy future.",
-    joinCta: "Join",
+    lead: "is a club for people passionate about renewable energy who want to drive the energy transition forward. We bring people together to turn ideas into action, from sharing knowledge to realising real-world energy projects for a sustainable, decentralised energy future.",
+    joinCta: "Join us",
     photoAlt:
       "Solar modules in the foreground, workers in high-visibility gear behind them, wind turbines on the horizon at sunset",
   },

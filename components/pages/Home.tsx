@@ -29,29 +29,49 @@ export function Home({ locale }: { locale: Locale }) {
           aria-hidden="true"
         />
         <Container className="relative">
-          <div className="grid items-center gap-14 pt-10 pb-20 sm:pt-14 sm:pb-28 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-            <div>
-              <Eyebrow>{copy.hero.eyebrow}</Eyebrow>
-              <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
-                {copy.hero.headline}
-              </h1>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl">
-                <Wordmark className="text-[1.05em]" /> {copy.hero.lead}
-              </p>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button id={heroJoinId} href={joinCta} size="lg">
-                  {copy.hero.joinCta}
-                </Button>
+          <div className="pt-10 pb-20 sm:pt-14 sm:pb-28">
+            {/*
+             * The eyebrow sits outside the grid so both columns start at the
+             * headline. On large screens the photo then stretches to the text
+             * column's height: its top meets the headline, its bottom the Join
+             * button, instead of floating centred between them.
+             */}
+            <Eyebrow>{copy.hero.eyebrow}</Eyebrow>
+            <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+              <div>
+                <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
+                  {copy.hero.headline}
+                </h1>
+                <p className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl">
+                  <Wordmark className="text-[1.05em]" /> {copy.hero.lead}
+                </p>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Button
+                    id={heroJoinId}
+                    href={joinCta}
+                    size="lg"
+                    className="group"
+                  >
+                    {copy.hero.joinCta}
+                    {/* Decorative: screen readers get the label alone. */}
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </Button>
+                </div>
               </div>
-            </div>
 
-            <Photo
-              src={heroPhoto}
-              alt={copy.hero.photoAlt}
-              missingLabel={copy.photo.missing}
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="aspect-[3/2] w-full rounded-lg object-cover"
-            />
+              <Photo
+                src={heroPhoto}
+                alt={copy.hero.photoAlt}
+                missingLabel={copy.photo.missing}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="aspect-[3/2] w-full rounded-lg object-cover lg:aspect-auto lg:h-full lg:object-[22%_50%]"
+              />
+            </div>
           </div>
         </Container>
       </div>
