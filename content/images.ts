@@ -58,5 +58,5 @@ export const personPhotos: Record<string, StaticImageData> = {
   "Salma Gares": salmaGares,
   "Karim Al Zahabi": karimAlZahabi,
   "Dr. Markus Eblenkamp": markusEblenkamp,
-  "Dr. Christoph Göbel": christophGoebel,
+  "Prof. Dr. Christoph Goebel": christophGoebel,
 };

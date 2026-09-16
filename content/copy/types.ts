@@ -31,6 +31,12 @@ export type ProjectCopy = {
  */
 export type PersonCopy = {
   /**
+   * Overrides `programme` from shared.ts in this language. Only for lines that
+   * have an official translation, such as a professorship; degree programme
+   * titles stay English everywhere.
+   */
+  programme?: string;
+  /**
    * Only needed once a portrait exists in content/images.ts. Add both together,
    * because a photo without alt text is an accessibility hole and alt text
    * without a photo is nothing at all.

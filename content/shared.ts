@@ -205,9 +205,9 @@ export const teamFacts: PersonFacts[] = [
     programme: "Program Manager M.Sc. Power Engineering at TUM",
   },
   {
-    name: "Dr. Christoph Göbel",
+    name: "Prof. Dr. Christoph Goebel",
     kind: "advisor",
-    programme: "PhD in Materials Chemistry and Catalysis",
+    programme: "Professor of Energy Management Technologies",
   },
 ];
 

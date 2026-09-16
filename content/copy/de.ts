@@ -124,7 +124,11 @@ export const de: Copy = {
     title: "Unsere Mitglieder",
     advisorBadge: "Betreuer",
     /** One entry per person, added when their portrait lands. */
-    people: {},
+    people: {
+      "Prof. Dr. Christoph Goebel": {
+        programme: "Professor für Energiemanagement-Technologien",
+      },
+    },
   },
 
   partners: {

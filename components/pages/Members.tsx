@@ -44,7 +44,7 @@ export function Members({ locale }: { locale: Locale }) {
                 ) : null}
               </p>
               <p className="col-start-2 self-start text-sm leading-snug text-navy/55">
-                {person.programme}
+                {copy.team.people[person.name]?.programme ?? person.programme}
               </p>
               {person.kind === "advisor" ? (
                 <p className="col-start-2 self-start">
