@@ -29,7 +29,7 @@ export function Home({ locale }: { locale: Locale }) {
           aria-hidden="true"
         />
         <Container className="relative">
-          <div className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="grid items-center gap-14 pt-10 pb-20 sm:pt-14 sm:pb-28 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
               <Eyebrow>{copy.hero.eyebrow}</Eyebrow>
               <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
