@@ -13,7 +13,7 @@ export function Header({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
 
   return (
-    <header className="relative z-50 border-b border-green/10">
+    <header className="sticky top-0 z-50 border-b border-green/10 bg-cream/75 backdrop-blur-md">
       <Container>
         <div className="flex h-18 items-center justify-between gap-4 py-3">
           <Link

@@ -1,4 +1,3 @@
-import { Reveal } from "@/components/Reveal";
 import { Fill } from "@/components/Todo";
 import { Button, Container } from "@/components/ui";
 import { getCopy } from "@/content/copy";
@@ -54,56 +53,55 @@ export function ClosingCta({ locale }: { locale: Locale }) {
       <Container>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch">
           {[0, 1, 2].map((i) => (
-            <Reveal key={i} variant="scale" delay={i * 100} className="flex flex-1">
-              <div
-                className={`group flex flex-1 flex-col items-center gap-4 rounded-xl p-6 text-center backdrop-blur-md transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg ${panelTints[i]}`}
+            <div
+              key={i}
+              className={`group flex flex-1 flex-col items-center gap-4 rounded-xl p-6 text-center backdrop-blur-md transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg ${panelTints[i]}`}
+            >
+              <span
+                className={`inline-flex shrink-0 items-center whitespace-nowrap rounded px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${labelColors[i]}`}
               >
-                <span
-                  className={`inline-flex shrink-0 items-center whitespace-nowrap rounded px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${labelColors[i]}`}
-                >
-                  {copy.closing.audiences[i]}
-                </span>
-                <ChevronIcon
-                  className={`h-10 w-10 transition-transform duration-300 ease-out group-hover:translate-x-1.5 ${chevronColors[i]}`}
-                />
-                <h2
-                  className={`text-lg font-semibold ${titleColors[i] ?? ""}`}
-                >
-                  {copy.closing.panels[i].title}
-                </h2>
-                <p className="text-sm text-navy/70">
-                  {copy.closing.panels[i].lead}
-                </p>
-                {i === 0 ? (
-                  isTodo(contact.joinForm) ? (
-                    <Fill value={contact.joinForm} label={copy.todo.label} />
-                  ) : (
-                    <Button
-                      href={contact.joinForm}
-                      variant="quiet"
-                      className="!p-0 !text-blue"
-                    >
-                      {copy.closing.cta}
-                    </Button>
-                  )
+                {copy.closing.audiences[i]}
+              </span>
+              <ChevronIcon
+                className={`h-10 w-10 transition-transform duration-300 ease-out group-hover:translate-x-1.5 ${chevronColors[i]}`}
+              />
+              <h2
+                className={`text-lg font-semibold ${titleColors[i] ?? ""}`}
+              >
+                {copy.closing.panels[i].title}
+              </h2>
+              <p className="text-sm text-navy/70">
+                {copy.closing.panels[i].lead}
+              </p>
+              {i === 0 ? (
+                isTodo(contact.joinForm) ? (
+                  <Fill value={contact.joinForm} label={copy.todo.label} />
                 ) : (
-                  <p className="text-sm">
-                    <span
-                      className={`font-semibold ${contactLabelColors[i] ?? "text-green-dark"}`}
-                    >
-                      {copy.closing.contactUs}
-                    </span>
-                    <br />
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="underline decoration-amber decoration-2 underline-offset-4"
-                    >
-                      {contact.email}
-                    </a>
-                  </p>
-                )}
-              </div>
-            </Reveal>
+                  <Button
+                    href={contact.joinForm}
+                    variant="quiet"
+                    className="!p-0 !text-blue"
+                  >
+                    {copy.closing.cta}
+                  </Button>
+                )
+              ) : (
+                <p className="text-sm">
+                  <span
+                    className={`font-semibold ${contactLabelColors[i] ?? "text-green-dark"}`}
+                  >
+                    {copy.closing.contactUs}
+                  </span>
+                  <br />
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="underline decoration-amber decoration-2 underline-offset-4"
+                  >
+                    {contact.email}
+                  </a>
+                </p>
+              )}
+            </div>
           ))}
         </div>
       </Container>

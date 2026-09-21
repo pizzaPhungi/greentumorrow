@@ -29,23 +29,23 @@ export function Home({ locale }: { locale: Locale }) {
       {/* Hero */}
       <div className="mb-10 sm:mb-14">
         <Container>
-          <div className="pt-10 pb-20 sm:pt-14 sm:pb-28">
+          <div className="pt-10 pb-20 sm:pt-14 sm:pb-28 lg:pt-8">
             <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-              <div className="rounded-xl bg-cream/60 p-8 backdrop-blur-md sm:p-10">
-                <Reveal as="h1" className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
+              <div className="rounded-xl bg-cream/60 p-8 backdrop-blur-md sm:p-10 lg:p-9">
+                <Reveal as="h1" className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl lg:[@media(max-height:820px)]:text-5xl">
                   {copy.hero.headline}
                 </Reveal>
                 <Reveal
                   as="p"
                   delay={120}
-                  className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl"
+                  className="mt-7 max-w-xl text-lg leading-relaxed text-navy/75 sm:text-xl lg:mt-6 lg:text-lg"
                 >
                   <Wordmark className="text-[1.05em]" /> {copy.hero.lead}
                 </Reveal>
                 <Reveal
                   as="div"
                   delay={240}
-                  className="mt-10 flex flex-wrap items-center gap-4"
+                  className="mt-10 flex flex-wrap items-center gap-4 lg:mt-8"
                 >
                   <Button
                     id={heroJoinId}

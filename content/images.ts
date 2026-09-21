@@ -31,8 +31,8 @@ import thomasHamacher from "./photos/thomas-hamacher.jpg";
 import sebastianSchwenen from "./photos/sebastian-schwenen.webp";
 import hubertRoeder from "./photos/hubert-roeder.jpg";
 
-import harthofAscend from "./photos/harthof-ascend.png";
-import gemeindeNeuperlach from "./photos/gemeinde-neuperlach.png";
+import harthofAscend from "./photos/harthof-ascend.jpg";
+import gemeindeNeuperlach from "./photos/gemeinde-neuperlach.jpg";
 
 import egmLogo from "./photos/egm-logo.webp";
 import bengLogo from "./photos/beng-logo.jpg";
@@ -46,7 +46,7 @@ export const projectPhotos: Record<string, StaticImageData> = {
 export { default as heroPhoto } from "./photos/hero.webp";
 
 /** Fixed backdrop behind the whole home page, purely decorative. */
-export { default as homeBackgroundPhoto } from "./photos/solar-wind-landscape.jpg";
+export { default as homeBackgroundPhoto } from "./photos/solar-wind-v2.jpeg";
 
 /** Fixed backdrop behind the whole projects page, purely decorative. */
 export { default as projectsBackgroundPhoto } from "./photos/solar-field-aerial.jpg";
