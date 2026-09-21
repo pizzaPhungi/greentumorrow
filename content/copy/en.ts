@@ -36,7 +36,7 @@ export const en: Copy = {
     },
     vision: {
       label: "Vision",
-      text: "A future where renewable energy is led by the community, for the community.",
+      text: "A future where renewable energy is powered by innovation and driven by everyone.",
     },
     values: {
       label: "Values",

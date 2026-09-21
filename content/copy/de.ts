@@ -42,7 +42,7 @@ export const de: Copy = {
     },
     vision: {
       label: "Vision",
-      text: "Eine Zukunft, in der erneuerbare Energie von der Gemeinschaft für die Gemeinschaft gestaltet wird.",
+      text: "Eine Zukunft, in der erneuerbare Energie von Innovation angetrieben wird und von allen getragen wird.",
     },
     values: {
       label: "Werte",
