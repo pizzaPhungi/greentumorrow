@@ -15,20 +15,21 @@ export function Projects({ locale }: { locale: Locale }) {
     <>
       <FixedBackground src={projectsBackgroundPhoto} />
 
-      <div className="mb-4 bg-cream/35 py-10 backdrop-blur-sm sm:mb-6 sm:py-14">
+      {/* Kept short so both project cards fit on screen below it. */}
+      <div className="bg-cream/75 py-6 backdrop-blur-md sm:py-8">
         <Container>
-          <Reveal>
-            <h2 className="text-3xl font-bold text-amber-deep sm:text-4xl">
+          <Reveal className="lg:flex lg:items-center lg:gap-12">
+            <h2 className="shrink-0 text-3xl font-semibold sm:text-4xl">
               {t.title}
             </h2>
-            <p className="mt-5 text-lg font-bold leading-relaxed text-green-dark drop-shadow-[0_2px_8px_rgba(255,250,242,0.9)] sm:text-xl">
+            <p className="mt-3 max-w-3xl leading-relaxed text-navy/75 sm:text-lg lg:mt-0 lg:border-l lg:border-amber-deep/40 lg:pl-12">
               {t.lead}
             </p>
           </Reveal>
         </Container>
       </div>
 
-      <div className="mb-4 py-10 sm:mb-6 sm:py-14">
+      <div className="mb-4 pt-6 pb-10 sm:mb-6 sm:pb-14">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
             {projectFacts.map((p, i) => {
@@ -45,9 +46,9 @@ export function Projects({ locale }: { locale: Locale }) {
                     alt={c.photoAlt}
                     missingLabel={copy.photo.missing}
                     sizes="(min-width: 768px) 50vw, 100vw"
-                    className="aspect-[16/10] w-full rounded object-cover"
+                    className="aspect-[16/10] w-full rounded object-cover lg:aspect-auto lg:h-[clamp(7rem,calc(100svh-37rem),18rem)]"
                   />
-                  <div className="mt-6 flex grow flex-col">
+                  <div className="mt-5 flex grow flex-col">
                     <div className="flex flex-wrap items-center gap-3">
                       <Pill tone={p.status === "live" ? "live" : "building"}>
                         {c.status}
@@ -57,11 +58,11 @@ export function Projects({ locale }: { locale: Locale }) {
                       </span>
                       <span className="text-sm text-navy/55">{c.year}</span>
                     </div>
-                    <h3 className="mt-4 text-xl font-semibold">{c.name}</h3>
-                    <p className="mt-4 grow leading-relaxed text-navy/75">
+                    <h3 className="mt-3 text-xl font-semibold">{c.name}</h3>
+                    <p className="mt-3 grow leading-relaxed text-navy/75">
                       {c.summary}
                     </p>
-                    <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-5">
+                    <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-4">
                       {p.specs.map((value, i) => (
                         <div key={c.specLabels[i]}>
                           <dt className="text-xs uppercase tracking-wider text-navy/50">
