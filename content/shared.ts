@@ -49,14 +49,17 @@ export const sectionHref = (locale: Locale, section: Section) =>
 export const legalPages = ["imprint", "privacy"] as const;
 export const legalHref = (page: (typeof legalPages)[number]) => `/${page}`;
 
+/** next.config sets trailingSlash, so usePathname yields "/projects/". */
+export const stripTrailingSlash = (pathname: string) =>
+  pathname.replace(/\/$/, "") || "/";
+
 /**
  * The same page in the other language. Used by the language switch, which has
  * to stay on the current tab rather than dropping the visitor back on the home
  * page.
  */
 export const counterpartHref = (pathname: string, target: Locale) => {
-  // next.config sets trailingSlash, so usePathname yields "/projects/".
-  const path = pathname.replace(/\/$/, "") || "/";
+  const path = stripTrailingSlash(pathname);
   const section = sections.find((s) =>
     locales.some((l) => sectionHref(l, s) === path),
   );
@@ -108,7 +111,7 @@ export const heroJoinId = "hero-join";
  * the home page's copy of it instead of scrolling nowhere.
  */
 export const joinCtaFrom = (locale: Locale, pathname: string) => {
-  const path = pathname.replace(/\/$/, "") || "/";
+  const path = stripTrailingSlash(pathname);
   if (!legalPages.some((p) => legalHref(p) === path)) return joinCta;
   const home = localeHome[locale];
   return `${home === "/" ? "" : home}/${joinCta}`;

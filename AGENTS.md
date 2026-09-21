@@ -58,7 +58,7 @@ beyond the mobile nav toggle.
 <!-- BEGIN:design-rules -->
 - **No stock photography, ever.** A missing photo renders as a visible
   placeholder via `components/Photo`. That is the intended state, not a bug.
-- **Photo imports belong in `content/images.ts`, never in `content/site.ts`.**
+- **Photo imports belong in `content/images.ts`, never in `content/shared.ts` or `content/copy/`.**
   The build gate imports the content module with plain Node, which cannot load
   a `.jpg`. Putting an image import there silently breaks the gate.
 - **Radius scale is short on purpose**: `rounded` for pills, `rounded-lg` for

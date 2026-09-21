@@ -17,6 +17,7 @@ export function Photo({
   /** Compact placeholder for small avatars, where a caption would not fit. */
   compact = false,
   missingLabel,
+  eager = false,
 }: {
   src: StaticImageData | undefined;
   alt: Fillable | undefined;
@@ -25,6 +26,11 @@ export function Photo({
   compact?: boolean;
   /** "Photo missing" in the current language. */
   missingLabel: string;
+  /**
+   * For a photo on screen at load. next/image lazy-loads by default, which
+   * delays exactly the image most likely to be the page's LCP.
+   */
+  eager?: boolean;
 }) {
   if (!src) {
     if (compact) {
@@ -66,6 +72,11 @@ export function Photo({
       alt={typeof alt === "string" ? alt : ""}
       sizes={sizes}
       className={className}
+      loading={eager ? "eager" : undefined}
+      fetchPriority={eager ? "high" : undefined}
+      // The build inlines a tiny blurred copy of every static import, so a
+      // slow connection shows the photo's colours instead of an empty box.
+      placeholder={eager ? "blur" : undefined}
     />
   );
 }

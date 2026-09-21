@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { legalMetadata } from "@/components/metadata";
 import { Fill } from "@/components/Todo";
 import { Container, PageHeader } from "@/components/ui";
 import { contact, responsible, site } from "@/content/shared";
 
-export const metadata: Metadata = {
-  title: "Imprint",
-  description: "Legal notice for greentumorrow.de.",
-  robots: { index: false },
-};
+export const metadata: Metadata = legalMetadata(
+  "imprint",
+  "Imprint",
+  "Legal notice for greentumorrow.de.",
+);
 
 /**
  * PLACEHOLDER. gREen tumorrow has no legal form yet, so no legal person can be

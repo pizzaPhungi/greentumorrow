@@ -7,11 +7,22 @@ import logoMark from "@/public/logo-mark.png";
  * green, with the roofline, hub and underline in amber. Supplied as a raster
  * badge rather than redrawn, so it stays pixel-identical to the source asset.
  */
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({
+  className,
+  alt = "gREen Tumorrow",
+  eager = false,
+}: {
+  className?: string;
+  /** Empty where a Wordmark sits beside it, so the name is not read twice. */
+  alt?: string;
+  /** For the header, which is always on screen at load. */
+  eager?: boolean;
+}) {
   return (
     <Image
       src={logoMark}
-      alt="gREen Tumorrow"
+      alt={alt}
+      loading={eager ? "eager" : undefined}
       className={cn("aspect-square h-10 w-auto rounded-xl", className)}
     />
   );

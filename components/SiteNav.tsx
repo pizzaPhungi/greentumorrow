@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/components/cn";
 import {
   counterpartHref,
@@ -12,7 +12,9 @@ import {
   locales,
   sectionHref,
   sections,
+  stripTrailingSlash,
   type Locale,
+  type Section,
 } from "@/content/shared";
 
 /**
@@ -32,25 +34,59 @@ export function SiteNav({
   joinLabel,
   openMenu,
   closeMenu,
+  mainNavLabel,
 }: {
   locale: Locale;
   homeLabel: string;
-  labels: Record<string, string>;
+  labels: Record<Section, string>;
   joinLabel: string;
   openMenu: string;
   closeMenu: string;
+  mainNavLabel: string;
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // next.config sets trailingSlash, so usePathname yields "/projects/".
-  const path = pathname.replace(/\/$/, "") || "/";
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const path = stripTrailingSlash(pathname);
 
   // On the home page the header's Join stays hidden while the hero's Join is
   // on screen. Starting hidden there keeps the prerendered HTML from flashing a
   // second button before the observer reports.
   const isHome = path === localeHome[locale];
   const [heroJoinInView, setHeroJoinInView] = useState(isHome);
+
+  // The header survives client-side navigation. Reset what depends on the
+  // page during render, not in an effect, so the new page never paints with
+  // the old page's state: an open menu after Back, or a second Join button
+  // flashing on the way to home.
+  const [prevPath, setPrevPath] = useState(path);
+  if (prevPath !== path) {
+    setPrevPath(path);
+    setOpen(false);
+    setHeroJoinInView(isHome);
+  }
+
+  // The CSS entrance (.reveal in globals.css) is for the first page load.
+  // Replayed on every tab switch it makes the whole new page blink in from
+  // faint. From the first client-side navigation on, switch it off. A layout
+  // effect, so the flag is set before the new page's first paint.
+  const firstPath = useRef(path);
+  useLayoutEffect(() => {
+    if (path !== firstPath.current) {
+      document.documentElement.dataset.navigated = "";
+    }
+  }, [path]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
   useEffect(() => {
     if (!isHome) return;
     const target = document.getElementById(heroJoinId);
@@ -76,7 +112,7 @@ export function SiteNav({
 
   return (
     <>
-      <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
+      <nav className="hidden items-center gap-7 md:flex" aria-label={mainNavLabel}>
         {tabs.map((t) => (
           <Link
             key={t.href}
@@ -109,7 +145,7 @@ export function SiteNav({
               <Link
                 href={counterpartHref(pathname, code)}
                 hrefLang={code}
-                className="text-navy/45 transition-colors hover:text-green-dark"
+                className="text-navy/70 transition-colors hover:text-green-dark"
               >
                 {code.toUpperCase()}
               </Link>
@@ -136,6 +172,7 @@ export function SiteNav({
       </a>
 
       <button
+        ref={toggleRef}
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-lg text-green-dark md:hidden"
@@ -158,7 +195,7 @@ export function SiteNav({
       {open ? (
         <nav
           id="mobile-nav"
-          aria-label="Main"
+          aria-label={mainNavLabel}
           className="absolute inset-x-0 top-full border-t border-green/10 bg-cream px-5 shadow-sm md:hidden"
         >
           <ul className="mx-auto flex max-w-6xl flex-col py-2">

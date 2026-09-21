@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { legalMetadata } from "@/components/metadata";
 import { Fill, TodoNote } from "@/components/Todo";
 import { Container, PageHeader } from "@/components/ui";
 import { TODO, contact, responsible } from "@/content/shared";
 
-export const metadata: Metadata = {
-  title: "Privacy",
-  description: "Privacy policy for greentumorrow.de.",
-  robots: { index: false },
-};
+export const metadata: Metadata = legalMetadata(
+  "privacy",
+  "Privacy",
+  "Privacy policy for greentumorrow.de.",
+);
 
 /**
  * PLACEHOLDER. The final wording depends on where the site is hosted and which

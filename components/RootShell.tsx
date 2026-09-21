@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Figtree } from "next/font/google";
-import Script from "next/script";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getCopy } from "@/content/copy";
@@ -31,17 +30,14 @@ export function RootShell({
     <html
       lang={copy.htmlLang}
       className={figtree.variable}
+      // globals.css sets smooth scrolling for in-page anchors. Without this,
+      // Next 16 keeps it during route changes too, and its scroll-into-view
+      // calls then animate and strand the new page halfway down.
+      data-scroll-behavior="smooth"
+      // SiteNav adds data-navigated on the client after the first route change.
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">
-        {/*
-         * Sets .js on <html> before hydration, so the scroll-reveal CSS in
-         * globals.css only hides content when JavaScript is actually going
-         * to run to reveal it again.
-         */}
-        <Script id="js-flag" strategy="beforeInteractive">
-          {"document.documentElement.classList.add('js')"}
-        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-green focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-cream"

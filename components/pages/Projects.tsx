@@ -19,9 +19,9 @@ export function Projects({ locale }: { locale: Locale }) {
       <div className="bg-cream/75 py-6 backdrop-blur-md sm:py-8">
         <Container>
           <Reveal className="lg:flex lg:items-center lg:gap-12">
-            <h2 className="shrink-0 text-3xl font-semibold sm:text-4xl">
+            <h1 className="shrink-0 text-3xl font-semibold sm:text-4xl">
               {t.title}
-            </h2>
+            </h1>
             <p className="mt-3 max-w-3xl leading-relaxed text-navy/75 sm:text-lg lg:mt-0 lg:border-l lg:border-amber-deep/40 lg:pl-12">
               {t.lead}
             </p>
@@ -46,7 +46,8 @@ export function Projects({ locale }: { locale: Locale }) {
                     alt={c.photoAlt}
                     missingLabel={copy.photo.missing}
                     sizes="(min-width: 768px) 50vw, 100vw"
-                    className="aspect-[16/10] w-full rounded object-cover lg:aspect-auto lg:h-[clamp(7rem,calc(100svh-37rem),18rem)]"
+                    eager={i < 2}
+                    className="aspect-[16/10] w-full rounded-lg object-cover lg:aspect-auto lg:h-[clamp(7rem,calc(100svh-37rem),18rem)]"
                   />
                   <div className="mt-5 flex grow flex-col">
                     <div className="flex flex-wrap items-center gap-3">
@@ -56,16 +57,16 @@ export function Projects({ locale }: { locale: Locale }) {
                       <span className="text-sm font-medium text-green-dark">
                         {c.field}
                       </span>
-                      <span className="text-sm text-navy/55">{c.year}</span>
+                      <span className="text-sm text-navy/70">{c.year}</span>
                     </div>
-                    <h3 className="mt-3 text-xl font-semibold">{c.name}</h3>
+                    <h2 className="mt-3 text-xl font-semibold">{c.name}</h2>
                     <p className="mt-3 grow leading-relaxed text-navy/75">
                       {c.summary}
                     </p>
                     <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-t border-green/15 pt-4">
                       {p.specs.map((value, i) => (
                         <div key={c.specLabels[i]}>
-                          <dt className="text-xs uppercase tracking-wider text-navy/50">
+                          <dt className="text-xs uppercase tracking-wider text-navy/70">
                             {c.specLabels[i]}
                           </dt>
                           <dd className="mt-0.5 font-semibold tabular-nums text-navy">
@@ -75,7 +76,7 @@ export function Projects({ locale }: { locale: Locale }) {
                       ))}
                       {p.partner ? (
                         <div>
-                          <dt className="text-xs uppercase tracking-wider text-navy/50">
+                          <dt className="text-xs uppercase tracking-wider text-navy/70">
                             {t.partnerLabel}
                           </dt>
                           <dd className="mt-0.5 font-semibold text-navy">
@@ -95,7 +96,10 @@ export function Projects({ locale }: { locale: Locale }) {
       {/* An invitation, never dressed up as an existing project. */}
       <div className="mb-6 py-10 sm:mb-8 sm:py-14">
         <Container>
-          <Card className="border-dashed border-amber-deep/50 bg-amber/8">
+          {/* Not a Card: Card's own border class would override the dashed
+              amber one, and cn() does not dedupe. Solid cream like the project
+              cards beside it; a tint alone is unreadable over the photo. */}
+          <Reveal className="rounded-lg border border-dashed border-amber-deep/60 bg-cream p-7">
             {/* Subgrid, so the three rows line up across both columns whatever the
                 translation does to the line count: chip, heading, body. The
                 examples therefore start where the intro starts, not where the
@@ -108,18 +112,18 @@ export function Projects({ locale }: { locale: Locale }) {
                       standing invitation, so it must not read as either. */}
                   <Pill tone="open">{t.own.badge}</Pill>
                 </div>
-                <h3 className="mt-4 text-xl font-semibold lg:mt-0 lg:self-end">
+                <h2 className="mt-4 text-xl font-semibold lg:mt-0 lg:self-end">
                   {t.own.headline}
-                </h3>
+                </h2>
                 <p className="mt-4 leading-relaxed text-navy/75 lg:mt-0">
                   {t.own.intro}
                 </p>
               </div>
               <div className="lg:row-span-3 lg:grid lg:grid-rows-subgrid">
                 <div aria-hidden="true" className="hidden lg:block" />
-                <h4 className="text-base font-semibold text-green-dark lg:self-end">
+                <h3 className="text-base font-semibold text-green-dark lg:self-end">
                   {t.own.examplesLabel}
-                </h4>
+                </h3>
                 <ul className="mt-4 space-y-2 text-navy/75 lg:mt-0">
                   {t.own.examples.map((e) => (
                     <li key={e} className="flex gap-2.5">
@@ -133,7 +137,7 @@ export function Projects({ locale }: { locale: Locale }) {
                 </ul>
               </div>
             </div>
-          </Card>
+          </Reveal>
         </Container>
       </div>
       <ClosingCta locale={locale} />

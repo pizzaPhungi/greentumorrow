@@ -13,7 +13,10 @@ export function FixedBackground({ src }: { src: StaticImageData }) {
         alt=""
         fill
         sizes="100vw"
-        priority
+        // Decorative and never the LCP element (it covers the viewport, so
+        // Chrome treats it as background). Load it, but after the content.
+        loading="eager"
+        fetchPriority="low"
         className="object-cover opacity-45"
       />
       <div className="absolute inset-0 bg-cream/25" />

@@ -19,6 +19,7 @@ export const en: Copy = {
     skipToContent: "Skip to content",
     openMenu: "Open menu",
     closeMenu: "Close menu",
+    mainNav: "Main",
   },
 
   hero: {

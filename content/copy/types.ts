@@ -71,6 +71,8 @@ export type Copy = {
     skipToContent: string;
     openMenu: string;
     closeMenu: string;
+    /** Accessible name of the main navigation landmark. */
+    mainNav: string;
   };
 
   hero: {

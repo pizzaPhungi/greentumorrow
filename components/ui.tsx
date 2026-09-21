@@ -247,6 +247,7 @@ export function Stat({
   note,
   delay,
   animate = true,
+  todoLabel,
 }: {
   value: FillableValue;
   unit?: string;
@@ -255,13 +256,15 @@ export function Stat({
   delay?: number;
   /** False for a year: counting up to it reads as nonsense. */
   animate?: boolean;
+  /** "To do" in the current language, shown while the value is a TODO. */
+  todoLabel: string;
 }) {
   const numeric = !isTodo(value) ? Number(value) : NaN;
   return (
     <Reveal as="div" delay={delay} className="border-t border-green/20 pt-5">
       <p className="font-semibold tracking-tight text-green tabular-nums">
         {isTodo(value) ? (
-          <TodoNote value={value} label="To do" />
+          <TodoNote value={value} label={todoLabel} />
         ) : animate && Number.isFinite(numeric) ? (
           <CountUp value={numeric} className="text-4xl sm:text-5xl" />
         ) : (

@@ -51,10 +51,10 @@ components.
 | Project figures and status | `shared.projectFacts` |
 | Project names, summaries, spec labels | `copy.projects.entries` |
 | The "bring your own project" invitation | `copy.projects.own` |
-| The three pillars (RE Community / Projects / Knowledge) | `copy.pillars` |
+| The three pillars (RE Community / Projects / Innovation) | `copy.pillars` |
 | People | `shared.teamFacts` and `copy.team.people` |
 | The Notion form people fill in to join | `shared.contact.joinForm` |
-| Partners | `shared.partnerLinks` and `copy.partners` |
+| Partners | `copy.partners`, logos in `content/images.ts` |
 | Alt text for photos | `copy.projects.entries[].photoAlt`, `copy.team.people[].photoAlt` |
 
 

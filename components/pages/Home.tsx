@@ -71,6 +71,7 @@ export function Home({ locale }: { locale: Locale }) {
                   alt={copy.hero.photoAlt}
                   missingLabel={copy.photo.missing}
                   sizes="(min-width: 1024px) 40vw, 100vw"
+                  eager
                   className="aspect-[3/2] w-full rounded-lg object-cover lg:aspect-auto lg:h-full lg:object-[22%_50%]"
                 />
               </Reveal>
@@ -87,9 +88,9 @@ export function Home({ locale }: { locale: Locale }) {
         <div className="grid gap-10 md:grid-cols-3">
           <Reveal variant="left">
             <MissionIcon className="mx-auto h-10 w-10 animate-float text-amber-deep" />
-            <h3 className="mt-3 text-center text-3xl font-bold text-amber-deep">
+            <h2 className="mt-3 text-center text-3xl font-bold text-amber-deep">
               {mvv.mission.label}
-            </h3>
+            </h2>
             <div className="mt-3 border-t-2 border-amber pt-6">
               <p className="text-center text-lg leading-relaxed text-amber-deep">
                 {mvv.mission.text}
@@ -98,9 +99,9 @@ export function Home({ locale }: { locale: Locale }) {
           </Reveal>
           <Reveal variant="scale" delay={150}>
             <VisionIcon className="mx-auto h-10 w-10 animate-float text-blue [animation-delay:0.3s]" />
-            <h3 className="mt-3 text-center text-3xl font-bold text-blue">
+            <h2 className="mt-3 text-center text-3xl font-bold text-blue">
               {mvv.vision.label}
-            </h3>
+            </h2>
             <div className="mt-3 border-t-2 border-blue pt-6">
               <p className="text-center text-lg leading-relaxed text-blue">
                 {mvv.vision.text}
@@ -109,9 +110,9 @@ export function Home({ locale }: { locale: Locale }) {
           </Reveal>
           <Reveal variant="right" delay={300}>
             <ValuesIcon className="mx-auto h-10 w-10 animate-float text-green-dark [animation-delay:0.6s]" />
-            <h3 className="mt-3 text-center text-3xl font-bold text-green-dark">
+            <h2 className="mt-3 text-center text-3xl font-bold text-green-dark">
               {mvv.values.label}
-            </h3>
+            </h2>
             <div className="mt-3 border-t-2 border-green pt-6">
               <ul className="space-y-2 text-center text-lg text-green-dark">
                 {mvv.values.items.map((v) => (
@@ -130,7 +131,7 @@ export function Home({ locale }: { locale: Locale }) {
         />
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {copy.stats.items.map((s, i) => (
-            <Stat key={s.label} {...s} delay={i * 100} />
+            <Stat key={s.label} {...s} delay={i * 100} todoLabel={copy.todo.label} />
           ))}
         </div>
       </Section>

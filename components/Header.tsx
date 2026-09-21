@@ -21,7 +21,7 @@ export function Header({ locale }: { locale: Locale }) {
             className="flex items-center gap-3"
             aria-label={copy.nav.home}
           >
-            <LogoMark className="h-10" />
+            <LogoMark className="h-10" eager />
             <Wordmark className="hidden text-lg lg:inline" />
           </Link>
 
@@ -33,6 +33,7 @@ export function Header({ locale }: { locale: Locale }) {
               joinLabel={copy.nav.join}
               openMenu={copy.nav.openMenu}
               closeMenu={copy.nav.closeMenu}
+              mainNavLabel={copy.nav.mainNav}
             />
           </div>
         </div>

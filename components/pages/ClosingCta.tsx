@@ -49,13 +49,13 @@ export function ClosingCta({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
 
   return (
-    <section id="join" className="scroll-mt-18 py-16 sm:py-20">
+    <section id="join" className="py-16 sm:py-20">
       <Container>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className={`group flex flex-1 flex-col items-center gap-4 rounded-xl p-6 text-center backdrop-blur-md transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg ${panelTints[i]}`}
+              className={`group flex flex-1 flex-col items-center gap-4 rounded-lg p-6 text-center backdrop-blur-md transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-lg ${panelTints[i]}`}
             >
               <span
                 className={`inline-flex shrink-0 items-center whitespace-nowrap rounded px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${labelColors[i]}`}

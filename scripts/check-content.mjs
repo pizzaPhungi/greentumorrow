@@ -2,7 +2,7 @@
  * Fails the build while `TODO(...)` placeholders remain in the content module.
  *
  * Runs automatically as the `prebuild` npm lifecycle script. Set ALLOW_TODOS=1
- * to build anyway — needed for previews and staging while the club is still
+ * to build anyway, needed for previews and staging while the club is still
  * filling content in.
  */
 /**
@@ -17,7 +17,7 @@ const MODULES = [
 ];
 
 if (process.env.ALLOW_TODOS === "1") {
-  console.log("check:content — skipped (ALLOW_TODOS=1)");
+  console.log("check:content: skipped (ALLOW_TODOS=1)");
   process.exit(0);
 }
 
@@ -49,7 +49,7 @@ for (const [prefix, path] of MODULES) {
 }
 
 if (found.length === 0) {
-  console.log("check:content — no unresolved placeholders");
+  console.log("check:content: no unresolved placeholders");
   process.exit(0);
 }
 

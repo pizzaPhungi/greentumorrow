@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
 
 /**
- * Static image imports, kept out of content/site.ts on purpose.
+ * Static image imports, kept out of content/shared.ts and content/copy/ on purpose.
  *
  * scripts/check-content.mjs imports the content module with plain Node to run
  * the build gate, and plain Node cannot import a .jpg. It fails with
@@ -14,7 +14,7 @@ import type { StaticImageData } from "next/image";
  * To add a photo:
  *   1. drop the file in content/photos/
  *   2. import it below and key it by project slug or person name
- *   3. replace the matching photoAlt TODO in content/site.ts
+ *   3. replace the matching photoAlt TODO in content/copy/en.ts and de.ts
  *
  * Both halves are needed: without the alt text the build gate keeps failing,
  * and without the import the page shows a visible placeholder.
@@ -77,7 +77,7 @@ export const personPhotos: Record<string, StaticImageData> = {
   "Prof. Dr. Hubert Röder": hubertRoeder,
 };
 
-/** Keyed by the exact `name` in partnerLinks. No TUM entry: that panel was dropped. */
+/** Keyed by the exact `name` in copy.partners.entries. */
 export const partnerLogos: Record<string, StaticImageData> = {
   "EGM eG": egmLogo,
   "BENG eG": bengLogo,

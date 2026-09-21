@@ -23,6 +23,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Anchor jumps and keyboard focus land below the sticky header, not under
+     it. The header is h-18 (4.5rem). */
+  scroll-padding-top: 5rem;
 }
 
 /* Must live in @layer base: unlayered rules outrank Tailwind's utility layer,
@@ -54,43 +57,72 @@ html {
   color: var(--color-navy);
 }
 
+/* No border-radius here: unlayered, it would square off every rounded button
+   the moment it takes focus. Outlines follow the element's own radius. */
 *:focus-visible {
   outline: 2px solid var(--color-blue);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
 /*
- * Scroll-in reveal. Gated behind `.js`, which RootShell's beforeInteractive
- * script sets on <html> before hydration: a visitor without JavaScript never
- * sees the hidden state, since the class that hides it never gets added.
+ * Scroll-in reveal, see components/Reveal.tsx. Every .reveal plays a CSS
+ * entrance from the first paint, so content on screen at load never waits for
+ * JavaScript. It starts at 0.1 rather than 0 because Chrome does not count a
+ * fully transparent element as painted, which would push LCP back to the end
+ * of the animation. Off-screen elements get .reveal-hidden from the observer
+ * and transition back in as they scroll into view.
  */
-.js .reveal {
-  opacity: 0;
+@keyframes reveal-intro {
+  from {
+    opacity: 0.1;
+    transform: var(--reveal-from);
+  }
+}
+
+.reveal {
+  --reveal-from: translateY(2.5rem);
+  animation: reveal-intro 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.js .reveal-up {
-  transform: translateY(2.5rem);
+.reveal-left {
+  --reveal-from: translateX(-2.5rem);
 }
 
-.js .reveal-left {
-  transform: translateX(-2.5rem);
+.reveal-right {
+  --reveal-from: translateX(2.5rem);
 }
 
-.js .reveal-right {
-  transform: translateX(2.5rem);
+.reveal-scale {
+  --reveal-from: scale(0.92);
 }
 
-.js .reveal-scale {
-  transform: scale(0.92);
+.reveal.reveal-hidden {
+  opacity: 0;
+  transform: var(--reveal-from);
 }
 
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
+/* Set by SiteNav after the first client-side navigation: a new tab shows its
+   content at once instead of replaying the load entrance. */
+[data-navigated] .reveal {
+  animation: none;
+}
+
+/* Motion is decoration: with reduced motion or on paper, show everything. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .reveal.reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Gentle idle motion for the mission/vision/values symbols. */

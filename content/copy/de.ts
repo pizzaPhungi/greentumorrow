@@ -1,7 +1,7 @@
 import type { Copy } from "./types.ts";
 
 /**
- * German is the default language, so this is the first text most visitors read.
+ * German lives under /de; English is the default at the root.
  * Written as German sentences rather than translated ones: where a literal
  * rendering of the English would be stiff, the German says what a person here
  * would actually say.
@@ -25,6 +25,7 @@ export const de: Copy = {
     skipToContent: "Zum Inhalt springen",
     openMenu: "Menü öffnen",
     closeMenu: "Menü schließen",
+    mainNav: "Hauptnavigation",
   },
 
   hero: {

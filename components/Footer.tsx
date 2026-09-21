@@ -16,7 +16,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3">
-              <LogoMark className="h-10" />
+              <LogoMark className="h-10" alt="" />
               <Wordmark className="text-xl" />
             </div>
           </div>
@@ -77,7 +77,7 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="border-t border-green/15 py-5 text-xs text-navy/55">
+        <div className="border-t border-green/15 py-5 text-xs text-navy/70">
           <p>
             © {new Date().getFullYear()} {site.legalName}
           </p>

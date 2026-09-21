@@ -70,7 +70,7 @@ function PersonGrid({
                 </>
               ) : null}
             </p>
-            <p className="text-sm leading-snug text-navy/55">
+            <p className="text-sm leading-snug text-navy/70">
               {copy.team.people[person.name]?.programme ?? person.programme}
             </p>
           </Card>
@@ -88,6 +88,9 @@ export function AboutUs({ locale }: { locale: Locale }) {
   return (
     <>
       <FixedBackground src={aboutBackgroundPhoto} />
+      {/* The page has no visible title, its sections speak for themselves,
+          but every page needs one h1 for screen readers and search. */}
+      <h1 className="sr-only">{copy.nav.sections.about}</h1>
 
       {/* No section background here: the fixed photo shows straight through,
           and only the cards on top of it carry the frosted tint. */}
@@ -133,7 +136,7 @@ export function AboutUs({ locale }: { locale: Locale }) {
                 />
                 <div>
                   <h3 className="text-lg font-semibold">{p.name}</h3>
-                  <p className="mt-1 text-sm text-navy/55">{p.full}</p>
+                  <p className="mt-1 text-sm text-navy/70">{p.full}</p>
                 </div>
               </Card>
             ))}

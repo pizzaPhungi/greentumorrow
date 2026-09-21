@@ -24,6 +24,7 @@ export function CountUp({
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    let frame = 0;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
@@ -34,14 +35,17 @@ export function CountUp({
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
           setDisplay(Math.round(eased * value));
-          if (progress < 1) requestAnimationFrame(tick);
+          if (progress < 1) frame = requestAnimationFrame(tick);
         };
-        requestAnimationFrame(tick);
+        frame = requestAnimationFrame(tick);
       },
       { threshold: 0.3 },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, [value, duration]);
 
   return (
