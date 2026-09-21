@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- BEGIN:project-rules -->
 
-# gREen tumorrow website
+# gREen Tumorrow website
 
 Static marketing site for a TUM student initiative. Next.js 16 App Router,
 Tailwind v4, `output: "export"`. No server, no database, no client state

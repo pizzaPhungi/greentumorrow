@@ -14,9 +14,15 @@ from the file, so there is nothing to keep in sync.
 
 | File | Size | Where |
 | --- | --- | --- |
-| `re-stock-image.jpeg` | 1537x872 | Hero, next to the headline |
-| `perlacher-herz.webp` | 1920x1078 | Perlacher Herz project card |
+| `hero.webp` | 2200x1463 | Hero, next to the headline |
+| `harthof-ascend.png` | 596x720 | Harthof · ASCEND project card |
 | `gemeinde-neuperlach.png` | 703x376 | Neuperlach project card |
+| `office-workspace.jpg` | 5472x3648 | Fixed backdrop, about-us page |
+| `egm-logo.webp` | 1117x1117 | EGM eG partner card |
+| `beng-logo.jpg` | 600x400 | BENG eG partner card |
+| `thomas-hamacher.jpg` | 1000x562 | Thomas Hamacher, advisors |
+| `sebastian-schwenen.webp` | 433x265 | Sebastian Schwenen, advisors |
+| `hubert-roeder.jpg` | 1087x1515 | Hubert Röder, advisors |
 
 `gemeinde-neuperlach.png` is small. It renders about 490px wide on a desktop
 card, so on a retina screen it is being upscaled and looks soft. Replace it with
@@ -25,9 +31,5 @@ a version at least 1400px wide when one exists.
 File names must not contain spaces; the import in `../images.ts` names the file
 directly.
 
-Alt text for both is already written in `content/site.ts`. Once the files are
-here, uncomment the two imports in `../images.ts` and they appear.
-
-**Before publishing the Perlacher Herz photo:** it shows roughly ten identifiable
-people. Publishing it needs their consent (GDPR, and § 22 KunstUrhG). Get it in
-writing, or use a frame where nobody is recognisable.
+Alt text for all of these is already written in `content/copy/en.ts` and
+`content/copy/de.ts`.

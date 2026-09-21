@@ -1,6 +1,6 @@
 # greentumorrow.de
 
-Website for **gREen tumorrow**, a student initiative at TUM for people who want to
+Website for **gREen Tumorrow**, a student initiative at TUM for people who want to
 work on renewable energy, by joining real projects, with partners or their own,
 and building expertise doing it.
 
@@ -76,7 +76,7 @@ responseTime: "Within three days",                   // after
 Run `npm run check:content`; it prints everything still outstanding. On top of
 that:
 
-1. **Imprint.** gREen tumorrow has no legal form yet, so no legal person can be
+1. **Imprint.** gREen Tumorrow has no legal form yet, so no legal person can be
    the service provider under § 5 DDG. A natural person must be named with a
    real postal address and carries personal liability, or the site runs under
    TUM student-club infrastructure. See [`app/imprint/page.tsx`](app/imprint/page.tsx).
@@ -100,46 +100,33 @@ that:
 
 ## Brand
 
-Colours are sampled from the club's own deck (`greentumorrow.pptx`) and defined
-once as Tailwind theme tokens in [`app/globals.css`](app/globals.css):
+Colours are sampled from the club's current logo and defined once as Tailwind
+theme tokens in [`app/globals.css`](app/globals.css):
 
 | Token | Hex | Use |
 | --- | --- | --- |
 | `cream` | `#FFF3DD` | page background |
 | `cream-deep` | `#F8E8C8` | alternating bands, footer |
 | `mist` | `#E8EDE9` | cool alternating bands |
-| `green` / `green-dark` | `#3A643C` / `#1F4438` | headings, primary buttons, dark sections |
-| `amber` / `amber-deep` | `#FFC246` / `#D98F0D` | accents, eyebrows, underlines |
-| `blue` | `#32459A` | advisor avatars |
+| `green` / `green-dark` | `#0F4D33` / `#0B3624` | headings, primary buttons, dark sections |
+| `amber` / `amber-deep` | `#F9B233` / `#C78E29` | accents, eyebrows, underlines |
+| `blue` | `#2F5597` | advisor avatars |
 | `navy` | `#0E2841` | body text |
 
-The mark in [`components/Logo.tsx`](components/Logo.tsx) is a vector rebuild of
-the club's logo, traced by eye from a raster image. **If the vector original
-(AI/SVG/EPS) exists, drop it in and replace the hand-built paths.** This version
-is an approximation, not the source of truth.
+The mark in [`components/Logo.tsx`](components/Logo.tsx) is the club's actual
+logo asset (a house holding a wind turbine, white on dark green, with amber
+accents), stored at [`public/logo-mark.png`](public/logo-mark.png) and used as-is
+via `next/image` rather than redrawn, so it stays pixel-identical to the source.
+The same file is also [`app/icon.png`](app/icon.png), the site favicon.
 
-The mark carries its own four colours, kept separate from the brand palette
-because they do not match it:
-
-| Token | Hex | Use |
-| --- | --- | --- |
-| `sun` | `#F2A81B` | the ring |
-| `teal` | `#0E5B57` | turbine and buildings |
-| `grass` | `#57A82B` | hills and the window |
-| `grass-dark` | `#3C8A1C` | the darker hill |
-
-[`app/icon.svg`](app/icon.svg) is a deliberately simplified variant (ring,
-turbine, hill only) because the full mark turns to mush at favicon sizes.
-
-The wordmark is never plain text: `gREen tumorrow` carries **RE** (renewable
-energy) in amber and **TUM** inside "tumorrow". Always render it via the
-`Wordmark` component.
+The wordmark is never plain text: `gREen Tumorrow` carries **RE** (renewable
+energy) in amber. Always render it via the `Wordmark` component.
 
 ## Structure
 
 ```
-app/(en)/                  English routes: /, /projects, /partners, /members
-app/(de)/de/               German routes: /de and the same three tabs
+app/(en)/                  English routes: /, /projects, /about
+app/(de)/de/               German routes: /de and the same two tabs
 app/(de)/imprint, privacy  legal pages, German only, unprefixed
 components/                Logo, Header, Footer, UI primitives, TODO markers
 components/pages/          page bodies, shared by both languages
@@ -183,8 +170,8 @@ layout shift and means nobody maintains pixel dimensions by hand.
 portrait.
 
 Joining runs through a Notion form, then the WhatsApp group. Neither lives on this site.
-The site has four pages per language: home plus the Projects, Partners and
-Members tabs. Add or rename a tab in `sections` in
+The site has three pages per language: home plus the Projects and About us
+tabs. Add or rename a tab in `sections` in
 [`content/shared.ts`](content/shared.ts), add its label to `nav.sections` in both
 copy modules, and create the two route files. `Header` stays a server component;
 `SiteNav` is the client part that needs the current path for the active tab and

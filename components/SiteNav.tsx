@@ -55,10 +55,8 @@ export function SiteNav({
     if (!isHome) return;
     const target = document.getElementById(heroJoinId);
     if (!target) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setHeroJoinInView(entry.isIntersecting),
-      // The sticky header is h-18 (72px): a button under it counts as gone.
-      { rootMargin: "-72px 0px 0px 0px" },
+    const observer = new IntersectionObserver(([entry]) =>
+      setHeroJoinInView(entry.isIntersecting),
     );
     observer.observe(target);
     return () => observer.disconnect();
@@ -85,8 +83,7 @@ export function SiteNav({
             href={t.href}
             aria-current={t.active ? "page" : undefined}
             className={cn(
-              "text-sm font-medium transition-colors",
-              t.active ? "text-green-dark" : "text-navy/70 hover:text-green-dark",
+              "text-sm font-bold text-navy transition-colors hover:text-green-dark",
             )}
           >
             <span className={cn("pb-1", t.active && "border-b-2 border-amber")}>
@@ -171,10 +168,7 @@ export function SiteNav({
                   href={t.href}
                   onClick={() => setOpen(false)}
                   aria-current={t.active ? "page" : undefined}
-                  className={cn(
-                    "block border-b border-green/10 py-4 text-base font-medium",
-                    t.active ? "text-green-dark" : "text-navy",
-                  )}
+                  className="block border-b border-green/10 py-4 text-base font-bold text-navy"
                 >
                   {t.label}
                 </Link>

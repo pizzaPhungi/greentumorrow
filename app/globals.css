@@ -1,23 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette, sampled from the club's own deck (greentumorrow.pptx). */
-  --color-cream: #fff3dd;
+  /* Brand palette, sampled from the club's updated logo (greentumorrow.pptx). */
+  --color-cream: #fffaf2;
   --color-cream-deep: #f8e8c8;
-  --color-green: #3a643c;
-  --color-green-dark: #1f4438;
-  --color-amber: #ffc246;
-  --color-amber-deep: #d98f0d;
-  --color-blue: #32459a;
+  --color-green: #0f4d33;
+  --color-green-dark: #0b3624;
+  --color-amber: #f9b233;
+  --color-amber-deep: #c78e29;
+  --color-blue: #2f5597;
   --color-navy: #0e2841;
   --color-sage: #a5b294;
   --color-mist: #e8ede9;
-
-  /* Logo mark only. The wordmark and the site keep the brand palette above. */
-  --color-sun: #f2a81b;
-  --color-teal: #0e5b57;
-  --color-grass: #57a82b;
-  --color-grass-dark: #3c8a1c;
 
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
@@ -64,6 +58,54 @@ html {
   outline: 2px solid var(--color-blue);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/*
+ * Scroll-in reveal. Gated behind `.js`, which RootShell's beforeInteractive
+ * script sets on <html> before hydration: a visitor without JavaScript never
+ * sees the hidden state, since the class that hides it never gets added.
+ */
+.js .reveal {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal-up {
+  transform: translateY(2.5rem);
+}
+
+.js .reveal-left {
+  transform: translateX(-2.5rem);
+}
+
+.js .reveal-right {
+  transform: translateX(2.5rem);
+}
+
+.js .reveal-scale {
+  transform: scale(0.92);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Gentle idle motion for the mission/vision/values symbols. */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

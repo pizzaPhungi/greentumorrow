@@ -11,43 +11,57 @@ export const de: Copy = {
   switchToOther: "Read in English",
 
   meta: {
-    title: "gREen tumorrow, Studenteninitiative für Erneuerbare an der TUM",
+    title: "gREen Tumorrow, Studenteninitiative für Erneuerbare an der TUM",
     description:
-      "gREen tumorrow ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Von Wissen weitergeben bis zu echten Energieprojekten, für eine nachhaltige und dezentrale Energieversorgung.",
+      "gREen Tumorrow ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Von Wissen weitergeben bis zu echten Energieprojekten, für eine nachhaltige und dezentrale Energieversorgung.",
     ogLocale: "de_DE",
   },
 
   nav: {
     join: "Mitmachen",
     homeTab: "Start",
-    sections: { projects: "Projekte", partners: "Partner", members: "Mitglieder" },
-    home: "gREen tumorrow, Startseite",
+    sections: { projects: "Projekte", about: "Über uns" },
+    home: "gREen Tumorrow, Startseite",
     skipToContent: "Zum Inhalt springen",
     openMenu: "Menü öffnen",
     closeMenu: "Menü schließen",
   },
 
   hero: {
-    eyebrow: "Studenteninitiative",
-    headline: "Als Studierende bringen wir die Energiewende voran.",
-    lead: "ist ein Verein für alle, die sich für Erneuerbare Energien begeistern und die Energiewende aktiv voranbringen wollen. Wir bringen Menschen zusammen und machen aus Ideen etwas Konkretes: vom Wissensaustausch bis zu echten Energieprojekten für eine nachhaltige, dezentrale Energieversorgung.",
+    headline: "Die Energiewende voranbringen.",
+    lead: "verbindet Studierende, Kommunen, Industrie und Kapital, um die Energiewende im Bereich erneuerbare Energien zu beschleunigen. Durch die Förderung von Zusammenarbeit, den Austausch von Wissen und die Entwicklung innovativer Lösungen gehen wir reale Herausforderungen der Energiewende an und realisieren Projekte. Gemeinsam tragen wir zu einer nachhaltigen und dezentralen Energiezukunft bei.",
     joinCta: "Mitmachen",
     photoAlt:
-      "Solarmodule im Vordergrund, dahinter Monteure in Warnkleidung, am Horizont Windräder bei Sonnenuntergang",
+      "Ein Windradflügel strahlt über eine Bildmontage aus Szenen erneuerbarer Energien: Solarmodule, grüne Felder, ein bewölkter Himmel und Ackerland mit Windrädern",
+  },
+
+  missionVisionValues: {
+    mission: {
+      label: "Mission",
+      text: "Menschen, Wissen und Kapital verbinden, um die Energiewende im Bereich erneuerbare Energien zu beschleunigen.",
+    },
+    vision: {
+      label: "Vision",
+      text: "Eine Zukunft, in der erneuerbare Energie von der Gemeinschaft für die Gemeinschaft gestaltet wird.",
+    },
+    values: {
+      label: "Werte",
+      items: ["Nachhaltigkeit", "Innovation", "Integrität"],
+    },
   },
 
   stats: {
-    eyebrow: "In Zahlen",
-    title: "Wo wir stehen",
+    title: "Zahlen-Highlights",
     items: [
       {
         value: "2026",
         label: "gegründet",
-        note: "und als Studenteninitiative der TUM akkreditiert",
+        note: "und von der TUM akkreditiert",
+        animate: false,
       },
-      { value: "3", label: "Partner", note: "TUM, EGM eG und BENG eG" },
-      { value: "2", label: "Solarprojekte", note: "35 kWp zusammen" },
-      { value: "6", label: "Studierende", note: "dazu zwei Betreuer" },
+      { value: "3", label: "Partner" },
+      { value: "2", label: "Solarprojekte" },
+      { value: "6", label: "Studierende" },
     ],
   },
 
@@ -57,39 +71,38 @@ export const de: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "Ein starkes Netzwerk zwischen Anwohnern, Industrie und Studierenden aufbauen, das Zusammenarbeit fördert und echte Projekte hervorbringt.",
+        text: "Ein starkes Netzwerk zwischen Anwohnern, Industrie und Studierenden aufbauen, das Zusammenarbeit fördert.",
       },
       {
         prefix: "RE",
         name: "Projekte",
-        text: "Anlagen planen, finanzieren und bauen, bis sie am Netz sind. Hier passiert der größte Teil der Arbeit.",
+        text: "Anlagen planen, finanzieren und bauen, bis sie am Netz sind.",
       },
       {
         prefix: "RE",
-        name: "Wissen",
-        text: "Wir schließen die Lücke zwischen Theorie und Praxis durch Lehre, Wissensaustausch und den Aufbau von Fachwissen.",
+        name: "Innovation",
+        text: "Wir schließen die Lücke zwischen Theorie und Praxis durch Lehre, Wissensaustausch und innovative Lösungen.",
       },
     ],
   },
 
 
   projects: {
-    eyebrow: "Woran wir arbeiten",
-    title: "Projekte",
+    title: "PV-Projekte",
     lead: "Alles, was wir tun, hängt an einem echten Gebäude, einem echten Budget oder einer echten Forschungsfrage. Eines läuft, eines ist in Planung, das nächste könnte deines sein.",
     partnerLabel: "Partner",
     entries: {
-      "perlacher-herz": {
-        name: "Perlacher Herz",
-        field: "Solar",
-        status: "Am Netz",
-        year: "Seit 2026 am Netz",
+      "harthof-ascend": {
+        name: "Harthof · ASCEND",
+        field: "Plus-Energie-Quartier",
+        status: "In Planung",
+        year: "EU-Projekt ASCEND",
         summary:
-          "Unsere erste Anlage. Eine Aufdach-PV auf einem Gemeinschaftsgebäude in Perlach, entwickelt mit der Energiegenossenschaft EGM eG und finanziert von deren Mitgliedern, den Nachbarn, denen sie jetzt gehört.",
-        specLabels: ["Leistung", "Module", "Am Netz seit"],
-        heroLine: "PV-Anlage auf dem Dach, 10 kWp, seit 2026 am Netz",
+          "Ein Plus-Energie-Quartier in Harthof im Rahmen des EU-Projekts ASCEND. Großspeicher und Ladesäulen sind zusätzlich zur Solaranlage geplant.",
+        specLabels: ["Fläche"],
+        heroLine: "Plus-Energie-Quartier, ca. 450 m², in Planung",
         photoAlt:
-          "Mitglieder und Nachbarn stehen zwischen den flach montierten Modulen auf dem Dach des Perlacher Herz",
+          "Eine Luftbildkarte des Münchner Stadtteils Harthof mit dem gelb markierten ASCEND-Projektgebiet",
       },
       "gemeinde-neuperlach": {
         name: "Evangelisch-Freikirchliche Gemeinde Neuperlach",
@@ -108,7 +121,7 @@ export const de: Copy = {
       badge: "Offen",
       headline: "Bring dein eigenes Projekt mit",
       intro:
-        "Nicht alles muss über einen Partner kommen. Wenn du eine Idee hast, ein Gebäude, eine Messung, die du machen willst, oder eine Frage, die dich umtreibt, kann daraus ein Projekt von gREen tumorrow werden. Und du leitest es.",
+        "Nicht alles muss über einen Partner kommen. Wenn du eine Idee hast, ein Gebäude, eine Messung, die du machen willst, oder eine Frage, die dich umtreibt, kann daraus ein Projekt von gREen Tumorrow werden. Und du leitest es.",
       examplesLabel: "Zum Beispiel",
       examples: [
         "Ein Dach, dessen Eigentümer du schon kennst",
@@ -119,9 +132,7 @@ export const de: Copy = {
   },
 
   team: {
-    eyebrow: "Mit wem du arbeiten würdest",
-    title: "Unsere Mitglieder",
-    advisorBadge: "Betreuer",
+    title: "Studierendenteam",
     /** One entry per person, added when their portrait lands. */
     people: {
       "Prof. Dr. Christoph Goebel": {
@@ -130,38 +141,45 @@ export const de: Copy = {
     },
   },
 
+  advisors: {
+    title: "Betreuer",
+  },
+
   partners: {
-    eyebrow: "Mit wem wir zusammenarbeiten",
     title: "Partner",
     entries: [
       {
         name: "EGM eG",
         full: "Energiegemeinschaften München eG",
-        text: "Die Energiegenossenschaft, mit der wir die PV-Projekte umsetzen.",
       },
       {
         name: "BENG eG",
         full: "Bürgerenergiegenossenschaft BENG eG",
-        text: "Eine der etablierten Bürgerenergiegenossenschaften Münchens, und ein zweiter Weg von der Idee zu einer Anlage, die einem Viertel gehört.",
-      },
-      {
-        name: "TUM",
-        full: "Technische Universität München",
-        text: "Unsere Hochschule. Wir sind eine akkreditierte Studenteninitiative der TUM und arbeiten mit Lehrstühlen aus Technik und Management.",
       },
     ],
   },
 
   closing: {
-    title: "Du willst die Energiewende voranbringen? Fang hier an.",
-    lead: "Sag uns kurz, wer du bist und wie wir dich erreichen. Wir melden uns und holen dich in die WhatsApp-Gruppe, in der alles läuft. Was diese Woche ansteht, wo jemand Hilfe braucht, wann wir uns treffen.",
+    panels: [
+      {
+        title: "Du willst die Energiewende voranbringen? Fang hier an.",
+        lead: "Sag uns, wer du bist und was du studierst. Was motiviert dich mitzumachen? Bei uns gibt es viele Möglichkeiten und viel Flexibilität, du entscheidest, wie viel Zeit und Energie du einbringst. Bring deine eigenen Ideen mit und setze sie gemeinsam mit uns um.",
+      },
+      {
+        title: "Hast du eine Herausforderung im Energiebereich? Bring sie zu uns.",
+        lead: "Bring uns dein kniffligstes Problem aus dem Bereich Erneuerbare oder Speicher. Gemeinsam entwickeln wir innovative Lösungen, die sich in der Praxis bewähren. Läuft bei dir schon ein Projekt und du willst frischen Wind mit an Bord holen? Kontaktiere uns jederzeit.",
+      },
+      {
+        title: "Du willst etwas in deinem Umfeld verändern? Fang hier an.",
+        lead: "Du willst dein Wissen über Energie teilen oder etwas in deiner Nachbarschaft verbessern, weißt aber nicht, wie du anfangen sollst? Du musst weder Studierender noch Experte sein, nur der Wille zählt, etwas zu bewegen. Melde dich jederzeit bei uns, wir helfen dir beim ersten Schritt.",
+      },
+    ],
     cta: "Formular ausfüllen",
-    askInstead: "Lieber erst etwas fragen?",
+    contactUs: "Kontaktiere uns",
+    audiences: ["Studierende", "Unternehmen und Organisationen", "Energiebegeisterte"],
   },
 
   footer: {
-    blurb:
-      "Studenteninitiative an der TUM in München. Studierende, die an Erneuerbaren arbeiten, in echten Projekten, mit Partnern und mit eigenen.",
     legalHeading: "Rechtliches",
     findUsHeading: "So erreichst du uns",
     imprint: "Impressum",

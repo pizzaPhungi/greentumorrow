@@ -5,43 +5,57 @@ export const en: Copy = {
   switchToOther: "Auf Deutsch lesen",
 
   meta: {
-    title: "gREen tumorrow, student initiative for renewable energy at TUM",
+    title: "gREen Tumorrow, student initiative for renewable energy at TUM",
     description:
-      "gREen tumorrow is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. From sharing knowledge to realising real-world energy projects, for a sustainable and decentralised energy future.",
+      "gREen Tumorrow is a club for people who are passionate about renewable energy and want to actively drive the energy transition forward. From sharing knowledge to realising real-world energy projects, for a sustainable and decentralised energy future.",
     ogLocale: "en_GB",
   },
 
   nav: {
     join: "Join",
     homeTab: "Home",
-    sections: { projects: "Projects", partners: "Partners", members: "Members" },
-    home: "gREen tumorrow, home",
+    sections: { projects: "Projects", about: "About us" },
+    home: "gREen Tumorrow, home",
     skipToContent: "Skip to content",
     openMenu: "Open menu",
     closeMenu: "Close menu",
   },
 
   hero: {
-    eyebrow: "Student initiative",
-    headline: "As students, we move the energy transition forward.",
-    lead: "is a club for people passionate about renewable energy who want to drive the energy transition forward. We bring people together to turn ideas into action, from sharing knowledge to realising real-world energy projects for a sustainable, decentralised energy future.",
+    headline: "Moving the energy transition forward.",
+    lead: "connects students, communities, industry and capital to accelerate the renewable energy transition. By fostering collaboration, facilitating knowledge exchange and developing innovative solutions, we address real-world energy challenges and realise projects. Together, we contribute to a sustainable and decentralised energy future.",
     joinCta: "Join us",
     photoAlt:
-      "Solar modules in the foreground, workers in high-visibility gear behind them, wind turbines on the horizon at sunset",
+      "A wind turbine blade radiating out over a montage of renewable energy scenes: solar panels, green fields, a cloudy sky and farmland dotted with turbines",
+  },
+
+  missionVisionValues: {
+    mission: {
+      label: "Mission",
+      text: "Connecting people, knowledge and capital to accelerate the renewable energy transition.",
+    },
+    vision: {
+      label: "Vision",
+      text: "A future where renewable energy is led by the community, for the community.",
+    },
+    values: {
+      label: "Values",
+      items: ["Sustainability", "Innovation", "Integrity"],
+    },
   },
 
   stats: {
-    eyebrow: "In numbers",
-    title: "Where we stand",
+    title: "Number Highlights",
     items: [
       {
         value: "2026",
         label: "founded",
-        note: "and accredited as a TUM student initiative",
+        note: "and accredited by TUM",
+        animate: false,
       },
-      { value: "3", label: "partners", note: "TUM, EGM eG and BENG eG" },
-      { value: "2", label: "solar projects", note: "35 kWp between them" },
-      { value: "6", label: "students", note: "plus two academic advisors" },
+      { value: "3", label: "partners" },
+      { value: "2", label: "solar projects" },
+      { value: "6", label: "students" },
     ],
   },
 
@@ -51,39 +65,38 @@ export const en: Copy = {
       {
         prefix: "RE",
         name: "Community",
-        text: "Building a strong network between locals, industry and students to foster collaboration and develop real-world projects.",
+        text: "Building a strong network between locals, industry and students to foster collaboration.",
       },
       {
         prefix: "RE",
         name: "Projects",
-        text: "Planning, financing and delivering renewable energy installations that actually get built. This is where most of the work happens.",
+        text: "Planning, financing and delivering renewable energy installations that actually get built.",
       },
       {
         prefix: "RE",
-        name: "Knowledge",
-        text: "Bridging the gap between theory and practice through education, knowledge exchange, and building expertise.",
+        name: "Innovation",
+        text: "Bridging the gap between theory and practice through education, knowledge exchange, and innovative solutions.",
       },
     ],
   },
 
 
   projects: {
-    eyebrow: "What we work on",
-    title: "Projects",
+    title: "PV Projects",
     lead: "Everything we do runs on a real building, a real budget or a real research question. One is on the grid, one is being planned, and the next one could be yours.",
     partnerLabel: "Partner",
     entries: {
-      "perlacher-herz": {
-        name: "Perlacher Herz",
-        field: "Solar",
-        status: "Live",
-        year: "On the grid since 2026",
+      "harthof-ascend": {
+        name: "Harthof · ASCEND",
+        field: "Plus-energy district",
+        status: "In planning",
+        year: "EU project ASCEND",
         summary:
-          "Our first plant. A rooftop PV system on a community building in Perlach, developed with the energy cooperative EGM eG and financed by its members, the neighbours who now own it.",
-        specLabels: ["Capacity", "Modules", "On the grid"],
-        heroLine: "PV array on the roof, 10 kWp, on the grid since 2026",
+          "A plus-energy district for Harthof, developed as part of the EU-funded ASCEND project. Battery storage and EV charging points are planned alongside the site's solar.",
+        specLabels: ["Area"],
+        heroLine: "Plus-energy district, roughly 450 m², in planning",
         photoAlt:
-          "Members and neighbours standing among the flat-mounted modules on the Perlacher Herz roof",
+          "An aerial map of the Harthof neighbourhood in Munich with the ASCEND project area outlined in yellow",
       },
       "gemeinde-neuperlach": {
         name: "Evangelisch-Freikirchliche Gemeinde Neuperlach",
@@ -102,7 +115,7 @@ export const en: Copy = {
       badge: "Open",
       headline: "Bring your own project",
       intro:
-        "Not everything has to come through a partner. If you have an idea, a building, a measurement you want to run or a question you want answered, that can become a gREen tumorrow project, and you lead it.",
+        "Not everything has to come through a partner. If you have an idea, a building, a measurement you want to run or a question you want answered, that can become a gREen Tumorrow project, and you lead it.",
       examplesLabel: "For example",
       examples: [
         "A roof whose owner you already know",
@@ -113,45 +126,50 @@ export const en: Copy = {
   },
 
   team: {
-    eyebrow: "Who you would work with",
-    title: "Our members",
-    advisorBadge: "Advisor",
+    title: "Student team",
     /** One entry per person, added when their portrait lands. */
     people: {},
   },
 
+  advisors: {
+    title: "Advisors",
+  },
+
   partners: {
-    eyebrow: "Who we work with",
     title: "Partners",
     entries: [
       {
         name: "EGM eG",
         full: "Energiegemeinschaften München eG",
-        text: "The energy cooperative that we partner with to realise the PV installation projects.",
       },
       {
         name: "BENG eG",
         full: "Bürgerenergiegenossenschaft BENG eG",
-        text: "One of Munich's established citizen energy cooperatives, and a second route from an idea to an installation that a neighbourhood owns.",
-      },
-      {
-        name: "TUM",
-        full: "Technical University of Munich",
-        text: "Our university. We are an accredited TUM student initiative and work with chairs across engineering and management.",
       },
     ],
   },
 
   closing: {
-    title: "Want to move the energy transition forward? Start here.",
-    lead: "Tell us who you are and how to reach you. We will get back to you and add you to the WhatsApp group where everything runs. What is happening this week, who needs a hand, when we next meet.",
+    panels: [
+      {
+        title: "Want to move the energy transition forward? Start here.",
+        lead: "Tell us who you are and what you study. What motivates you to join? We have a variety of possibilities and a lot of flexibility, you decide how much time and energy you put in. Bring your own ideas and realise them together with us.",
+      },
+      {
+        title: "Have an energy challenge? Bring it to us.",
+        lead: "Bring us your most challenging problem in renewable energy or storage. We work together to find innovative solutions that hold up in the real world. Already running a project and want fresh energy on board? Contact us at any time.",
+      },
+      {
+        title: "Want to change something around you? Start here.",
+        lead: "Want to share your energy knowledge, or improve something in your neighbourhood but you don't know how to start? You don't need to be a student or an expert, just the will to make something happen. Reach us anytime and we will help you take the first step.",
+      },
+    ],
     cta: "Fill in the form",
-    askInstead: "Rather ask something first?",
+    contactUs: "Contact us",
+    audiences: ["Students", "Companies and organizations", "Energy enthusiasts"],
   },
 
   footer: {
-    blurb:
-      "Student initiative at TUM in Munich. Students working on renewable energy, on real projects, with partners and their own.",
     legalHeading: "Legal",
     findUsHeading: "Find us",
     imprint: "Imprint",

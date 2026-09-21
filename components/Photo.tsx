@@ -65,7 +65,7 @@ export function Photo({
       src={src}
       alt={typeof alt === "string" ? alt : ""}
       sizes={sizes}
-      className={cn("object-cover", className)}
+      className={className}
     />
   );
 }

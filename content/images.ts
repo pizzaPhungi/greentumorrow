@@ -20,7 +20,6 @@ import type { StaticImageData } from "next/image";
  * and without the import the page shows a visible placeholder.
  */
 
-import nazliGhazvanchahi from "./photos/nazli-ghazvanchahi.jpeg";
 import nanaKwabenaOsei from "./photos/nana-kwabena-osei.jpeg";
 import ducVietPhung from "./photos/duc-viet-phung.jpeg";
 import marvinElling from "./photos/marvin-elling.jpeg";
@@ -28,17 +27,32 @@ import salmaGares from "./photos/salma-gares.jpeg";
 import karimAlZahabi from "./photos/karim-al-zahabi.jpg";
 import markusEblenkamp from "./photos/markus-eblenkamp.jpeg";
 import christophGoebel from "./photos/christoph-goebel.jpeg";
+import thomasHamacher from "./photos/thomas-hamacher.jpg";
+import sebastianSchwenen from "./photos/sebastian-schwenen.webp";
+import hubertRoeder from "./photos/hubert-roeder.jpg";
 
-import perlacherHerz from "./photos/perlacher-herz.webp";
+import harthofAscend from "./photos/harthof-ascend.png";
 import gemeindeNeuperlach from "./photos/gemeinde-neuperlach.png";
 
+import egmLogo from "./photos/egm-logo.webp";
+import bengLogo from "./photos/beng-logo.jpg";
+
 export const projectPhotos: Record<string, StaticImageData> = {
-  "perlacher-herz": perlacherHerz,
+  "harthof-ascend": harthofAscend,
   "gemeinde-neuperlach": gemeindeNeuperlach,
 };
 
 /** The one image above the fold. Nothing else on the page carries as much. */
-export { default as heroPhoto } from "./photos/re-stock-image.jpeg";
+export { default as heroPhoto } from "./photos/hero.webp";
+
+/** Fixed backdrop behind the whole home page, purely decorative. */
+export { default as homeBackgroundPhoto } from "./photos/solar-wind-landscape.jpg";
+
+/** Fixed backdrop behind the whole projects page, purely decorative. */
+export { default as projectsBackgroundPhoto } from "./photos/solar-field-aerial.jpg";
+
+/** Fixed backdrop behind the whole about-us page, purely decorative. */
+export { default as aboutBackgroundPhoto } from "./photos/office-workspace.jpg";
 
 /**
  * Keyed by the exact `name` in teamFacts, including the "Dr." on the advisors.
@@ -51,7 +65,6 @@ export { default as heroPhoto } from "./photos/re-stock-image.jpeg";
  * the hero and project photos, which show a scene and do need describing.
  */
 export const personPhotos: Record<string, StaticImageData> = {
-  "Nazli Ghazvanchahi": nazliGhazvanchahi,
   "Nana Kwabena Osei": nanaKwabenaOsei,
   "Duc Viet Phung": ducVietPhung,
   "Marvin Elling": marvinElling,
@@ -59,4 +72,13 @@ export const personPhotos: Record<string, StaticImageData> = {
   "Karim Al Zahabi": karimAlZahabi,
   "Dr. Markus Eblenkamp": markusEblenkamp,
   "Prof. Dr. Christoph Goebel": christophGoebel,
+  "Prof. Dr. Thomas Hamacher": thomasHamacher,
+  "Prof. Dr. Sebastian Schwenen": sebastianSchwenen,
+  "Prof. Dr. Hubert Röder": hubertRoeder,
+};
+
+/** Keyed by the exact `name` in partnerLinks. No TUM entry: that panel was dropped. */
+export const partnerLogos: Record<string, StaticImageData> = {
+  "EGM eG": egmLogo,
+  "BENG eG": bengLogo,
 };

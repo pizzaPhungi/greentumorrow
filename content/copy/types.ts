@@ -44,6 +44,12 @@ export type PersonCopy = {
   photoAlt?: Fillable;
 };
 
+/** One closing-panel's headline and lead, targeted at a specific audience. */
+export type ClosingPanel = {
+  title: string;
+  lead: string;
+};
+
 export type Copy = {
   htmlLang: string;
   /** Label for the other language in the switch, e.g. "English" as a title. */
@@ -68,7 +74,6 @@ export type Copy = {
   };
 
   hero: {
-    eyebrow: string;
     headline: string;
     lead: string;
     joinCta: string;
@@ -76,10 +81,26 @@ export type Copy = {
     photoAlt: Fillable;
   };
 
+  /**
+   * The three words double as the section's own title (coloured amber, blue,
+   * green in turn) and as each block's own tag, so they are written once.
+   */
+  missionVisionValues: {
+    mission: { label: string; text: string };
+    vision: { label: string; text: string };
+    values: { label: string; items: string[] };
+  };
+
   stats: {
-    eyebrow: string;
     title: string;
-    items: { value: Fillable; unit?: string; label: string; note?: string }[];
+    items: {
+      value: Fillable;
+      unit?: string;
+      label: string;
+      note?: string;
+      /** False for a year: counting up to it reads as nonsense. */
+      animate?: boolean;
+    }[];
   };
 
   pillars: {
@@ -90,7 +111,6 @@ export type Copy = {
 
 
   projects: {
-    eyebrow: string;
     title: string;
     lead: string;
     partnerLabel: string;
@@ -105,27 +125,29 @@ export type Copy = {
   };
 
   team: {
-    eyebrow: string;
     title: string;
-    advisorBadge: string;
     people: Record<string, PersonCopy>;
   };
 
-  partners: {
-    eyebrow: string;
+  advisors: {
     title: string;
-    entries: { name: string; full: string; text: string }[];
+  };
+
+  partners: {
+    title: string;
+    entries: { name: string; full: string }[];
   };
 
   closing: {
-    title: string;
-    lead: string;
+    /** One headline and lead per panel, matching the order of `audiences`. */
+    panels: [ClosingPanel, ClosingPanel, ClosingPanel];
     cta: string;
-    askInstead: string;
+    contactUs: string;
+    /** Labels the three panels by who each is for, in that order. */
+    audiences: [string, string, string];
   };
 
   footer: {
-    blurb: string;
     legalHeading: string;
     findUsHeading: string;
     imprint: string;

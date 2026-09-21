@@ -35,7 +35,7 @@ export const localeHome = Object.fromEntries(
 ) as Record<Locale, string>;
 
 /** The tabs in the top bar, in the order they appear. */
-export const sections = ["projects", "partners", "members"] as const;
+export const sections = ["projects", "about"] as const;
 export type Section = (typeof sections)[number];
 
 export const sectionHref = (locale: Locale, section: Section) =>
@@ -64,8 +64,8 @@ export const counterpartHref = (pathname: string, target: Locale) => {
 };
 
 export const site = {
-  name: "gREen tumorrow",
-  legalName: "gREen tumorrow",
+  name: "gREen Tumorrow",
+  legalName: "gREen Tumorrow",
   url: "https://greentumorrow.de",
 };
 
@@ -135,7 +135,7 @@ export const responsible = {
 export const founded = "2026";
 
 /** Slugs key both the copy and the photo imports in content/images.ts. */
-export const projectSlugs = ["perlacher-herz", "gemeinde-neuperlach"] as const;
+export const projectSlugs = ["gemeinde-neuperlach", "harthof-ascend"] as const;
 export type ProjectSlug = (typeof projectSlugs)[number];
 
 export type ProjectFacts = {
@@ -150,18 +150,17 @@ export type ProjectFacts = {
 
 export const projectFacts: ProjectFacts[] = [
   {
-    slug: "perlacher-herz",
-    type: "partner",
-    status: "live",
-    partner: "EGM eG",
-    specs: ["10 kWp", "24", "2026"],
-  },
-  {
     slug: "gemeinde-neuperlach",
     type: "partner",
     status: "planning",
     partner: "EGM eG",
     specs: ["25 kWp", "11 kWh"],
+  },
+  {
+    slug: "harthof-ascend",
+    type: "partner",
+    status: "planning",
+    specs: ["450 m²"],
   },
 ];
 
@@ -180,14 +179,9 @@ export type PersonFacts = {
 
 export const teamFacts: PersonFacts[] = [
   {
-    name: "Nazli Ghazvanchahi",
+    name: "Salma Gares",
     kind: "student",
-    programme: "M.Sc. Sustainable Management & Technology",
-  },
-  {
-    name: "Nana Kwabena Osei",
-    kind: "student",
-    programme: "M.Sc. Engineering Science",
+    programme: "M.Sc. Electrical Engineering & Information Technology",
   },
   {
     name: "Duc Viet Phung",
@@ -200,9 +194,9 @@ export const teamFacts: PersonFacts[] = [
     programme: "M.Sc. Electrical & Computer Engineering",
   },
   {
-    name: "Salma Gares",
+    name: "Nana Kwabena Osei",
     kind: "student",
-    programme: "M.Sc. Electrical Engineering & Information Technology",
+    programme: "M.Sc. Engineering Science",
   },
   { name: "Karim Al Zahabi", kind: "student", programme: "M.Sc. Power Engineering" },
   {
@@ -215,10 +209,24 @@ export const teamFacts: PersonFacts[] = [
     kind: "advisor",
     programme: "Professor of Energy Management Technologies",
   },
+  {
+    name: "Prof. Dr. Thomas Hamacher",
+    kind: "advisor",
+    programme: "Professor of Renewable and Sustainable Energy Systems",
+  },
+  {
+    name: "Prof. Dr. Sebastian Schwenen",
+    kind: "advisor",
+    programme: "Professor of Economics of Energy Markets",
+  },
+  {
+    name: "Prof. Dr. Hubert Röder",
+    kind: "advisor",
+    programme: "Professor of Sustainable Business Economics",
+  },
 ];
 
 export const partnerLinks = [
   { name: "EGM eG", href: "https://www.energiegemeinschaften-muenchen.com/" },
   { name: "BENG eG", href: "https://www.beng-eg.de/" },
-  { name: "TUM", href: "https://www.tum.de/" },
 ];

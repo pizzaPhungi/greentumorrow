@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/components/cn";
+import { CountUp } from "@/components/CountUp";
+import { Reveal } from "@/components/Reveal";
 import { TodoNote } from "@/components/Todo";
 import { isTodo, type Fillable as FillableValue } from "@/content/shared";
 
@@ -23,11 +25,18 @@ export function Section({
   className,
   id,
   tone = "cream",
+  /**
+   * Swaps the solid tone for a frosted glass panel, so a fixed background
+   * behind the section (see Home) stays visible through it. Used only where
+   * that backdrop exists; every other page keeps the solid tones.
+   */
+  translucent = false,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
   tone?: "cream" | "deep" | "green" | "mist";
+  translucent?: boolean;
 }) {
   const tones = {
     cream: "bg-cream",
@@ -35,10 +44,20 @@ export function Section({
     green: "bg-green-dark text-mist",
     mist: "bg-mist",
   };
+  const translucentTones = {
+    cream: "bg-cream/60 backdrop-blur-md",
+    deep: "bg-cream-deep/30 backdrop-blur-md",
+    green: "bg-green-dark/60 text-mist backdrop-blur-md",
+    mist: "bg-mist/60 backdrop-blur-md",
+  };
   return (
     <section
       id={id}
-      className={cn("py-20 sm:py-28", tones[tone], className)}
+      className={cn(
+        "py-20 sm:py-28",
+        translucent ? translucentTones[tone] : tones[tone],
+        className,
+      )}
     >
       <Container>{children}</Container>
     </section>
@@ -79,7 +98,7 @@ export function SectionHeading({
   invert?: boolean;
 }) {
   return (
-    <div className={cn("max-w-2xl", className)}>
+    <Reveal className={cn("max-w-2xl", className)}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2
         className={cn(
@@ -99,7 +118,7 @@ export function SectionHeading({
           {lead}
         </p>
       ) : null}
-    </div>
+    </Reveal>
   );
 }
 
@@ -164,22 +183,60 @@ export function Button({
 export function Card({
   children,
   className,
-  as: Tag = "div",
+  as = "div",
   weight = "default",
+  delay,
+  /**
+   * Swaps the solid card face for a frosted glass panel tinted with `tone`,
+   * so a fixed background behind the page (see About us) stays visible
+   * through it. Used only where that backdrop exists; every other page
+   * keeps the solid weights.
+   */
+  translucent = false,
+  /** The tint a translucent card carries. Ignored when `translucent` is false. */
+  tone = "cream",
 }: {
   children: ReactNode;
   className?: string;
   as?: "div" | "li" | "article";
   /** Lets a card carry more or less visual weight than its neighbours. */
   weight?: "lead" | "default" | "quiet";
+  /** Staggers a card's reveal behind its neighbours in a grid, in ms. */
+  delay?: number;
+  translucent?: boolean;
+  tone?: "cream" | "deep" | "green" | "mist";
 }) {
-  const weights = {
-    lead: "rounded-xl border-green/25 bg-cream p-8 shadow-[0_2px_0_rgba(58,100,60,0.10)] sm:p-10",
-    default: "rounded-lg border-green/12 bg-cream p-7",
-    quiet: "rounded-lg border-green/10 bg-transparent p-6",
+  const shapes = {
+    lead: "rounded-xl border-green/25 p-8 shadow-[0_2px_0_rgba(58,100,60,0.10)] sm:p-10",
+    default: "rounded-lg border-green/12 p-7",
+    quiet: "rounded-lg border-green/10 p-6",
   };
+  const solidSurfaces = {
+    cream: "bg-cream",
+    deep: "bg-cream-deep",
+    green: "bg-green-dark text-mist",
+    mist: "bg-mist",
+  };
+  const translucentSurfaces = {
+    cream: "bg-cream/55 backdrop-blur-md",
+    deep: "bg-cream-deep/45 backdrop-blur-md",
+    green: "bg-green-dark/55 text-mist backdrop-blur-md",
+    mist: "bg-mist/55 backdrop-blur-md",
+  };
+  const surface =
+    weight === "quiet" && !translucent
+      ? "bg-transparent"
+      : translucent
+        ? translucentSurfaces[tone]
+        : solidSurfaces[tone];
   return (
-    <Tag className={cn("border", weights[weight], className)}>{children}</Tag>
+    <Reveal
+      as={as}
+      delay={delay}
+      className={cn("border", shapes[weight], surface, className)}
+    >
+      {children}
+    </Reveal>
   );
 }
 
@@ -188,31 +245,37 @@ export function Stat({
   unit,
   label,
   note,
+  delay,
+  animate = true,
 }: {
   value: FillableValue;
   unit?: string;
   label: string;
   note?: string;
+  delay?: number;
+  /** False for a year: counting up to it reads as nonsense. */
+  animate?: boolean;
 }) {
+  const numeric = !isTodo(value) ? Number(value) : NaN;
   return (
-    <div className="border-t border-green/20 pt-5">
-      <p className="font-semibold tracking-tight text-green-dark tabular-nums">
+    <Reveal as="div" delay={delay} className="border-t border-green/20 pt-5">
+      <p className="font-semibold tracking-tight text-green tabular-nums">
         {isTodo(value) ? (
           <TodoNote value={value} label="To do" />
+        ) : animate && Number.isFinite(numeric) ? (
+          <CountUp value={numeric} className="text-4xl sm:text-5xl" />
         ) : (
-          <>
-            <span className="text-4xl sm:text-5xl">{value}</span>
-            {unit ? (
-              <span className="ml-1 text-xl text-amber-deep sm:text-2xl">
-                {unit}
-              </span>
-            ) : null}
-          </>
+          <span className="text-4xl sm:text-5xl">{value}</span>
         )}
+        {!isTodo(value) && unit ? (
+          <span className="ml-1 text-xl text-amber-deep sm:text-2xl">
+            {unit}
+          </span>
+        ) : null}
       </p>
       <p className="mt-2 text-sm font-medium text-navy">{label}</p>
-      {note ? <p className="mt-0.5 text-sm text-navy/55">{note}</p> : null}
-    </div>
+      {note ? <p className="mt-0.5 text-sm font-medium text-navy">{note}</p> : null}
+    </Reveal>
   );
 }
 
