@@ -125,7 +125,7 @@ export function Home({ locale }: { locale: Locale }) {
       {/* Numbers */}
       <Section tone="deep" translucent className="mb-10 py-8 sm:mb-14 sm:py-10">
         <SectionHeading
-          title={<span className="text-green">{copy.stats.title}</span>}
+          title={copy.stats.title}
         />
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {copy.stats.items.map((s, i) => (
@@ -137,7 +137,7 @@ export function Home({ locale }: { locale: Locale }) {
       {/* Pillars. Equal weight, separated columns rather than a card row. */}
       <Section translucent className="mb-10 sm:mb-14">
         <Reveal as="div">
-          <h2 className="text-3xl font-semibold text-amber-deep sm:text-4xl">
+          <h2 className="text-3xl font-semibold sm:text-4xl">
             {copy.pillars.eyebrow}
           </h2>
         </Reveal>

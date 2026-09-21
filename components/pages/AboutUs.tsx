@@ -94,7 +94,7 @@ export function AboutUs({ locale }: { locale: Locale }) {
       <div className="mb-4 py-10 sm:mb-6 sm:py-14">
         <Container>
           <SectionHeading
-            title={<span className="text-navy">{copy.team.title}</span>}
+            title={copy.team.title}
           />
           <PersonGrid people={students} copy={copy} tone="cream" />
         </Container>
@@ -103,7 +103,7 @@ export function AboutUs({ locale }: { locale: Locale }) {
       <div className="mb-4 py-10 sm:mb-6 sm:py-14">
         <Container>
           <SectionHeading
-            title={<span className="text-green-dark">{copy.advisors.title}</span>}
+            title={copy.advisors.title}
           />
           <PersonGrid people={advisors} copy={copy} tone="mist" />
         </Container>
@@ -112,7 +112,7 @@ export function AboutUs({ locale }: { locale: Locale }) {
       <div className="mb-4 py-10 sm:mb-6 sm:py-14">
         <Container>
           <SectionHeading
-            title={<span className="text-amber-deep">{copy.partners.title}</span>}
+            title={copy.partners.title}
           />
           <ul className="mt-12 grid gap-6 sm:grid-cols-2">
             {copy.partners.entries.map((p, i) => (
