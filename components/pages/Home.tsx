@@ -81,8 +81,9 @@ export function Home({ locale }: { locale: Locale }) {
 
       {/* Mission, vision, values. Each block carries its own colour and
           slides in from its own direction, rather than the uniform reveal
-          the rest of the page uses. */}
-      <Section tone="mist" translucent className="mb-10 sm:mb-14">
+          the rest of the page uses. overflow-x-clip because the side slides
+          start 2.5rem off screen and would otherwise widen the page on mobile. */}
+      <Section tone="mist" translucent className="mb-10 overflow-x-clip sm:mb-14">
         <div className="grid gap-10 md:grid-cols-3">
           <Reveal variant="left">
             <MissionIcon className="mx-auto h-10 w-10 animate-float text-amber-deep" />
