@@ -34,12 +34,19 @@ import hubertRoeder from "./photos/hubert-roeder.jpg";
 import harthofAscend from "./photos/harthof-ascend.jpg";
 import gemeindeNeuperlach from "./photos/gemeinde-neuperlach.jpg";
 
+import wattTheHack from "./photos/watt-the-hack.webp";
+
 import egmLogo from "./photos/egm-logo.webp";
 import bengLogo from "./photos/beng-logo.jpg";
 
 export const projectPhotos: Record<string, StaticImageData> = {
   "harthof-ascend": harthofAscend,
   "gemeinde-neuperlach": gemeindeNeuperlach,
+};
+
+/** Keyed by event slug in shared.ts. The poster each event was announced with. */
+export const eventPhotos: Record<string, StaticImageData> = {
+  "watt-the-hack": wattTheHack,
 };
 
 /** The one image above the fold. Nothing else on the page carries as much. */

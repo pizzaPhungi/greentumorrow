@@ -82,8 +82,9 @@ function PersonGrid({
 
 export function AboutUs({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
-  const students = teamFacts.filter((p) => p.kind === "student");
-  const advisors = teamFacts.filter((p) => p.kind === "advisor");
+  const visible = teamFacts.filter((p) => !p.archived);
+  const students = visible.filter((p) => p.kind === "student");
+  const advisors = visible.filter((p) => p.kind === "advisor");
 
   return (
     <>

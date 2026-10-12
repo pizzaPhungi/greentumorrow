@@ -35,7 +35,7 @@ export const localeHome = Object.fromEntries(
 ) as Record<Locale, string>;
 
 /** The tabs in the top bar, in the order they appear. */
-export const sections = ["projects", "about"] as const;
+export const sections = ["projects", "events", "about"] as const;
 export type Section = (typeof sections)[number];
 
 export const sectionHref = (locale: Locale, section: Section) =>
@@ -178,6 +178,11 @@ export type PersonFacts = {
    * titles, so they stay in English in both locales.
    */
   programme: string;
+  /**
+   * Kept on file but not shown on the site. Their photo and copy stay in place,
+   * so deleting this flag is all it takes to bring a profile back.
+   */
+  archived?: true;
 };
 
 export const teamFacts: PersonFacts[] = [
@@ -210,21 +215,25 @@ export const teamFacts: PersonFacts[] = [
   {
     name: "Prof. Dr. Christoph Goebel",
     kind: "advisor",
+    archived: true,
     programme: "Professor of Energy Management Technologies",
   },
   {
     name: "Prof. Dr. Thomas Hamacher",
     kind: "advisor",
+    archived: true,
     programme: "Professor of Renewable and Sustainable Energy Systems",
   },
   {
     name: "Prof. Dr. Sebastian Schwenen",
     kind: "advisor",
+    archived: true,
     programme: "Professor of Economics of Energy Markets",
   },
   {
     name: "Prof. Dr. Hubert Röder",
     kind: "advisor",
+    archived: true,
     programme: "Professor of Sustainable Business Economics",
   },
 ];
@@ -232,4 +241,28 @@ export const teamFacts: PersonFacts[] = [
 export const partnerLinks = [
   { name: "EGM eG", href: "https://www.energiegemeinschaften-muenchen.com/" },
   { name: "BENG eG", href: "https://www.beng-eg.de/" },
+];
+
+/** Slugs key both the copy and the poster imports in content/images.ts. */
+export const eventSlugs = ["watt-the-hack"] as const;
+export type EventSlug = (typeof eventSlugs)[number];
+
+export type EventFacts = {
+  slug: EventSlug;
+  /**
+   * What the countdown runs to, with an explicit Munich offset. The listing
+   * says "all day" without a start time, so this is midnight of the event day;
+   * move it once a real start time is announced.
+   */
+  startsAt: string;
+  /** Registration lives on Luma; the site only links to it. */
+  registerUrl: string;
+};
+
+export const eventFacts: EventFacts[] = [
+  {
+    slug: "watt-the-hack",
+    startsAt: "2026-10-24T00:00:00+02:00",
+    registerUrl: "https://luma.com/mcw2026-foj2",
+  },
 ];

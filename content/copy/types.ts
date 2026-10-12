@@ -1,4 +1,4 @@
-import type { Fillable, ProjectSlug, Section } from "../shared.ts";
+import type { EventSlug, Fillable, ProjectSlug, Section } from "../shared.ts";
 
 /**
  * The contract both languages must satisfy. `content/copy/de.ts` and
@@ -42,6 +42,17 @@ export type PersonCopy = {
    * without a photo is nothing at all.
    */
   photoAlt?: Fillable;
+};
+
+export type EventCopy = {
+  name: string;
+  /** The subtitle under the name, e.g. what kind of event it is. */
+  tagline: string;
+  /** Who hosts it and in what setting, in one line. */
+  presentedBy: string;
+  date: string;
+  place: string;
+  photoAlt: Fillable;
 };
 
 /** One closing-panel's headline and lead, targeted at a specific audience. */
@@ -124,6 +135,19 @@ export type Copy = {
       examplesLabel: string;
       examples: string[];
     };
+  };
+
+  events: {
+    title: string;
+    /** Above the countdown, e.g. "Starts in". */
+    countdownLabel: string;
+    /** Replaces the countdown once the start time has passed. */
+    countdownDone: string;
+    units: { days: string; hours: string; minutes: string; seconds: string };
+    dateLabel: string;
+    placeLabel: string;
+    register: string;
+    entries: Record<EventSlug, EventCopy>;
   };
 
   team: {

@@ -26,6 +26,7 @@ from the file, so there is nothing to keep in sync.
 | `thomas-hamacher.jpg` | 1000x562 | Thomas Hamacher, advisors |
 | `sebastian-schwenen.webp` | 433x265 | Sebastian Schwenen, advisors |
 | `hubert-roeder.jpg` | 800x1115 | Hubert Röder, advisors |
+| `watt-the-hack.webp` | 1080x1080 | WATT THE HACK poster, events page (from the Luma listing) |
 
 `gemeinde-neuperlach.jpg` is small. It renders about 490px wide on a desktop
 card, so on a retina screen it is being upscaled and looks soft. Replace it with

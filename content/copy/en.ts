@@ -14,7 +14,7 @@ export const en: Copy = {
   nav: {
     join: "Join",
     homeTab: "Home",
-    sections: { projects: "Projects", about: "About us" },
+    sections: { projects: "Projects", events: "Events", about: "About us" },
     home: "gREen Tumorrow, home",
     skipToContent: "Skip to content",
     openMenu: "Open menu",
@@ -56,7 +56,7 @@ export const en: Copy = {
       },
       { value: "3", label: "partners" },
       { value: "2", label: "solar projects" },
-      { value: "6", label: "students" },
+      { value: "9", label: "students" },
     ],
   },
 
@@ -123,6 +123,27 @@ export const en: Copy = {
         "A tool or model renewable energy projects are missing",
         "A study or measurement campaign nobody has run",
       ],
+    },
+  },
+
+  events: {
+    title: "Events",
+    countdownLabel: "Starts in",
+    countdownDone: "Happening today",
+    units: { days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds" },
+    dateLabel: "Date",
+    placeLabel: "Location",
+    register: "Secure your spot, places are limited",
+    entries: {
+      "watt-the-hack": {
+        name: "WATT THE HACK",
+        tagline: "Energy & AI Hackathon",
+        presentedBy: "Hosted by gREen Tumorrow during Munich Climate Week",
+        date: "Saturday, 24 October 2026",
+        place: "TUM Main Campus, Munich",
+        photoAlt:
+          "Event poster for WATT THE HACK, Energy & AI Hackathon, 24 October at TUM Main Campus: an illustrated green city with wind turbines and labels for AI use cases such as energy storage management and wind energy forecasting",
+      },
     },
   },
 

@@ -20,7 +20,7 @@ export const de: Copy = {
   nav: {
     join: "Mitmachen",
     homeTab: "Start",
-    sections: { projects: "Projekte", about: "Über uns" },
+    sections: { projects: "Projekte", events: "Events", about: "Über uns" },
     home: "gREen Tumorrow, Startseite",
     skipToContent: "Zum Inhalt springen",
     openMenu: "Menü öffnen",
@@ -62,7 +62,7 @@ export const de: Copy = {
       },
       { value: "3", label: "Partner" },
       { value: "2", label: "Solarprojekte" },
-      { value: "6", label: "Studierende" },
+      { value: "9", label: "Studierende" },
     ],
   },
 
@@ -129,6 +129,27 @@ export const de: Copy = {
         "Ein Werkzeug oder Modell, das in Erneuerbaren-Projekten fehlt",
         "Eine Untersuchung oder Messreihe, die noch niemand gemacht hat",
       ],
+    },
+  },
+
+  events: {
+    title: "Events",
+    countdownLabel: "Noch",
+    countdownDone: "Heute ist es so weit",
+    units: { days: "Tage", hours: "Stunden", minutes: "Minuten", seconds: "Sekunden" },
+    dateLabel: "Datum",
+    placeLabel: "Ort",
+    register: "Sichere dir deinen Platz, die Plätze sind begrenzt",
+    entries: {
+      "watt-the-hack": {
+        name: "WATT THE HACK",
+        tagline: "Energy & AI Hackathon",
+        presentedBy: "Veranstaltet von gREen Tumorrow während der Munich Climate Week",
+        date: "Samstag, 24. Oktober 2026",
+        place: "TUM Stammgelände, München",
+        photoAlt:
+          "Veranstaltungsplakat für WATT THE HACK, Energy & AI Hackathon, 24. Oktober auf dem TUM Stammgelände: eine illustrierte grüne Stadt mit Windrädern und Beschriftungen für KI-Anwendungen wie Speichermanagement und Windprognosen",
+      },
     },
   },
 
