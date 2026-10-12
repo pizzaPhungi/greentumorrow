@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 /**
  * Ticks down to `target` once a second. The exported HTML is built ahead of
@@ -9,6 +9,17 @@ import { useEffect, useState } from "react";
  *
  * Labels arrive as props so the dictionaries stay on the server.
  */
+
+/** Notifies once a second; the clock itself is the external store. */
+function subscribe(onTick: () => void) {
+  const id = setInterval(onTick, 1000);
+  return () => clearInterval(id);
+}
+/** Whole seconds, so the snapshot only changes when the display would. */
+const clientNow = () => Math.floor(Date.now() / 1000) * 1000;
+/** Null while prerendering and hydrating: the boxes show dashes. */
+const serverNow = () => null;
+
 export function Countdown({
   target,
   label,
@@ -21,13 +32,7 @@ export function Countdown({
   units: { days: string; hours: string; minutes: string; seconds: string };
 }) {
   const end = new Date(target).getTime();
-  const [now, setNow] = useState<number | null>(null);
-
-  useEffect(() => {
-    setNow(Date.now());
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
+  const now = useSyncExternalStore(subscribe, clientNow, serverNow);
 
   const left = now === null ? null : Math.max(0, end - now);
 
