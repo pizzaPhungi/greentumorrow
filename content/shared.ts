@@ -371,3 +371,9 @@ export const wattTheHackChallenges: {
     members: ["Baris Sever", "Swapnil Tekwani", "Efe Uluğ", "Jiale Xu"],
   },
 ];
+
+/**
+ * Shown on the home page: the standing partners plus the WATT THE HACK
+ * challenge partners, the same six logos as on About us.
+ */
+export const partnerCount = partnerLinks.length + wattTheHackChallenges.length;

@@ -1,5 +1,5 @@
 import type { Copy } from "./types.ts";
-import { studentCount } from "../shared.ts";
+import { partnerCount, studentCount } from "../shared.ts";
 
 /**
  * German lives under /de; English is the default at the root.
@@ -61,7 +61,7 @@ export const de: Copy = {
         note: "und von der TUM akkreditiert",
         animate: false,
       },
-      { value: "3", label: "Partner" },
+      { value: String(partnerCount), label: "Partner" },
       { value: "2", label: "Solarprojekte" },
       { value: String(studentCount), label: "Studierende" },
     ],

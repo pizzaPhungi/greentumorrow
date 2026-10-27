@@ -1,5 +1,5 @@
 import type { Copy } from "./types.ts";
-import { studentCount } from "../shared.ts";
+import { partnerCount, studentCount } from "../shared.ts";
 
 export const en: Copy = {
   htmlLang: "en",
@@ -55,7 +55,7 @@ export const en: Copy = {
         note: "and accredited by TUM",
         animate: false,
       },
-      { value: "3", label: "partners" },
+      { value: String(partnerCount), label: "partners" },
       { value: "2", label: "solar projects" },
       { value: String(studentCount), label: "students" },
     ],
