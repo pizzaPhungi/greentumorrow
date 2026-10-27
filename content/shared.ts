@@ -138,14 +138,19 @@ export const responsible = {
 export const founded = "2026";
 
 /** Slugs key both the copy and the photo imports in content/images.ts. */
-export const projectSlugs = ["gemeinde-neuperlach", "harthof-ascend"] as const;
+export const projectSlugs = [
+  "gemeinde-neuperlach",
+  "harthof-ascend",
+  "tum-garching",
+] as const;
 export type ProjectSlug = (typeof projectSlugs)[number];
 
 export type ProjectFacts = {
   slug: ProjectSlug;
   /** Where the project came from. Lets the copy group entries by origin. */
   type: "partner" | "own";
-  status: "live" | "planning";
+  /** "concept": an idea still waiting on approval, before any planning starts. */
+  status: "live" | "planning" | "concept";
   partner?: string;
   /** Figures are the same in both languages; only the labels are translated. */
   specs: string[];
@@ -165,6 +170,12 @@ export const projectFacts: ProjectFacts[] = [
     status: "planning",
     specs: ["450 m²"],
   },
+  {
+    slug: "tum-garching",
+    type: "own",
+    status: "concept",
+    specs: ["Garching"],
+  },
 ];
 
 /** Names key the portrait imports in content/images.ts. */
@@ -177,7 +188,7 @@ export type PersonFacts = {
    * Degree programme for students, position for advisors. Official programme
    * titles, so they stay in English in both locales.
    */
-  programme: string;
+  programme: Fillable;
   /**
    * Kept on file but not shown on the site. Their photo and copy stay in place,
    * so deleting this flag is all it takes to bring a profile back.
@@ -192,6 +203,11 @@ export const teamFacts: PersonFacts[] = [
     programme: "M.Sc. Electrical Engineering & Information Technology",
   },
   {
+    name: "Eliana Sattarova",
+    kind: "student",
+    programme: "M.Sc. Power Engineering",
+  },
+  {
     name: "Duc Viet Phung",
     kind: "student",
     programme: "M.Sc. Management & Technology",
@@ -202,15 +218,40 @@ export const teamFacts: PersonFacts[] = [
     programme: "M.Sc. Electrical & Computer Engineering",
   },
   {
+    name: "Nazli Ghazvanchahi",
+    kind: "student",
+    programme: "M.Sc. Sustainable Management & Technology",
+  },
+  {
     name: "Nana Kwabena Osei",
     kind: "student",
     programme: "M.Sc. Engineering Science",
   },
   { name: "Karim Al Zahabi", kind: "student", programme: "M.Sc. Power Engineering" },
   {
+    name: "Tim Keuerleber",
+    kind: "student",
+    programme: "M.Sc. Business Management & Renewable Energy Entrepreneurship",
+  },
+  {
+    name: "Nikhil Rao Jabade Chandra",
+    kind: "student",
+    programme: "M.Sc. Power Engineering",
+  },
+  {
     name: "Dr. Markus Eblenkamp",
     kind: "advisor",
     programme: "Program Manager M.Sc. Power Engineering at TUM",
+  },
+  {
+    name: "Lampros Konstantellos",
+    kind: "advisor",
+    programme: "Research Associate at TUM",
+  },
+  {
+    name: "Prof. Dr. Reinaldo Tonkoski",
+    kind: "advisor",
+    programme: "Professor of Electric Power Transmission and Distribution",
   },
   {
     name: "Prof. Dr. Christoph Goebel",
@@ -238,6 +279,11 @@ export const teamFacts: PersonFacts[] = [
   },
 ];
 
+/** Shown on the home page; counts the visible student roster. */
+export const studentCount = teamFacts.filter(
+  (p) => p.kind === "student" && !p.archived,
+).length;
+
 export const partnerLinks = [
   { name: "EGM eG", href: "https://www.energiegemeinschaften-muenchen.com/" },
   { name: "BENG eG", href: "https://www.beng-eg.de/" },
@@ -255,14 +301,73 @@ export type EventFacts = {
    * move it once a real start time is announced.
    */
   startsAt: string;
-  /** Registration lives on Luma; the site only links to it. */
-  registerUrl: string;
+  /**
+   * Registration lives on Luma; the site only links to it. Set only while the
+   * event is ahead: it also decides whether the countdown shows.
+   */
+  registerUrl?: string;
+  /** The event is over: its challenges and photos show on the events page. */
+  recap?: boolean;
 };
 
 export const eventFacts: EventFacts[] = [
   {
     slug: "watt-the-hack",
     startsAt: "2026-10-24T00:00:00+02:00",
-    registerUrl: "https://luma.com/mcw2026-foj2",
+    recap: true,
+  },
+];
+
+/** Took the camera photos at WATT THE HACK (the winner cards and the DSC shots in the gallery). */
+export const wattTheHackPhotographer = "Soleeh.M";
+
+/** Keyed by challenge slug in the copy and in `challengeLogos`. */
+export const wattTheHackChallengeSlugs = [
+  "baywa-re",
+  "nomadic-drones",
+  "ecurious",
+  "nuuenergy",
+] as const;
+export type ChallengeSlug = (typeof wattTheHackChallengeSlugs)[number];
+
+/**
+ * One challenge per partner, one winning team per challenge. Team names are
+ * the same in both languages, so they live here and not in the copy.
+ */
+export const wattTheHackChallenges: {
+  slug: ChallengeSlug;
+  company: string;
+  winner: Fillable;
+  /** The winning team's members, once known. */
+  members?: string[];
+}[] = [
+  {
+    slug: "baywa-re",
+    company: "BayWa r.e.",
+    winner: "FAMi",
+    members: ["Felicitas Lüdke", "Michael Lassmann", "Astrid Dembélé"],
+  },
+  {
+    slug: "nomadic-drones",
+    company: "Nomadic Drones",
+    winner: "NomaderWatt",
+    members: [
+      "Kerem Karabiy",
+      "Liam Brömer",
+      "Aayushman Bhaba Padhy",
+      "Raul Berganza Gomez",
+    ],
+  },
+  {
+    slug: "ecurious",
+    company: "Ecurious",
+    winner: "Flash",
+    members: ["Jonas Hahn", "René Koch", "Kamelia Draganova", "Esma Eken"],
+  },
+  {
+    slug: "nuuenergy",
+    company: "nuuEnergy",
+    winner: "Team Swap",
+    members: ["Baris Sever", "Swapnil Tekwani", "Efe Uluğ", "Jiale Xu"],
   },
 ];

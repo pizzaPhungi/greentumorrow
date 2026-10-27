@@ -1,4 +1,10 @@
-import type { EventSlug, Fillable, ProjectSlug, Section } from "../shared.ts";
+import type {
+  ChallengeSlug,
+  EventSlug,
+  Fillable,
+  ProjectSlug,
+  Section,
+} from "../shared.ts";
 
 /**
  * The contract both languages must satisfy. `content/copy/de.ts` and
@@ -26,10 +32,12 @@ export type ProjectCopy = {
 };
 
 /**
- * Roles are deliberately absent. The club has not settled them yet, and a label
- * nobody stands behind is worse than no label. Names carry the section.
+ * Roles only where one is settled, such as the founder. A label nobody stands
+ * behind is worse than no label, so most people carry none.
  */
 export type PersonCopy = {
+  /** Shown above the programme, e.g. "Founder". */
+  role?: string;
   /**
    * Overrides `programme` from shared.ts in this language. Only for lines that
    * have an official translation, such as a professorship; degree programme
@@ -53,6 +61,8 @@ export type EventCopy = {
   date: string;
   place: string;
   photoAlt: Fillable;
+  /** What happened, once the event is over. Shown on the events page. */
+  recap?: string;
 };
 
 /** One closing-panel's headline and lead, targeted at a specific audience. */
@@ -126,8 +136,25 @@ export type Copy = {
   projects: {
     title: string;
     lead: string;
+    /** Labels the PV and Wind jump links under the lead. */
+    jumpLabel: string;
+    pvTitle: string;
+    windTitle: string;
     partnerLabel: string;
     entries: Record<ProjectSlug, ProjectCopy>;
+    /**
+     * Not a project yet: an excursion still looking for its partner company,
+     * so it has no facts in shared.ts and stays out of `entries`.
+     */
+    wind: {
+      status: string;
+      field: string;
+      name: string;
+      summary: string;
+      /** One ask per audience: companies first, then students. */
+      asks: { label: string; text: string; cta: string; subject: string }[];
+      photoAlt: Fillable;
+    };
     own: {
       badge: string;
       headline: string;
@@ -148,6 +175,33 @@ export type Copy = {
     placeLabel: string;
     register: string;
     entries: Record<EventSlug, EventCopy>;
+  };
+
+  wattTheHack: {
+    partnersTitle: string;
+    partnersLead: string;
+    /** Prefix before the company name in a logo's alt text, e.g. "Logo". */
+    logoAlt: string;
+    winnersTitle: string;
+    winnersLead: string;
+    /** After the company name on a winner card, e.g. "BayWa r.e. challenge". */
+    challengeWord: string;
+    /** The prize each winning team took home, formatted for the language. */
+    prize: string;
+    challenges: Record<
+      ChallengeSlug,
+      {
+        title: string;
+        summary: string;
+        /** Describes the winning team's photo in `winnerPhotos`. */
+        winnerPhotoAlt: Fillable;
+      }
+    >;
+    galleryTitle: string;
+    /** Before the photographer's name, e.g. "Camera photos by". */
+    galleryCredit: string;
+    /** One per photo in `wattTheHackGallery`, same order. */
+    galleryAlts: Fillable[];
   };
 
   team: {
