@@ -40,7 +40,7 @@ from the file, so there is nothing to keep in sync.
 | `winners-baywa-re.jpg` | 1600x1134 | FAMi, BayWa r.e. winners card |
 | `tim-keuerleber.jpg` | 400x400 | Tim Keuerleber, team |
 | `eliana-sattarova.jpg` | 600x600 | Eliana Sattarova, team (cropped square from a selfie) |
-| `nikhil-rao-jabade-chandra.jpg` | 280x280 | Nikhil Rao Jabade Chandra, team (cropped square) |
+| `nikhil-rao-jabade-chandra.jpg` | 600x600 | Nikhil Rao Jabade Chandra, team (cropped square from a headshot) |
 | `lampros-konstantellos.jpg` | 400x400 | Lampros Konstantellos, advisors |
 | `reinaldo-tonkoski.jpg` | 600x600 | Prof. Dr. Reinaldo Tonkoski, advisors (official TUM headshot from portal.fis.tum.de, cropped) |
 | `watt-the-hack-001.jpg` to `-127.jpg` | 1100px long edge | WATT THE HACK gallery, events page, in page order (colour-corrected; camera shots from the .ARW embedded previews in `social media/Hackathon`) |
